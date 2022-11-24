@@ -24,7 +24,10 @@ jobs:
         run: npm ci
       - name: Run Tests
         run: npm run test
+      - name: Generate Docs
+        run: npm run doc:*
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          package: core/typescript/package.json
           dry-run: true
