@@ -6,11 +6,13 @@ on:
       - "main"
     paths:
       - "core/typescript/**"
+      - ".github/workflows/build_cdf-typescript.yml"
   pull_request:
     branches:
       - "main"
     paths:
       - "core/typescript/**"
+      - ".github/workflows/build_cdf-typescript.yml"
 
 defaults:
   run:
