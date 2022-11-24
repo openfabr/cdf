@@ -136,18 +136,28 @@ const setupTests = (scope: Stack) => {
       new GeneralConfigStub('test-general-config'),
       new NetworkConfigStub('test-network-config'),
       [
-        new TraitConfig('test-bucket-config', 'storage', 'object', [
-          new ComponentConfigStub('test-bucket'),
-        ], new ComponentConfigStub('test-default')),
+        new TraitConfig(
+          'test-bucket-config',
+          'storage',
+          'object',
+          [new ComponentConfigStub('test-bucket')],
+          new ComponentConfigStub('test-default')
+        ),
         new TraitConfig('test-queue-config', 'messaging', 'queue', [
           new ComponentConfigStub('test-queue'),
         ]),
       ],
       [
-        new RuntimeConfig('test-ecs-config', 'container', 'ecs', [
-          new ServiceConfigStub('test-ecs-service-a'),
-          new ServiceConfigStub('test-ecs-service-b'),
-        ], new ServiceConfigStub('test-default')),
+        new RuntimeConfig(
+          'test-ecs-config',
+          'container',
+          'ecs',
+          [
+            new ServiceConfigStub('test-ecs-service-a'),
+            new ServiceConfigStub('test-ecs-service-b'),
+          ],
+          new ServiceConfigStub('test-default')
+        ),
       ],
       [
         new RelationConfigStub(

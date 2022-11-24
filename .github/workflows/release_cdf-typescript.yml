@@ -7,6 +7,10 @@ on:
     paths:
       - "core/typescript/package.json"
 
+defaults:
+  run:
+    working-directory: core/typescript
+
 jobs:
   release-and-publish:
     runs-on: ubuntu-latest
