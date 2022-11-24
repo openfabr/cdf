@@ -5,12 +5,16 @@ on:
     branches:
       - "main"
     paths:
-      - "cdf/typescript"
+      - "core/typescript/**"
   pull_request:
     branches:
       - "main"
     paths:
-      - "cdf/typescript"
+      - "core/typescript/**"
+
+defaults:
+  run:
+    working-directory: core/typescript
 
 jobs:
   build-and-test:
@@ -27,3 +31,5 @@ jobs:
         run: npm audit
       - name: Run Tests
         run: npm run test
+      - name: Run Code Coverage
+        run: npm run cov:check
