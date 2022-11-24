@@ -55,30 +55,12 @@ class ServiceConfigStub implements ServiceConfig {
   constructor(public readonly name: string) {}
 }
 
-class TraitConfigStub implements TraitConfig<ComponentConfigStub> {
-  constructor(
-    public readonly name: string,
-    public readonly type: string,
-    public readonly subtype: string,
-    public readonly details: ComponentConfigStub[]
-  ) {}
-}
-
-class RuntimeConfigStub implements RuntimeConfig<ServiceConfigStub> {
-  constructor(
-    public readonly name: string,
-    public readonly type: string,
-    public readonly subtype: string,
-    public readonly details: ServiceConfigStub[]
-  ) {}
-}
-
 class PlannerStub extends Planner<
   InfraPlanConstructsStub,
   GeneralConfigStub,
   NetworkConfigStub,
-  TraitConfigStub,
-  RuntimeConfigStub,
+  ComponentConfigStub,
+  ServiceConfigStub,
   RelationConfigStub
 > {
   constructor(
@@ -94,8 +76,8 @@ class PlannerStub extends Planner<
     _config: InfraConfig<
       GeneralConfigStub,
       NetworkConfigStub,
-      TraitConfigStub,
-      RuntimeConfigStub,
+      ComponentConfigStub,
+      ServiceConfigStub,
       RelationConfigStub
     >,
     _scope: any
@@ -108,8 +90,8 @@ class CustomModuleStub extends Custom<
   InfraPlanConstructsStub,
   GeneralConfigStub,
   NetworkConfigStub,
-  TraitConfigStub,
-  RuntimeConfigStub,
+  ComponentConfigStub,
+  ServiceConfigStub,
   RelationConfigStub
 > {
   constructor(
@@ -122,8 +104,8 @@ class CustomModuleStub extends Custom<
     _config: InfraConfig<
       GeneralConfigStub,
       NetworkConfigStub,
-      TraitConfigStub,
-      RuntimeConfigStub,
+      ComponentConfigStub,
+      ServiceConfigStub,
       RelationConfigStub
     >,
     _result: InfraPlan<InfraPlanConstructsStub>,
@@ -154,18 +136,18 @@ const setupTests = (scope: Stack) => {
       new GeneralConfigStub('test-general-config'),
       new NetworkConfigStub('test-network-config'),
       [
-        new TraitConfigStub('test-bucket-config', 'storage', 'object', [
+        new TraitConfig('test-bucket-config', 'storage', 'object', [
           new ComponentConfigStub('test-bucket'),
-        ]),
-        new TraitConfigStub('test-queue-config', 'messaging', 'queue', [
+        ], new ComponentConfigStub('test-default')),
+        new TraitConfig('test-queue-config', 'messaging', 'queue', [
           new ComponentConfigStub('test-queue'),
         ]),
       ],
       [
-        new RuntimeConfigStub('test-ecs-config', 'container', 'ecs', [
+        new RuntimeConfig('test-ecs-config', 'container', 'ecs', [
           new ServiceConfigStub('test-ecs-service-a'),
           new ServiceConfigStub('test-ecs-service-b'),
-        ]),
+        ], new ServiceConfigStub('test-default')),
       ],
       [
         new RelationConfigStub(
