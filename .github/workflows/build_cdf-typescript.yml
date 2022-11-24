@@ -1,0 +1,29 @@
+name: Build cdf-typescript
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "cdf/typescript"
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "cdf/typescript"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Instal Dependencies
+        run: npm ci
+      - name: Audit Dependencies
+        run: npm audit
+      - name: Run Tests
+        run: npm run test
