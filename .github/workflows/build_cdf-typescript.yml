@@ -5,12 +5,12 @@ on:
     branches:
       - "main"
     paths:
-      - "cdf/typescript"
+      - "core/typescript"
   pull_request:
     branches:
       - "main"
     paths:
-      - "cdf/typescript"
+      - "core/typescript"
 
 jobs:
   build-and-test:

@@ -5,7 +5,7 @@ on:
     branches:
       - "main"
     paths:
-      - "cdf/typescript/package.json"
+      - "core/typescript/package.json"
 
 jobs:
   release-and-publish:
