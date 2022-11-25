@@ -50,9 +50,8 @@
     "doc:html": "typedoc src/ --exclude **/*.spec.ts --out build/docs",
     "doc:json": "typedoc src/ --exclude **/*.spec.ts --json build/docs/typedoc.json",
     "sitedoc": "typedoc --plugin typedoc-plugin-markdown src/ --exclude **/*.spec.ts --out ../../docs/references/typescript/${npm_package_version}",
-    "version": "standard-version",
     "reset-hard": "git clean -dfx && git reset --hard && npm i",
-    "prepare-release": "run-s reset-hard test cov:check version sitedoc"
+    "prepare-release": "run-s reset-hard test cov:check sitedoc"
   },
   "engines": {
     "node": ">=16"
@@ -82,7 +81,6 @@
     "nyc": "^15.1.0",
     "open-cli": "^7.1.0",
     "prettier": "^2.1.1",
-    "standard-version": "^9.0.0",
     "ts-node": "^9.0.0",
     "typedoc": "^0.23.21",
     "typedoc-plugin-markdown": "^3.13.6",
