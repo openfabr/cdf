@@ -2,6 +2,8 @@
 
 **OpenFABR CDF: The IaC framework to build cloud infrastructure faster**
 
+## [Documentation](https://openfabr.github.io/cdf/)
+
 ## Introduction
 
 OpenFABR CDF aims to offer a brand new way of building cloud infrastructure, based on our view that the future of DevOps is **MODULAR + CUSTOM**. 
@@ -29,9 +31,9 @@ Best of all, OpenFABR CDF does not have any opinions about what IaC runtime (AWS
 
 ## Use
 
-Follow the Getting Started Guide to experience the workflow yourself.
+Follow the [Getting Started](./docs/get-started/quick-start.md) to experience the workflow yourself.
 
-To dive deep, the User Guide covers the context as well as detailed manuals for both application developers and package authors. 
+To dive deep, the [User Guide](./docs/user-guide/overview.md) covers the context as well as detailed manuals for both application developers and package authors. 
 
 We are on hand to support you via different channels.
 
@@ -49,7 +51,7 @@ Before accepting your contribution, please e-sign the [Contributor License Agree
 
 The monorepo is structured in a way that different build tools are used for different CDF language implementation. See below for details about how to develop for CDF in a particular language:
 
-- [core/typescript](./core/typescript/README.md) for CDF | [TypeScript](https://www.typescriptlang.org/).
+- [core/typescript](./core/typescript/README.md) for CDF | [TypeScript](https://www.typescriptlang.org/): ![NPM](https://img.shields.io/npm/v/@openfabr/cdf)
 
 
 [GitHub Actions](https://docs.github.com/en/actions) are used as CI/CD tooling. Again the build and release workflows vary between languages. 
