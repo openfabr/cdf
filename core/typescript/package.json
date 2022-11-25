@@ -49,10 +49,10 @@
     "doc": "run-s doc:html && open-cli build/docs/index.html",
     "doc:html": "typedoc src/ --exclude **/*.spec.ts --out build/docs",
     "doc:json": "typedoc src/ --exclude **/*.spec.ts --json build/docs/typedoc.json",
-    "sitedoc": "typedoc --plugin typedoc-plugin-markdown src/ --exclude **/*.spec.ts --out build/docs/md",
+    "sitedoc": "typedoc --plugin typedoc-plugin-markdown src/ --exclude **/*.spec.ts --out ../../docs/references/typescript/${npm_package_version}",
     "version": "standard-version",
     "reset-hard": "git clean -dfx && git reset --hard && npm i",
-    "prepare-release": "run-s reset-hard test cov:check sitedoc version"
+    "prepare-release": "run-s reset-hard test cov:check version sitedoc"
   },
   "engines": {
     "node": ">=16"
