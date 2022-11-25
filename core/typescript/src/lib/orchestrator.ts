@@ -49,7 +49,7 @@ export class Orchestrator<
   /**
    * Running the infra provisioning.
    *
-   * @param scope Depending on the IaC runtime, it can be a stack object defined in AWS CDK and CDKTF, or absent for other runtimes without the construct-based structure.
+   * @param scope Depending on the IaC runtime, it can be a stack object defined in AWS CDK and CDKTF, or absent for other runtime without the construct-based structure.
    * @returns Result that encapsulates either outputs {@link InfraPlanOutputs} if successful, or error {@link PlanError} if failed.
    *
    */

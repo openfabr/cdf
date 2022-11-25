@@ -21,7 +21,7 @@ export enum CloudVendor {
 }
 
 /**
- * A list of IaC runtimes.
+ * A list of IaC runtime.
  * The purpose of defining them is to regulate their names throughout the framework and all packages.
  *
  * @group For both project creators and package authors
