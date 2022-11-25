@@ -13,6 +13,11 @@ import { Orchestrator } from '../../orchestrator';
 import { InfraPlanConstructs, Planner } from '../../package';
 import { Custom } from '../../project';
 
+/**
+ * Properties for {@link ProjectStack}.
+ *
+ * @group For project creators
+ */
 export interface ProjectStackProps<
   IPC extends InfraPlanConstructs,
   GC extends GeneralConfig,
@@ -24,6 +29,11 @@ export interface ProjectStackProps<
   orchestrator: Orchestrator<IPC, GC, NC, CC, SC, RC>;
 }
 
+/**
+ * Stack as top-level construct with AWS CDK as IaC runtime.
+ *
+ * @group For project creators
+ */
 export class ProjectStack<
   IPC extends InfraPlanConstructs,
   GC extends GeneralConfig,
@@ -43,6 +53,18 @@ export class ProjectStack<
   }
 }
 
+/**
+ * Convenient function that constructs a top-level stack with AWS CDK as IaC runtime.
+ *
+ * @param scope Parent construct, usually a {@link App} in AWS CDK.
+ * @param config The project configuration.
+ * @param planner The planner offered by the package.
+ * @param modules Custom code modules for the project.
+ * @param name Optionally the name of the resulting stack.
+ * @returns A top-level stack to be provisioned in a project.
+ *
+ * @group For project creators
+ */
 export function initProjectStack<
   IPC extends InfraPlanConstructs,
   GC extends GeneralConfig,
