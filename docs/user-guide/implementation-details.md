@@ -12,7 +12,7 @@ Given the nature of the Custom module, which allows users to augment a Plan crea
 
 The implementation package should arrange all created blocks in the same Plan to be available as input for any Custom module. How the code looks like varies among different IaC runtimes (AWS CDK, Terraform CDK and Pulumi) but at a conceptual level, it should be a construct with properties which contains all the other blocks, looked up by their names, for the Custom module to code against.
 
-As of OpenFABR CDF v0.1, it is assumed that code in the Custom module is always vetted for malicious intent. In an intra-organisation scenario, users are usually trusted to write code in a Custom module, safeguarded by sensible QA processes. In an inter-organisation or SaaS scenario, it is important to have procedures in place to make sure the security aspect of any Custom modules.
+As of OpenFABR CDF 1.x, it is assumed that code in the Custom module is always vetted for malicious intent. In an intra-organisation scenario, users are usually trusted to write code in a Custom module, safeguarded by sensible QA processes. In an inter-organisation or SaaS scenario, it is important to have procedures in place to make sure the security aspect of any Custom modules.
 
 ## Future Plan
 

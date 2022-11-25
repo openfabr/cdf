@@ -1,11 +1,5 @@
 # Overview
 
-**The IaC framework to build cloud infrastructure faster.**
-
-Version 0.1 | October 2022
-
-## Overview
-
 ![OpenFABR CDF](../assets/2022-11-16-17-37-04.png)
 
 OpenFABR CDF aims to establish a framework for developing cloud infrastructure, meeting application developers where they are. This means the spec and implementation optimise for what application developers are familiar with. It intentionally leaves out the low-level details such as choices for cloud vendors, individual services offered by vendors and relations between those services. These low-level details are to be implemented mostly by Package Authors.
