@@ -1,0 +1,81 @@
+site_name: OpenFABR Cloud Development Framework
+site_description: >-
+  OpenFABR is a group of open source projects developed and sponsored by FABR, 
+  a developer experience and tooling company specialising in cloud infrastructure.
+site_url: https://open.fabrhq.com
+copyright: Copyright &copy; 2022 OpenFABR CDF Contributors.
+repo_url: https://github.com/openfabr/cdf
+repo_name: openfabr/cdf
+theme:
+  name: material # mkdocs, readthedocs 
+  logo: assets/openfabr-logo-600x500-invert.png
+  #logo: assets/logo1-fabr-logo-small-white.png
+  favicon: assets/favicon.png
+  icon:
+    repo: fontawesome/brands/github
+
+  features:
+  - content.code.annotate
+  - content.tooltips
+  - navigation.expand
+  - navigation.tracking
+      - search.highlight
+  - search.share
+  - search.suggest
+
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+extra_css:
+  - stylesheets/extra.css
+extra:
+  version:
+    provider: mike
+  homepage: https://fabrhq.com
+  social:
+    - icon: fontawesome/brands/discord
+      link: https://discord.com/channels/1039810916625162260/1039819988296552510
+    - icon: fontawesome/brands/github
+      link: https://github.com/openfabr/cdf
+plugins:
+  - search
+  - minify:
+      minify_html: true
+  - social
+
+markdown_extensions:
+  - def_list
+  - attr_list
+  - md_in_html
+
+
+# Page tree
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Quick Start: get-started/quick-start.md
+  - User Guide:
+    - Overview: user-guide/overview.md
+    - Situation: user-guide/situation.md
+    - Goal: user-guide/goal.md
+    - Guiding Principles: user-guide/guiding-principles.md
+    - Framework Spec: user-guide/framework-spec.md
+    - Framework Implementation: user-guide/framework-implementation.md
+    - Package Implementation: user-guide/package-implementation.md
+    - Iac Runtime Entry Point: user-guide/iac-runtime-entry-point.md
+    - Persona Perspectives: user-guide/persona-perspectives.md
+    - Implementation Details: user-guide/implementation-details.md
+    - FAQ: user-guide/faq.md
+  - References:
+    - TypeScript: references/typescript/index.md

@@ -47,9 +47,9 @@ Before accepting your contribution, please e-sign the [Contributor License Agree
 
 ### Development
 
-The monorepo is structured in a way that different build tools are used for different CDF language implementation.
+The monorepo is structured in a way that different build tools are used for different CDF language implementation. See below for details about how to develop for CDF in a particular language:
 
-- Node and NPM are needed for [TypeScript](https://www.typescriptlang.org/) CDF.
+- [core/typescript](./core/typescript/README.md) for CDF | [TypeScript](https://www.typescriptlang.org/).
 
 
 [GitHub Actions](https://docs.github.com/en/actions) are used as CI/CD tooling. Again the build and release workflows vary between languages. 
