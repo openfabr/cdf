@@ -4,6 +4,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pull-requests: write
+
 concurrency:
   group: "release"
   cancel-in-progress: true
