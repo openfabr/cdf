@@ -49,9 +49,10 @@
     "doc": "run-s doc:html && open-cli build/docs/index.html",
     "doc:html": "typedoc src/ --exclude **/*.spec.ts --out build/docs",
     "doc:json": "typedoc src/ --exclude **/*.spec.ts --json build/docs/typedoc.json",
+    "sitedoc": "typedoc --plugin typedoc-plugin-markdown src/ --exclude **/*.spec.ts --out build/docs/md",
     "version": "standard-version",
     "reset-hard": "git clean -dfx && git reset --hard && npm i",
-    "prepare-release": "run-s reset-hard test cov:check doc:html doc:json version"
+    "prepare-release": "run-s reset-hard test cov:check sitedoc version"
   },
   "engines": {
     "node": ">=16"
@@ -60,8 +61,8 @@
     "neverthrow": "5.0.1"
   },
   "peerDependencies": {
-    "cdktf": "0.x",
     "aws-cdk-lib": "2.x",
+    "cdktf": "0.x",
     "constructs": "10.x"
   },
   "devDependencies": {
@@ -84,6 +85,7 @@
     "standard-version": "^9.0.0",
     "ts-node": "^9.0.0",
     "typedoc": "^0.23.21",
+    "typedoc-plugin-markdown": "^3.13.6",
     "typescript": "^4.8.4"
   },
   "files": [
