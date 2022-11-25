@@ -1,5 +1,7 @@
 {
   "packages": {
-    "core/typescript": {}
+    "core/typescript": {
+      "component": "cdf-typescript"
+    }
   }
 }

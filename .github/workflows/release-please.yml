@@ -4,9 +4,7 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  pull-requests: write
+permissions: write-all
 
 concurrency:
   group: "release"
@@ -19,3 +17,4 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         with:
           command: manifest
+          monorepo-tags: true
