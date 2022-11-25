@@ -35,4 +35,3 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: core/typescript/package.json
-          dry-run: true
