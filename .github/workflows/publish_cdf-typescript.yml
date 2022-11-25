@@ -1,4 +1,4 @@
-name: Release cdf-typescript
+name: Publish cdf-typescript
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - "main"
     paths:
       - "core/typescript/package.json"
-      - ".github/workflows/release_cdf-typescript.yml"
+      - ".github/workflows/publish_cdf-typescript.yml"
 
 concurrency: 
   group: ${{ github.ref }}

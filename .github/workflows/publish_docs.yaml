@@ -5,6 +5,7 @@ on:
       - "main"
     paths:
       - "docs/**"
+      - ".github/workflows/publish_docs.yml"
 
 permissions:
   contents: read
