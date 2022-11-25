@@ -55,3 +55,5 @@ The monorepo is structured in a way that different build tools are used for diff
 
 
 [GitHub Actions](https://docs.github.com/en/actions) are used as CI/CD tooling. Again the build and release workflows vary between languages. 
+
+[Conventional Commits](https://www.conventionalcommits.org/) spec is strictly followed which enabled the use of [Release Please](https://github.com/googleapis/release-please) across CDF releases in different languages.
