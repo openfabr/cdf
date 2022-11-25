@@ -8,6 +8,10 @@ on:
       - "core/typescript/package.json"
       - ".github/workflows/release_cdf-typescript.yml"
 
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 defaults:
   run:
     working-directory: core/typescript
@@ -26,7 +30,7 @@ jobs:
       - name: Run Tests
         run: npm run test
       - name: Generate Docs
-        run: npm run doc:*
+        run: npm run doc:html
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
