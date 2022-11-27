@@ -1,4 +1,4 @@
-# OpenFABR Cloud Development Framework
+# OpenFABR Cloud Development Framework (CDF)
 
 **OpenFABR CDF: The IaC framework to build cloud infrastructure faster**
 
@@ -33,15 +33,18 @@ Best of all, OpenFABR CDF does not have any opinions about what IaC runtime (AWS
 
 Follow the [Getting Started](./docs/get-started/quick-start.md) to experience the workflow yourself.
 
-To dive deep, the [User Guide](./docs/user-guide/overview.md) covers the context as well as detailed manuals for both application developers and package authors. 
+To dive deep, the [User Guide](./docs/user-guide/overview.md) covers the context as well as detailed manuals for both application developers and package authors.
 
-We are on hand to support you via different channels.
+We are on hand to support you:
+
+- [Discord](https://discord.com/channels/1039810916625162260/1039819988296552510)
 
 ## Contribute
 
 ### License and Contribution Agreement
 
-Same as other OpenFABR projects, it is dual-licensed under 
+Same as other OpenFABR projects, it is dual-licensed under
+
 - [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.en.html)
 - [FABR Commercial v1](https://fabrhq.com/license/commercial-v1)
 
@@ -53,7 +56,9 @@ The monorepo is structured in a way that different build tools are used for diff
 
 - [core/typescript](./core/typescript/README.md) for CDF | [TypeScript](https://www.typescriptlang.org/): ![NPM](https://img.shields.io/npm/v/@openfabr/cdf)
 
+- [GitHub Actions](https://docs.github.com/en/actions) are used as CI/CD tooling. Again the build and release workflows vary between sub repos based on language, framework etc.
 
-[GitHub Actions](https://docs.github.com/en/actions) are used as CI/CD tooling. Again the build and release workflows vary between languages. 
+- [Conventional Commits](https://www.conventionalcommits.org/) spec is strictly followed which enabled the use of [Release Please](https://github.com/googleapis/release-please) across CDF releases in different languages.
 
-[Conventional Commits](https://www.conventionalcommits.org/) spec is strictly followed which enabled the use of [Release Please](https://github.com/googleapis/release-please) across CDF releases in different languages.
+- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) is used to generate the documention website from Markdown. A Github Actions workflow handles CI/CD.
+  - `docker run --rm -it -p 8000:8000 -v $PWD:/docs squidfunk/mkdocs-material` to preview docs site locally with hot-reload
