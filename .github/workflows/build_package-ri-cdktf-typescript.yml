@@ -4,12 +4,14 @@ on:
     branches:
       - "main"
     paths:
-      - "samples/packages/cdktf-typescript"
+      - "samples/packages/cdktf-typescript/**"
+      - ".github/workflows/build_package-ri-cdktf-typescript.yml"
   push:
     branches:
       - "main"
     paths:
-      - "samples/packages/cdktf-typescript"
+      - "samples/packages/cdktf-typescript/**"
+      - ".github/workflows/build_package-ri-cdktf-typescript.yml"
 
 defaults:
   run:

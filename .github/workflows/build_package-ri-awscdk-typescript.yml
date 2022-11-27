@@ -4,12 +4,14 @@ on:
     branches:
       - "main"
     paths:
-      - "samples/packages/awscdk-typescript"
+      - "samples/packages/awscdk-typescript/**"
+      - ".github/workflows/build_package-ri-awscdk-typescript.yml"
   push:
     branches:
       - "main"
     paths:
-      - "samples/packages/awscdk-typescript"
+      - "samples/packages/awscdk-typescript/**"
+      - ".github/workflows/build_package-ri-awscdk-typescript.yml"
 
 defaults:
   run:
