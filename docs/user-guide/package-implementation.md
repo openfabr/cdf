@@ -1,6 +1,6 @@
 # Package Implementation
 
-A `Package` - is a concrete implementation of a collection of `Constructs` based on a `Framework Implementation` and `Package Spec`. Package Authors produce these. They can craft and share infrastructure abstractions as packages. We expect internal Platform Engineering teams, third-party consultancies, and FABR to be natural Package authors. Example: see [awscdk-sample/lib/fabr/aws-cdk](../../awscdk-sample/lib/fabr/aws-cdk) sample project.
+A `Package` - is a concrete implementation of a collection of `Constructs` based on a `Framework Implementation` and `Package Spec`. Package Authors produce these. They decide which services to bundle in the package and how much to encapsulate. Think encapsulating common patterns and best practices. We expect internal Platform Engineering teams, third-party consultancies, and FABR to be natural Package authors. Example: see [samples/packages/fabr/aws-cdk](../../samples/packages/fabr/aws-cdk) sample project.
 
 - **IaC Runtime** - a package implementation is based on _one_ of [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/home.html), [TF CDK](https://developer.hashicorp.com/terraform/cdktf), or [Pulumi](https://www.pulumi.com/docs/).
 `Config Definition` implementation - defines the schema of the package-specific `Constructs` and their config. This schema inherits from the `Package Schema` which inherits from the `Framework Schema`. It lives in `config.def.json`
