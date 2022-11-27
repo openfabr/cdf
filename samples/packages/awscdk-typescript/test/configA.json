@@ -1,0 +1,56 @@
+{
+  "general": {
+    "name": "sample"
+  },
+  "network": {
+    "name": "main-vpc",
+    "domain": "acme.com",
+    "cidr": "192.168.0.0/16",
+    "zones": 2,
+    "subnets": [
+      {
+        "name": "private-subnet",
+        "type": "private",
+        "mask": 24
+      },
+      {
+        "name": "public-subnet",
+        "type": "public",
+        "mask": 24
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "static-website-hosting",
+      "type": "distribution",
+      "subtype": "staticWebsite",
+      "details": [
+        {
+          "name": "test-static-website",
+          "hostName": "staticsite",
+          "domain": "test.fabrhq.dev"
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "name": "ecs-farget",
+      "type": "container",
+      "subtype": "ecs",
+      "details": [
+        {
+          "name": "web-service",
+          "application": "PUBLIC",
+          "dockerfilePath": "/test-apps/api",
+          "cpu": 512,
+          "mem": 2048,
+          "replicas": 2
+        }
+      ]
+    }
+  ],
+  "relations": [
+  ]
+}
