@@ -1,0 +1,112 @@
+{
+  "general": {
+    "name": "sample"
+  },
+  "network": {
+    "name": "main-vpc",
+    "domain": "acme.com",
+    "cidr": "192.168.0.0/16",
+    "zones": 2,
+    "subnets": [
+      {
+        "name": "private-subnet",
+        "type": "private",
+        "mask": 24
+      },
+      {
+        "name": "public-subnet",
+        "type": "public",
+        "mask": 24
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "s3bucket",
+      "type": "storage",
+      "subtype": "bucket",
+      "details": [
+        {
+          "name": "fabr-bucket-1",
+          "blockPublicAccess": "BlockPublicAccess.BLOCK_ALL"
+        }
+      ]
+    },
+    {
+      "name": "sqs",
+      "type": "message",
+      "subtype": "queue",
+      "details": [
+        {
+          "name": "work-queue",
+          "fifo": true,
+          "dlq": 1000
+        }
+      ]
+    },
+    {
+      "name": "sns",
+      "type": "message",
+      "subtype": "topic",
+      "details": [
+        {
+          "name": "work-topic",
+          "fifo": false
+        }
+      ]
+    },
+    {
+      "name": "kms",
+      "type": "key",
+      "subtype": "software",
+      "details": [
+        {
+          "name": "work-key",
+          "spec": "RSA_4096",
+          "usage": "ENCRYPT_DECRYPT",
+          "enabled": true,
+          "rotation": false
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "name": "ecs-farget",
+      "type": "container",
+      "subtype": "ecs",
+      "details": [
+        {
+          "name": "web-service",
+          "application": "PUBLIC",
+          "cpu": 512,
+          "mem": 2048,
+          "replicas": 2
+        },
+        {
+          "name": "task-service",
+          "application": "TASK",
+          "cpu": 512,
+          "mem": 1024,
+          "replicas": 1
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "name": "web-publishing",
+      "type": "queue-send",
+      "start": "web-service",
+      "finish": "work-queue",
+      "bidi": false
+    },
+    {
+      "name": "task-subscribing",
+      "type": "queue-receive",
+      "start": "task-service",
+      "finish": "work-queue",
+      "bidi": false
+    }
+  ]
+}
