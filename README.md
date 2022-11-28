@@ -1,6 +1,21 @@
-# OpenFABR Cloud Development Framework (CDF)
+# OpenFABR Cloud Development Framework (CDF) 
 
 **OpenFABR CDF: The IaC framework to build cloud infrastructure faster**
+
+*developed and sponsored by [FABR](https://fabrhq.com)*
+
+![OpenFABR CDK header](./docs/assets/header-640x320.png)
+
+Framework:
+- TypeScript: ![NPM](https://img.shields.io/npm/v/@openfabr/cdf)
+
+Packages as reference implementations:
+- TypeScript, AWS CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-awscdk)
+- TypeScript, Terraform CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-cdktf)
+
+Sample projects using the packages above:
+  - [TypeScript, AWS CDK](./samples/projects/awscdk-typescript/README.md) for [AWS](https://aws.amazon.com)
+  - [TypeScript, Terraform CDK](./samples/projects/cdktf-typescript/README.md) for [Digital Ocean](https://digitalocean.com)
 
 ## [Documentation](https://openfabr.github.io/cdf/)
 
@@ -8,7 +23,7 @@
 
 OpenFABR CDF aims to offer a brand new way of building cloud infrastructure, based on our view that the future of DevOps is **MODULAR + CUSTOM**.
 
-We envisage a future where application developers (in product engineering) and DevOps engineers (in platform engineering) collaborate by code in a true Infrastructure-as-Code manner. There are various IaC runtimes, imperative language supports and existing software delivery infrastructure such as code and artefact repositories. OpenFABR CDF is the missing piece that makes it happen. 
+We envisage a future where application developers (in product engineering) and DevOps engineers (in platform engineering) collaborate by code in a true Infrastructure-as-Code manner. There are various IaC runtime, imperative language supports and existing software delivery infrastructure such as code and artefact repositories. OpenFABR CDF is the missing piece that makes it happen. 
 
 ### MODULAR: Reusable, High-level Packages
 
@@ -46,19 +61,30 @@ We are on hand to support you:
 Same as other OpenFABR projects, it is dual-licensed under
 
 - [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.en.html)
-- [FABR Commercial v1](https://fabrhq.com/license/commercial-v1)
+- [FABR Commercial v1](#) (coming Soon)
 
-Before accepting your contribution, please e-sign the [Contributor License Agreement](https://open.fabrhq.com/cla) which is a common practice in open source. Once signed, your GitHub username will then be registered on the project's contributor list which safeguards the contributions to the project.
+Before accepting your contribution, please e-sign the [Contributor License Agreement](#) (coming soon) which is a common practice in open source. Once signed, your GitHub username will then be registered on the project's contributor list which safeguards the contributions to the project.
 
 ### Development
 
 The monorepo is structured in a way that different build tools are used for different CDF language implementation. See below for details about how to develop for CDF in a particular language:
 
-- [core/typescript](./core/typescript/README.md) for CDF | [TypeScript](https://www.typescriptlang.org/): ![NPM](https://img.shields.io/npm/v/@openfabr/cdf)
+- Framework:
+  - [core/typescript](./core/typescript/README.md) for CDF
+- Packages as reference implementations:
+  - [samples/packages/awscdk-typescript](./samples/packages/awscdk-typescript/README.md) for TypeScript based AWS CDK package
+  - [samples/packages/cdktf-typescript](./samples/packages/cdktf-typescript/README.md) for TypeScript based CDKTF package
+- Sample projects based on the use of the packages above:
+  - [samples/projects/awscdk-typescript](./samples/projects/awscdk-typescript/README.md) for using the TypeScript AWS CDK package above
+  - [samples/projects/cdktf-typescript](./samples/projects/cdktf-typescript/README.md) for using the TypeScript CDKTF package above
+- Documentation:
+  - [Quick Start](./docs/get-started/)
+  - [User Guide](./docs/user-guide/)
+
+Tools and libraries in use include:
 
 - [GitHub Actions](https://docs.github.com/en/actions) are used as CI/CD tooling. Again the build and release workflows vary between sub repos based on language, framework etc.
 
 - [Conventional Commits](https://www.conventionalcommits.org/) spec is strictly followed which enabled the use of [Release Please](https://github.com/googleapis/release-please) across CDF releases in different languages.
 
-- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) is used to generate the documention website from Markdown. A Github Actions workflow handles CI/CD.
-  - `docker run --rm -it -p 8000:8000 -v $PWD:/docs squidfunk/mkdocs-material` to preview docs site locally with hot-reload
+- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) is used to generate the doc site from [markdown format](https://www.markdownguide.org/basic-syntax/). A Github Actions workflow handles CI/CD. It can also be [previewed locally](./preview-docs.sh) before creating pull requests.
