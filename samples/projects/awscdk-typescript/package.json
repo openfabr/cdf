@@ -1,0 +1,41 @@
+{
+  "name": "@openfabr/project-awscdk-typescript",
+  "version": "0.0.0",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "homepage": "https://openfabr.github.io/cdf",
+  "author": {
+    "name": "OpenFABR CDF Contributors",
+    "email": "open@fabrhq.com",
+    "url": "https://github.com/orgs/openfabr/teams/team-cdf"
+  },
+  "bin": {
+    "bootstrap": "bin/bootstrap.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "ci-build": "npm ci && npm test && cdk synth"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.2",
+    "@types/node": "10.17.27",
+    "@types/prettier": "2.6.0",
+    "aws-cdk": "2.49.0",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.9.1",
+    "typescript": "~3.9.7"
+  },
+  "dependencies": {
+    "@openfabr/package-ri-awscdk": "1.0.0",
+    "aws-cdk-lib": "2.49.0",
+    "constructs": "^10.0.0",
+    "source-map-support": "^0.5.21"
+  }
+}
