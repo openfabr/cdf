@@ -4,6 +4,15 @@
   "main": "main.js",
   "types": "main.ts",
   "license": "AGPL-3.0-only",
+  "homepage": "https://openfabr.github.io/cdf",
+  "author": {
+    "name": "OpenFABR CDF Contributors",
+    "email": "open@fabrhq.com",
+    "url": "https://github.com/orgs/openfabr/teams/team-cdf"
+  },
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "get": "cdktf get",
     "build": "tsc",
@@ -16,7 +25,7 @@
     "upgrade:next": "npm i cdktf@next cdktf-cli@next"
   },
   "engines": {
-    "node": ">=14.0"
+    "node": ">=16"
   },
   "dependencies": {
     "@openfabr/cdf": "^1.0.0"

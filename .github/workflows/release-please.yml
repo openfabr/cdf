@@ -19,7 +19,9 @@ jobs:
         with:
           command: manifest
           monorepo-tags: true
+
   extra-steps-cdf-typescript:
+    needs: release-please
     runs-on: ubuntu-latest
 
     defaults:
@@ -47,4 +49,60 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: core/typescript/package.json
+          access: public
+
+  extra-steps-package-ri-cdktf-typescript:
+    needs: release-please
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: samples/packages/cdktf-typescript
+
+    steps:
+      - uses: actions/checkout@v3
+        if: ${{ steps.release.outputs['packages/package-ri-cdktf-typescript--release_created'] }}
+      - uses: actions/setup-node@v3
+        if: ${{ steps.release.outputs['packages/package-ri-cdktf-typescript--release_created'] }}
+        with:
+          node-version: 16
+      - name: Instal Dependencies
+        if: ${{ steps.release.outputs['packages/package-ri-cdktf-typescript--release_created'] }}
+        run: npm ci
+      - name: Run Tests
+        if: ${{ steps.release.outputs['packages/package-ri-cdktf-typescript--release_created'] }}
+        run: npm run test
+      - uses: JS-DevTools/npm-publish@v1
+        if: ${{ steps.release.outputs['packages/package-ri-cdktf-typescript--release_created'] }}
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: samples/packages/cdktf-typescript/package.json
+          access: public
+
+  extra-steps-package-ri-awscdk-typescript:
+    needs: release-please
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: samples/packages/awscdk-typescript
+
+    steps:
+      - uses: actions/checkout@v3
+        if: ${{ steps.release.outputs['packages/package-ri-awscdk-typescript--release_created'] }}
+      - uses: actions/setup-node@v3
+        if: ${{ steps.release.outputs['packages/package-ri-awscdk-typescript--release_created'] }}
+        with:
+          node-version: 16
+      - name: Instal Dependencies
+        if: ${{ steps.release.outputs['packages/package-ri-awscdk-typescript--release_created'] }}
+        run: npm ci
+      - name: Run Tests
+        if: ${{ steps.release.outputs['packages/package-ri-awscdk-typescript--release_created'] }}
+        run: npm run test
+      - uses: JS-DevTools/npm-publish@v1
+        if: ${{ steps.release.outputs['packages/package-ri-awscdk-typescript--release_created'] }}
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: samples/packages/awscdk-typescript/package.json
           access: public
