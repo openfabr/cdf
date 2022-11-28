@@ -20,11 +20,11 @@ jobs:
           command: manifest
           monorepo-tags: true
       - run: echo 'cdf-typescript released'
-        if: ${{ steps.release.outputs['packages/cdf-typescript--release_created'] }}
+        if: ${{ steps.release.outputs['packages/cdf-typescript-release_created'] }}
       - run: echo 'package-ri-cdktf-typescript released'
-        if: ${{ steps.release.outputs['packages/package-ri-cdktf-typescript--release_created'] }}
+        if: ${{ steps.release.outputs['packages/package-ri-cdktf-typescript-release_created'] }}
       - run: echo 'package-ri-awscdk-typescript released'
-        if: ${{ steps.release.outputs['packages/package-ri-awscdk-typescript--release_created'] }}
+        if: ${{ steps.release.outputs['packages/package-ri-awscdk-typescript-release_created'] }}
 
   extra-steps-cdf-typescript:
     needs: release-please
