@@ -25,13 +25,15 @@
     "esModuleInterop": true,
     "target": "ES2018",
     "incremental": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "dist",
   },
   "include": [
-    "**/*.ts"
+    "src"
   ],
   "exclude": [
     "node_modules",
-    "cdktf.out"
+    "cdktf.out",
+    "dist"
   ]
 }

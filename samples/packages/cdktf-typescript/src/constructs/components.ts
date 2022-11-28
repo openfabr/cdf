@@ -1,12 +1,8 @@
 
 
 import { Construct } from "constructs";
-import { PackageComponentConfig, PackageComponentContainerRegConfig, PackageInfraConfig } from "../package-config";
-import {ContainerRegistry, ContainerRegistryConfig} from '@cdktf/provider-digitalocean/lib/container-registry'
-
-
-import * as path from "path";
-import { containerRegistry } from "@cdktf/provider-digitalocean";
+import { PackageComponentContainerRegConfig, PackageInfraConfig } from "../package-config";
+import {ContainerRegistry, ContainerRegistryConfig} from '@cdktf/provider-digitalocean/lib/container-registry';
 
 export interface ComponentsProps {
   config: PackageInfraConfig,

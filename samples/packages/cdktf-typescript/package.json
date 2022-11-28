@@ -1,6 +1,6 @@
 {
   "name": "@openfabr/package-ri-cdktf",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "main.js",
   "types": "main.ts",
   "license": "AGPL-3.0-only",
@@ -32,7 +32,6 @@
   },
   "peerDependencies": {
     "@cdktf/provider-digitalocean": "^4.0.0",
-    "@cdktf/provider-docker": "^4.0.0",
     "cdktf": "^0.14.1",
     "constructs": "^10.1.153"
   },
