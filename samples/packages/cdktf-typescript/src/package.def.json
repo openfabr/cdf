@@ -1,0 +1,70 @@
+{
+  "vendor": "fabr",
+  "name": "cdktf",
+  "identifier": "fabr/cdktf",
+  "cdf": "0.1",
+  "definitions": {
+    "services": [
+      {
+        "name": "",
+        "type": "",
+        "subtype": "",
+        "icon": "",
+        "attributes": {
+
+        }
+      },
+      {
+        "name": "",
+        "type": "",
+        "subtype": "",
+        "icon": "",
+        "attributes": {
+
+        }
+      },
+      {
+        "name": "",
+        "type": "",
+        "subtype": "",
+        "icon": "",
+        "attributes": {
+
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "name": "",
+        "start": "",
+        "finish": "",
+        "bidi": true,
+        "attributes": {
+
+        }
+      },
+      {
+        "name": "",
+        "start": "",
+        "finish": "",
+        "bidi": true,
+        "attributes": {
+
+        }
+      },
+      {
+        "name": "",
+        "start": "",
+        "finish": "",
+        "bidi": true,
+        "attributes": {
+
+        }
+      }
+    ],
+    "custom": {
+      "supported": true,
+      "template": "./custom-tpl.ts"
+    }
+  }
+}

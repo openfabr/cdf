@@ -1,0 +1,29 @@
+name: Build ri package for Terraform CDK
+on: 
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "samples/packages/cdktf-typescript/**"
+      - ".github/workflows/build_package-ri-cdktf-typescript.yml"
+  push:
+    branches:
+      - "main"
+    paths:
+      - "samples/packages/cdktf-typescript/**"
+      - ".github/workflows/build_package-ri-cdktf-typescript.yml"
+
+defaults:
+  run:
+    working-directory: samples/packages/cdktf-typescript
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm run test
