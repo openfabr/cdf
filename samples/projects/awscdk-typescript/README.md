@@ -1,6 +1,6 @@
 # AWS CDK Sample Project
 
-It demonstrates how to use FIDL with AWS CDK.
+It demonstrates how to use OpenFABR CDF with AWS CDK.
 
 ## Quick start
 
@@ -17,10 +17,14 @@ cdk bootstrap
 Repeat whenever you need to reprovision:
 
 ```
+cdk synth
+```
+and/or
+```
 cdk deploy
 ```
 
-(You will see `PackageStack` being created as a stack in CloudFormation)
+(You will see `ProjectStack` being created as a stack in CloudFormation)
 
 Tidy up after you finish everything:
 
@@ -28,7 +32,7 @@ Tidy up after you finish everything:
 cdk destroy
 ```
 
-(The stack `CDKTookit` should stay but `PackageStack` should disappear as a result)
+(The stack `CDKTookit` should stay but `ProjectStack` should disappear as a result)
 
 ## About AWS CDK
 

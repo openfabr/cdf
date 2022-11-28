@@ -2,7 +2,7 @@ site_name: OpenFABR Cloud Development Framework
 site_description: >-
   OpenFABR is a group of open source projects developed and sponsored by FABR, 
   a developer experience and tooling company specialising in cloud infrastructure.
-site_url: https://open.fabrhq.com
+site_url: https://openfabr.github.io/cdf
 copyright: Copyright &copy; 2022 OpenFABR CDF Contributors.
 repo_url: https://github.com/openfabr/cdf
 repo_name: openfabr/cdf
