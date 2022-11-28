@@ -51,6 +51,8 @@ jobs:
           node-version: 16
       - name: Instal Dependencies
         run: npm ci
+      - name: Run Build
+        run: npm run build
       - name: Run Tests
         run: npm run test
       - uses: JS-DevTools/npm-publish@v1

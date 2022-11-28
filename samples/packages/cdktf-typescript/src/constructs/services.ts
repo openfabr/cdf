@@ -1,9 +1,7 @@
 import { Construct } from "constructs";
 import { PackageInfraConfig, PackageServiceDoAppConfig, } from "../package-config";
-//import * as path from "path";
 import { DigitaloceanProvider } from '@cdktf/provider-digitalocean/lib/provider';
 import { App as DoApp, AppConfig, AppSpecService, } from '@cdktf/provider-digitalocean/lib/app';
-import { TerraformOutput } from "cdktf";
 
 
 export interface ServicesProps {
