@@ -1,0 +1,85 @@
+name: Publish NPM packages
+
+on:
+  push:
+    branches:
+      - "main"
+    # paths:
+    #   - "**/package.json"
+
+concurrency:
+  group: "release"
+  cancel-in-progress: true
+
+jobs:
+
+  extra-steps-cdf-typescript:
+    needs: release-please
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: core/typescript
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Instal Dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm run test
+      - name: Generate Docs
+        run: npm run doc:html
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: core/typescript/package.json
+          access: public
+
+  extra-steps-package-ri-cdktf-typescript:
+    needs: release-please
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: samples/packages/cdktf-typescript
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Instal Dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm run test
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: samples/packages/cdktf-typescript/package.json
+          access: public
+
+  extra-steps-package-ri-awscdk-typescript:
+    needs: release-please
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: samples/packages/awscdk-typescript
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Instal Dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm run test
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: samples/packages/awscdk-typescript/package.json
+          access: public
