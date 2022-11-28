@@ -2,6 +2,12 @@
   "packages": {
     "core/typescript": {
       "component": "cdf-typescript"
+    },
+    "samples/packages/cdktf-typescript": {
+      "component": "package-ri-cdktf-typescript"
+    },
+    "samples/packages/awscdk-typescript": {
+      "component": "package-ri-awscdk-typescript"
     }
   }
 }

@@ -1,5 +1,5 @@
 import { ok, err, Result } from  'neverthrow';
-import * as cdf from "@fabrltd/cdf";
+import * as cdf from "@openfabr/cdf";
 import { App as DoApp,} from '@cdktf/provider-digitalocean/lib/app';
 //import { Components } from "./constructs/components";
 // import { Network } from "./construct/network";
