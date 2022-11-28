@@ -1,6 +1,6 @@
 {
   "name": "@openfabr/package-ri-cdktf",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "main.js",
   "types": "main.ts",
   "license": "AGPL-3.0-only",
