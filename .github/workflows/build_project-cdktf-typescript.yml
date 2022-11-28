@@ -1,0 +1,30 @@
+name: Build sample project based on cdktf-typescript RI package
+on: 
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "samples/projects/cdktf-typescript"
+      - ".github/workflows/build_project-cdktf-typescript.yml"
+  push:
+    branches:
+      - "main"
+    paths:
+      - "samples/projects/cdktf-typescript"
+      - ".github/workflows/build_project-cdktf-typescript.yml"
+
+
+defaults:
+  run:
+    working-directory: samples/projects/cdktf-typescript
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build the sample infra project
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm run ci-build
