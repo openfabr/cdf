@@ -48,6 +48,9 @@ extra:
       link: https://discord.com/channels/1039810916625162260/1039819988296552510
     - icon: fontawesome/brands/github
       link: https://github.com/openfabr/cdf
+  analytics:
+    provider: google
+    property: G-344124027
 plugins:
   - search
   - minify:
