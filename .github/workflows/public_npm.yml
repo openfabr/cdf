@@ -8,7 +8,7 @@ on:
       - "**/package.json"
 
 concurrency:
-  group: "release"
+  group: "publish-npm"
   cancel-in-progress: true
 
 jobs:
