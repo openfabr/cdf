@@ -4,13 +4,13 @@ on:
     branches:
       - "main"
     paths:
-      - "samples/projects/awscdk-typescript"
+      - "samples/projects/awscdk-typescript/**"
       - ".github/workflows/build_project-awscdk-typescript.yml"
   push:
     branches:
       - "main"
     paths:
-      - "samples/projects/awscdk-typescript"
+      - "samples/projects/awscdk-typescript/**"
       - ".github/workflows/build_project-awscdk-typescript.yml"
 
 
