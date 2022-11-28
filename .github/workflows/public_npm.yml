@@ -14,7 +14,6 @@ concurrency:
 jobs:
 
   extra-steps-cdf-typescript:
-    needs: release-please
     runs-on: ubuntu-latest
 
     defaults:
@@ -39,7 +38,6 @@ jobs:
           access: public
 
   extra-steps-package-ri-cdktf-typescript:
-    needs: release-please
     runs-on: ubuntu-latest
 
     defaults:
@@ -62,7 +60,6 @@ jobs:
           access: public
 
   extra-steps-package-ri-awscdk-typescript:
-    needs: release-please
     runs-on: ubuntu-latest
 
     defaults:
