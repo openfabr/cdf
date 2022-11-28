@@ -21,13 +21,13 @@
     "test:watch": "jest --watch",
     "upgrade": "npm i cdktf@latest cdktf-cli@latest",
     "upgrade:next": "npm i cdktf@next cdktf-cli@next",
-    "ci-build": "npm ci && npm test && npm run synth"
+    "ci-build": "npm ci && npm test"
   },
   "engines": {
     "node": ">=16"
   },
   "dependencies": {
-    "@openfabr/cdf": "^1.0.0"
+    "@openfabr/package-ri-cdktf": "^2.0.0"
   },
   "peerDependencies": {
     "@cdktf/provider-digitalocean": "^4.0.0",

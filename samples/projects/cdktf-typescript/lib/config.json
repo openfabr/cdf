@@ -1,0 +1,29 @@
+{
+  "general": {
+    "name": "cdktf-sample"
+  },
+  "network": {
+    "name": "unsupported"
+  },
+  "components": [
+
+  ],
+  "services": [
+    {
+      "name": "do-app",
+      "type": "app",
+      "subtype": "service",
+      "details": [
+        {
+          "name": "testapi",
+          "region": "lon",
+          "dockerfilePath": "Dockerfile",
+          "dockerhubRegistryName": "janaka",
+          "containerRegistryRepoName": "test-api",
+          "replicas": 1
+        }
+      ]
+    }
+  ],
+  "relations": []
+}
