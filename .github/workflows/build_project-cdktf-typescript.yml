@@ -27,4 +27,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - run: npm i -g cdktf-cli@latest
       - run: npm run ci-build
