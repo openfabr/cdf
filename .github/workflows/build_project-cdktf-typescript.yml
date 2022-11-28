@@ -4,13 +4,13 @@ on:
     branches:
       - "main"
     paths:
-      - "samples/projects/cdktf-typescript"
+      - "samples/projects/cdktf-typescript/**"
       - ".github/workflows/build_project-cdktf-typescript.yml"
   push:
     branches:
       - "main"
     paths:
-      - "samples/projects/cdktf-typescript"
+      - "samples/projects/cdktf-typescript/**"
       - ".github/workflows/build_project-cdktf-typescript.yml"
 
 
