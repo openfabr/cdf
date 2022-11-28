@@ -31,8 +31,8 @@
     "@openfabr/cdf": "^1.0.0"
   },
   "peerDependencies": {
-    "@cdktf/provider-digitalocean": "^4.0.0",
     "cdktf": "^0.14.1",
+    "@cdktf/provider-digitalocean": "^4.0.0",
     "constructs": "^10.1.153"
   },
   "devDependencies": {
