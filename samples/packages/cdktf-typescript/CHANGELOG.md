@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/openfabr/cdf/compare/package-ri-cdktf-typescript-v2.0.0...package-ri-cdktf-typescript-v3.0.0) (2022-11-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **packages:** Fix wrong config in releasing RI package cdktf-typescript ([#28](https://github.com/openfabr/cdf/issues/28))
+
+### Features
+
+* **packages:** Fix wrong config in releasing RI package cdktf-typescript ([#28](https://github.com/openfabr/cdf/issues/28)) ([4479dec](https://github.com/openfabr/cdf/commit/4479decc1de011474e3556052e7ce1a7868d0ef1))
+
 ## [2.0.0](https://github.com/openfabr/cdf/compare/package-ri-cdktf-typescript-v1.0.0...package-ri-cdktf-typescript-v2.0.0) (2022-11-28)
 
 
