@@ -1,4 +1,4 @@
-# OpenFABR Cloud Development Framework (CDF) 
+# OpenFABR Cloud Development Framework (CDF)
 
 **OpenFABR CDF: The IaC framework to build cloud infrastructure faster**
 
@@ -43,7 +43,7 @@ For application developers, OpenFABR CDF is the framework that pieces together a
 - From 0 to 95%: With the help of a selected package, an infra baseline can be assembled using a simple, schema-aware JSON configuration file. This can be done in *minutes* or *hours*, instead of days or weeks.
 - From 95% to 100%: Every project is different, the framework allows detailed customisation to every underlying infra resources being created by the modular approach earlier. This can be done in *hours* or *days*, certainly not *weeks*.
 
-For DevOps/Cloud/Platform engineers, adopting OpenFABR CDF means following a separation-of-concern approach by implementing modular, reusable packages from day one. 
+For DevOps/Cloud/Platform engineers, adopting OpenFABR CDF means following a separation-of-concern approach by implementing modular, reusable packages from day one.
 
 Best of all, OpenFABR CDF does not have any opinions about what IaC runtime (AWS CDK and Terraform CDK; Pulumi and others coming soon) and language (Typescript; Python, Java, C# and Golang coming soon) one should use. It allows engineering organisations to pick their favourite runtime and language. It forms the foundation of an internal cloud platform and leaves the opinions about how to implement cloud infrastructure to package authors and application developers.
 
