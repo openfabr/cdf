@@ -2,7 +2,7 @@
 
 **OpenFABR CDF: The IaC framework to build cloud infrastructure faster**
 
-*developed and sponsored by [FABR](https://fabrhq.com)*
+*developed and sponsored by [FABR](https://fabrhq.com?utm_source=openfabr-cdf-docsite&utm_medium=md-doc&utm_campaign=general-oss)*
 
 ![OpenFABR CDK header](./docs/assets/header-640x320.png)
 
