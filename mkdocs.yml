@@ -42,12 +42,15 @@ extra_css:
 extra:
   version:
     provider: mike
-  homepage: https://fabrhq.com
+  homepage: /cdf/
   social:
     - icon: fontawesome/brands/discord
       link: https://discord.com/channels/1039810916625162260/1039819988296552510
     - icon: fontawesome/brands/github
       link: https://github.com/openfabr/cdf
+  analytics:
+    provider: google
+    property: G-J095VMTQH7
 plugins:
   - search
   - minify:

@@ -1,19 +1,22 @@
-# OpenFABR Cloud Development Framework (CDF) 
+# OpenFABR Cloud Development Framework (CDF)
 
 **OpenFABR CDF: The IaC framework to build cloud infrastructure faster**
 
-*developed and sponsored by [FABR](https://fabrhq.com)*
+*developed and sponsored by [FABR](https://fabrhq.com?utm_source=openfabr-cdf-docs&utm_medium=md-doc&utm_campaign=general-oss)*
 
 ![OpenFABR CDK header](./docs/assets/header-640x320.png)
 
 Framework:
+
 - TypeScript: ![NPM](https://img.shields.io/npm/v/@openfabr/cdf)
 
 Packages as reference implementations:
+
 - TypeScript, AWS CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-awscdk)
 - TypeScript, Terraform CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-cdktf)
 
 Sample projects using the packages above:
+
   - [TypeScript, AWS CDK](./samples/projects/awscdk-typescript/README.md) for [AWS](https://aws.amazon.com)
   - [TypeScript, Terraform CDK](./samples/projects/cdktf-typescript/README.md) for [Digital Ocean](https://digitalocean.com)
 
@@ -23,7 +26,7 @@ Sample projects using the packages above:
 
 OpenFABR CDF aims to offer a brand new way of building cloud infrastructure, based on our view that the future of DevOps is **MODULAR + CUSTOM**.
 
-We envisage a future where application developers (in product engineering) and DevOps engineers (in platform engineering) collaborate by code in a true Infrastructure-as-Code manner. There are various IaC runtime, imperative language supports and existing software delivery infrastructure such as code and artefact repositories. OpenFABR CDF is the missing piece that makes it happen. 
+We envisage a future where application developers (in product engineering) and DevOps engineers (in platform engineering) collaborate by code in a true Infrastructure-as-Code manner. There are various IaC runtime, imperative language supports and existing software delivery infrastructure such as code and artefact repositories. OpenFABR CDF is the missing piece that makes it happen.
 
 ### MODULAR: Reusable, High-level Packages
 
@@ -40,7 +43,7 @@ For application developers, OpenFABR CDF is the framework that pieces together a
 - From 0 to 95%: With the help of a selected package, an infra baseline can be assembled using a simple, schema-aware JSON configuration file. This can be done in *minutes* or *hours*, instead of days or weeks.
 - From 95% to 100%: Every project is different, the framework allows detailed customisation to every underlying infra resources being created by the modular approach earlier. This can be done in *hours* or *days*, certainly not *weeks*.
 
-For DevOps/Cloud/Platform engineers, adopting OpenFABR CDF means following a separation-of-concern approach by implementing modular, reusable packages from day one. 
+For DevOps/Cloud/Platform engineers, adopting OpenFABR CDF means following a separation-of-concern approach by implementing modular, reusable packages from day one.
 
 Best of all, OpenFABR CDF does not have any opinions about what IaC runtime (AWS CDK and Terraform CDK; Pulumi and others coming soon) and language (Typescript; Python, Java, C# and Golang coming soon) one should use. It allows engineering organisations to pick their favourite runtime and language. It forms the foundation of an internal cloud platform and leaves the opinions about how to implement cloud infrastructure to package authors and application developers.
 
@@ -50,9 +53,13 @@ Follow the [Getting Started](./docs/get-started/quick-start.md) to experience th
 
 To dive deep, the [User Guide](./docs/user-guide/overview.md) covers the context as well as detailed manuals for both application developers and package authors.
 
-We are on hand to support you:
+## Support
 
-- [Discord](https://discord.com/channels/1039810916625162260/1039819988296552510)
+Click on the badge to join our server:
+
+[![](https://dcbadge.vercel.app/api/server/4ma3bVVkrv?theme=default-inverted&logoColor=FC7E56)](https://discord.gg/4ma3bVVkrv)
+
+[Discord Support Channel](https://discord.com/channels/1039810916625162260/1039819988296552510)
 
 ## Contribute
 
@@ -61,7 +68,7 @@ We are on hand to support you:
 Same as other OpenFABR projects, it is dual-licensed under
 
 - [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.en.html)
-- [FABR Commercial v1](#) (coming Soon)
+- [FABR Commercial v1](#) (coming soon)
 
 Before accepting your contribution, please e-sign the [Contributor License Agreement](#) (coming soon) which is a common practice in open source. Once signed, your GitHub username will then be registered on the project's contributor list which safeguards the contributions to the project.
 
