@@ -42,7 +42,7 @@ extra_css:
 extra:
   version:
     provider: mike
-  homepage: https://fabrhq.com?utm_source=openfabr-cdf-docsite&utm_medium=docsite&utm_campaign=general-oss
+  homepage: https://github.com/openfabr/cdf
   social:
     - icon: fontawesome/brands/discord
       link: https://discord.com/channels/1039810916625162260/1039819988296552510
