@@ -50,9 +50,13 @@ Follow the [Getting Started](./docs/get-started/quick-start.md) to experience th
 
 To dive deep, the [User Guide](./docs/user-guide/overview.md) covers the context as well as detailed manuals for both application developers and package authors.
 
-We are on hand to support you:
+## Support
 
-- [Discord](https://discord.com/channels/1039810916625162260/1039819988296552510)
+Click on the badge to join our server:
+
+[![](https://dcbadge.vercel.app/api/server/4ma3bVVkrv?theme=default-inverted&logoColor=FC7E56)](https://discord.gg/4ma3bVVkrv)
+
+[Discord Support Channel](https://discord.com/channels/1039810916625162260/1039819988296552510)
 
 ## Contribute
 
