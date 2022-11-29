@@ -50,7 +50,7 @@ extra:
       link: https://github.com/openfabr/cdf
   analytics:
     provider: google
-    property: G-344124027
+    property: G-J095VMTQH7
 plugins:
   - search
   - minify:
