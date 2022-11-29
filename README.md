@@ -7,13 +7,16 @@
 ![OpenFABR CDK header](./docs/assets/header-640x320.png)
 
 Framework:
+
 - TypeScript: ![NPM](https://img.shields.io/npm/v/@openfabr/cdf)
 
 Packages as reference implementations:
+
 - TypeScript, AWS CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-awscdk)
 - TypeScript, Terraform CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-cdktf)
 
 Sample projects using the packages above:
+
   - [TypeScript, AWS CDK](./samples/projects/awscdk-typescript/README.md) for [AWS](https://aws.amazon.com)
   - [TypeScript, Terraform CDK](./samples/projects/cdktf-typescript/README.md) for [Digital Ocean](https://digitalocean.com)
 
@@ -23,7 +26,7 @@ Sample projects using the packages above:
 
 OpenFABR CDF aims to offer a brand new way of building cloud infrastructure, based on our view that the future of DevOps is **MODULAR + CUSTOM**.
 
-We envisage a future where application developers (in product engineering) and DevOps engineers (in platform engineering) collaborate by code in a true Infrastructure-as-Code manner. There are various IaC runtime, imperative language supports and existing software delivery infrastructure such as code and artefact repositories. OpenFABR CDF is the missing piece that makes it happen. 
+We envisage a future where application developers (in product engineering) and DevOps engineers (in platform engineering) collaborate by code in a true Infrastructure-as-Code manner. There are various IaC runtime, imperative language supports and existing software delivery infrastructure such as code and artefact repositories. OpenFABR CDF is the missing piece that makes it happen.
 
 ### MODULAR: Reusable, High-level Packages
 
@@ -65,7 +68,7 @@ Click on the badge to join our server:
 Same as other OpenFABR projects, it is dual-licensed under
 
 - [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.en.html)
-- [FABR Commercial v1](#) (coming Soon)
+- [FABR Commercial v1](#) (coming soon)
 
 Before accepting your contribution, please e-sign the [Contributor License Agreement](#) (coming soon) which is a common practice in open source. Once signed, your GitHub username will then be registered on the project's contributor list which safeguards the contributions to the project.
 
