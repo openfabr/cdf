@@ -9,7 +9,7 @@ Pre-requisite: have a set of AWS credentials set up, likely via AWS SDK.
 One-off task to bootstrap CDK (if you haven't done so):
 
 ```
-cdk bootstrap
+cdk bootstrap --profile <your aws profile name>
 ```
 
 (You will see `CDKTookit` being created as a stack in CloudFormation)
@@ -21,7 +21,7 @@ cdk synth
 ```
 and/or
 ```
-cdk deploy
+cdk deploy --profile <your aws profile name>
 ```
 
 (You will see `ProjectStack` being created as a stack in CloudFormation)
@@ -29,7 +29,7 @@ cdk deploy
 Tidy up after you finish everything:
 
 ```
-cdk destroy
+cdk destroy --profile <your aws profile name>
 ```
 
 (The stack `CDKTookit` should stay but `ProjectStack` should disappear as a result)

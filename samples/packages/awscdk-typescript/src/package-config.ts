@@ -7,7 +7,7 @@ import { Queue } from "aws-cdk-lib/aws-sqs";
 import { Bucket } from "aws-cdk-lib/aws-s3";
 import { ok, err, Result } from "neverthrow";
 import * as cdf from "@openfabr/cdf";
-import { Components } from "./construct/components";
+import { Components, StaticWebsiteHosting } from "./construct/components";
 import { Network } from "./construct/network";
 import { Services } from "./construct/services";
 import { Relations } from "./construct/relations";
@@ -212,12 +212,13 @@ export class PackageServiceContainerEcsConfig implements PackageServiceConfig {
     public readonly application: ServiceApplicationType,
     public readonly cpu: number,
     public readonly mem: number,
-    public readonly dockerfilePath: string,
+    public readonly containerRegistry: string, // TODO: change to and enum
+    public readonly containerImageName: string,
     public readonly replicas?: number,
     
   ) { }
 
-  public static has(config: cdf.RuntimeConfig<PackageServiceConfig>): boolean {
+  public static has(config: cdf.TraitConfig<PackageServiceConfig>): boolean {
     return config.type == 'container' && config.subtype == 'ecs';
   }
 
@@ -233,6 +234,7 @@ export class PackageServiceContainerEcsConfig implements PackageServiceConfig {
   } 
 }
 
+
 export interface PackageRelationConfig extends cdf.RelationConfig {
   // fields TBA
 }
@@ -243,9 +245,11 @@ export class PackageInfraPlanConstructs implements cdf.InfraPlanConstructs {
     public readonly queues: Queue[],
     public readonly topics: Topic[],
     public readonly keys: Key[],
-    public readonly cluster: Cluster,
     public readonly taskdefs: FargateTaskDefinition[],
     public readonly services: FargateService[],
+    public readonly staticWebsites: StaticWebsiteHosting[],
+    public readonly cluster: Cluster,
+
   ) {}
 }
 
@@ -254,15 +258,14 @@ export class PackagePlanner implements cdf.Planner<PackageInfraPlanConstructs, P
   runWith(config: PackageInfraConfig, scope: any): Result<cdf.InfraPlan<PackageInfraPlanConstructs>, cdf.PlanError> {
 
     try {
-
       const network = new Network(scope, 'network', { config });
       const components = new Components(scope, 'components', { config });
       const services = new Services(scope, 'services', { config: config, vpc: network.vpc });
       const relations = new Relations(scope, 'relations', { config });
 
       const constructs = new PackageInfraPlanConstructs(
-        network.vpc, components.queues, components.topics, components.keys,
-        services.cluster, services.taskdefs, services.services,
+        network.vpc, components.queues, components.topics, components.keys, 
+        services.taskdefs, services.services, components.staticWebsites, services.cluster, 
       );
       const outputs = new Map<string, any>();
 
