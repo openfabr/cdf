@@ -51,7 +51,6 @@ export class Services extends Construct {
             s.application
           ) == ServiceApplicationType.PUBLIC
         ) {
-          
           const prefix = `${id}-${s.name}`;
 
           // const asset = new DockerImageAsset(this, `${prefix}_image`, {
@@ -62,22 +61,24 @@ export class Services extends Construct {
           const image = ContainerImage.fromRegistry(s.containerImageName); // deploy from public container on DockerHub
           //const image = ContainerImage.fromDockerImageAsset(asset); // deploy from local docker file
 
-          const taskDefinition = new FargateTaskDefinition(this, `${prefix}-taskDef`);
-          
+          const taskDefinition = new FargateTaskDefinition(
+            this,
+            `${prefix}-taskDef`
+          );
+
           taskDefinition.addContainer(`${prefix}-container`, {
             image: image,
             containerName: `${prefix}-container`,
-            portMappings: [{containerPort:8001}]
+            portMappings: [{ containerPort: 8001 }],
           });
 
-          
           const loadBalancedFargateService =
             new ApplicationLoadBalancedFargateService(
               this,
               `${prefix}-service`,
               {
                 cluster: this.cluster,
-                memoryLimitMiB: s.mem, 
+                memoryLimitMiB: s.mem,
                 desiredCount: s.replicas,
                 cpu: s.cpu,
                 taskDefinition: taskDefinition,
@@ -102,8 +103,6 @@ export class Services extends Construct {
             s.application
           ) == ServiceApplicationType.TASK
         ) {
-          
-
           const prefix = `${id}-${s.name}`;
           const taskdef = new FargateTaskDefinition(this, `${prefix}-taskdef`, {
             ...{ cpu: s.cpu, memoryLimitMiB: s.mem },
