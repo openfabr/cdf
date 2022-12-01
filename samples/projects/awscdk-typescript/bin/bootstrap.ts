@@ -14,7 +14,7 @@ const stack = cdf.awscdk.initProjectStack(
   config as PackageInfraConfig, 
   new PackagePlanner(), 
   [
-    // new CustomModuleOne(),
-    // new CustomModuleAnother(),
+    new CustomModuleOne(),
+    new CustomModuleAnother(),
   ]
 );
