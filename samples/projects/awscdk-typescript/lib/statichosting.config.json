@@ -21,25 +21,21 @@
     ]
   },
   "services": [
+   
+  ],
+  "components": [
     {
-      "name": "ecs-fargate",
-      "type": "container",
-      "subtype": "ecs",
+      "name": "static-website-hosting",
+      "type": "distribution",
+      "subtype": "staticWebsite",
       "details": [
         {
-          "name": "web-service",
-          "application": "PUBLIC",
-          "containerRegistry": "dockerhub",
-          "containerImageName": "janaka/test-api",
-          "cpu": 512,
-          "mem": 2048,
-          "replicas": 2
+          "name": "test-static-website",
+          "hostName": "staticsite",
+          "domain": "test.fabrhq.dev"
         }
       ]
     }
-  ],
-  "components": [
-  
   ],
   "relations": [
   ]

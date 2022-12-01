@@ -1,6 +1,7 @@
 
 import { err, ok, Result } from "neverthrow";
 import { PackageCustomModule, PackageInfraConfig, PackageInfraPlanConstructs, PackagePlanner } from "@openfabr/package-ri-awscdk";
+//import { PackageCustomModule, PackageInfraConfig, PackageInfraPlanConstructs, PackagePlanner } from "../../../packages/awscdk-typescript";
 import { InfraPlan, InfraPlanOutputs, Orchestrator, PlanError } from "@openfabr/cdf";
 
 export class CustomModuleOne implements PackageCustomModule {
