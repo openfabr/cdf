@@ -28,4 +28,5 @@ jobs:
         with:
           node-version: 16
       - run: npm i -g aws-cdk
+      - run: npm i
       - run: npm run ci-build
