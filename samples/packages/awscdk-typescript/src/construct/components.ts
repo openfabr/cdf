@@ -98,13 +98,13 @@ export class Components extends Construct {
                 removalPolicy: RemovalPolicy.DESTROY
               }
             }
-
           )
 
-          // Probably wouldn't have this for real. Just to testing
+          // Optimising for a self-contained demo
+          // In real life you could do something similar so that deployed infra could be fully tested before deploying real apps
           new BucketDeployment(this, 'BucketDeployment', {
             destinationBucket: b,
-            sources: [Source.asset(path.resolve(__dirname, '../../../custom/fabr-awscdk/dist'))]
+            sources: [Source.data('/index.html', '<html><head><title>Hello world!</title></head><body>Hello world!</body></html>')]
           })
 
           const originAccessIdentity = new OriginAccessIdentity(this, 'OriginAccessIdentity');
@@ -119,17 +119,6 @@ export class Components extends Construct {
           })
 
           new CfnOutput(d, 'distributionDomainName', { value: d.distributionDomainName, description: 'distrinutionDomainName' });
-
-        //   const d = new CloudFrontWebDistribution(this, `cf_${c.name}_${c.hostName}${c.domain}`, {
-        //     originConfigs: [
-        //       {
-        //         s3OriginSource: {
-        //         s3BucketSource: b,
-        //         },
-        //         behaviors : [ {isDefaultBehavior: true}],
-        //       },
-        //     ],
-        //  });
 
           this.staticWebsites.push({ bucket: b, distribution: d });
         });
