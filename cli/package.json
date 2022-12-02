@@ -1,0 +1,33 @@
+{
+  "name": "@openfabr/cdf-cli",
+  "version": "0.0.0",
+  "description": "OpenFABR CLI for both project creators and package authors",
+  "bin": {
+    "cdf-init-project": "init-project.js",
+    "cdf-init-package": "init-package.js",
+    "cdf-schema-gen": "schema-gen.sh"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "github:openfabr/cdf",
+  "homepage": "https://github.com/openfabr/cdf",
+  "author": {
+    "name": "OpenFABR CDF Contributors",
+    "email": "open@fabrhq.com",
+    "url": "https://github.com/orgs/openfabr/teams/team-cdf"
+  },
+  "license": "AGPL-3.0-only",
+  "keywords": [
+    "openfabr",
+    "cdf",
+    "cli",
+    "cloud",
+    "infrastructure",
+    "IaC",
+    "Infrastructure-as-Code"
+  ],
+  "engines": {
+    "node": ">=16"
+  }
+}
