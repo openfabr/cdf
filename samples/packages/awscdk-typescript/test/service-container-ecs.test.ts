@@ -4,7 +4,7 @@ import * as cdf from '@openfabr/cdf';
 import { PackageComponentConfig, PackageCustomModule, PackageGeneralConfig, PackageInfraConfig, PackageInfraPlanConstructs, PackageNetworkConfig, PackagePlanner, PackageRelationConfig, PackageServiceConfig } from '../src/package-config';
 import configA from './container-ecs.config.json';
 import { ok, Result } from 'neverthrow';
-import { Template } from 'aws-cdk-lib/assertions';
+import { Match, Template } from 'aws-cdk-lib/assertions';
 
 class CustomModuleStub implements PackageCustomModule {
 
@@ -16,7 +16,7 @@ class CustomModuleStub implements PackageCustomModule {
 
 describe('A project', () => {
 
-  it('runs without custom modules', () => {
+  it('deploys a public web servies on ECS Fargate', () => {
 
     const app = new cdk.App();
 
@@ -30,15 +30,15 @@ describe('A project', () => {
 
     const template = Template.fromStack(stack);
 
-    template.hasResourceProperties('AWS::EC2::Route',{
-      "RouteTableId": {
-        "Ref": "networkvpcprivatesubnetSubnet1RouteTable29D0DB31"
-      },
-      "DestinationCidrBlock": "0.0.0.0/0",
-      "NatGatewayId": {
-        "Ref": "networkvpcpublicsubnetSubnet1NATGateway0F75C03D"
-      }
-    });
+    // The following line output the entire plan in json. Usefull during test development.
+
+    //console.log(JSON.stringify(template.toJSON(), null , 2));
+
+    template.resourceCountIs('AWS::ElasticLoadBalancingV2::Listener', 1);
+    template.resourceCountIs('AWS::ECS::Cluster', 1);
+    template.resourceCountIs('AWS::ElasticLoadBalancingV2::TargetGroup', 1);
+    template.resourceCountIs('AWS::ECS::Service', 1); 
+    template.hasResource('AWS::ECS::Service',{Properties: { LaunchType: "FARGATE"}});  
 
   });
 });
