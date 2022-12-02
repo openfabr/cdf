@@ -24,7 +24,7 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import * as cdf from '@openfabr/cdf';
 import { PackageComponentConfig, PackageCustomModule, PackageGeneralConfig, PackageInfraConfig, PackageInfraPlanConstructs, PackageNetworkConfig, PackagePlanner, PackageRelationConfig, PackageServiceConfig } from '../src/package-config';
-import configA from './container-ecs.config.json';
+import configA from './container-ecs.config.json'; //(1)!
 import { ok, Result } from 'neverthrow';
 import { Match, Template } from 'aws-cdk-lib/assertions';
 
@@ -48,30 +48,31 @@ describe('A project', () => {
       [],
     );
 
-    const stack = new cdf.awscdk.ProjectStack(app, 'ProjectStack', { orchestrator }); //(1)!
+    const stack = new cdf.awscdk.ProjectStack(app, 'ProjectStack', { orchestrator }); //(2)!
 
     const template = Template.fromStack(stack);
     
-    console.log(JSON.stringify(template.toJSON(), null , 2)); // (2)!
+    console.log(JSON.stringify(template.toJSON(), null , 2)); // (3)!
 
-    template.resourceCountIs('AWS::ElasticLoadBalancingV2::Listener', 1); // (3)!
+    template.resourceCountIs('AWS::ElasticLoadBalancingV2::Listener', 1); // (4)!
     template.resourceCountIs('AWS::ECS::Cluster', 1);
     template.resourceCountIs('AWS::ElasticLoadBalancingV2::TargetGroup', 1);
     template.resourceCountIs('AWS::ECS::Service', 1);
 
-    template.hasResource('AWS::ECS::Service', { Properties: { LaunchType: "FARGATE" } }); // (4)!
+    template.hasResource('AWS::ECS::Service', { Properties: { LaunchType: "FARGATE" } }); // (5)!
 
   });
 });
 
 ```
 
-1. Setup a `Stack` instance, same as the project bootstrap where the Package is used for real.
-2. This line outputs the synthesized plan in JSON to the console. This is convenient during development.
-3. Check that there's one of each resource
-4. Check that all ECS Services have the prop `{ LaunchType: "FARGATE" }`
+1. Supply a config file that's scoped to the Service or Component being tested. This helps at both test dev time by making it easier to scan the JSON. It will also make tests run faster.
+2. Setup a `Stack` instance, same as the project bootstrap where the Package is used for real.
+3. This line outputs the synthesized plan in JSON to the console. This is convenient during development.
+4. Check that there's one of each resource
+5. Check that all ECS Services have the prop `{ LaunchType: "FARGATE" }`
 
-Run Jest to execute tests. In the sampke Package this is mapped to `npm test`. 
+Run Jest to execute tests. In the sampke Package this is mapped to `npm test`.
 
 See the AWS CDK Package test folder [/samples/packages/awscdk-typescript/test](../../samples/packages/awscdk-typescript/test) for fully working tests.
 
