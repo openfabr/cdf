@@ -22,10 +22,11 @@ export interface ServicesProps {
 }
 
 export class Services extends Construct {
-  private _cluster: Cluster;
-  public get cluster(): Cluster {
-    return this._cluster;
-  }
+  // private _cluster: Cluster;
+  // public get cluster(): Cluster {
+  //   return this._cluster;
+  // }
+  readonly cluster: Cluster;
   readonly taskdefs: FargateTaskDefinition[];
   readonly services: FargateService[];
 
@@ -38,7 +39,7 @@ export class Services extends Construct {
 
     // Use Fargate for ECS
     if (ecsConfig) {
-      this._cluster = new Cluster(this, `${id}-cluster`, {
+      this.cluster = new Cluster(this, `${id}-cluster`, {
         vpc: props.vpc,
         enableFargateCapacityProviders: true,
       });
