@@ -74,17 +74,30 @@ export abstract class Planner<
 }
 
 /**
+ * A convenient interface to represent a typing classification.
  *
  * @group For package authors
  */
- export interface NestedType extends TypeAware, SubtypeAware {}
+export interface NestedType extends TypeAware, SubtypeAware {}
 
 /**
+ * Interface used to model typing information for a package's components, services and relations.
+ * Each package is expected to have a `types.json` file containing the available types and subtypes.
  *
  * @group For package authors
  */
- export interface TypesInfo {
-   components: { [ key: string ]: NestedType },
-   services: { [ key: string ]: NestedType },
-   relations: { [ key: string ]: NestedType },
- }
+export interface TypesInfo {
+  /**
+   * Available types and subtypes for components.
+   */
+  components: { [key: string]: NestedType };
+  /**
+   * Available types and subtypes for services.
+   */
+  services: { [key: string]: NestedType };
+  /**
+   * Available relations between a specific component/service and another component/service.
+   * Both the key and value here refer to the entries defined in `components` and `services` fields.
+   */
+  relations: { [key: string]: string };
+}

@@ -1,0 +1,15 @@
+{
+  "components": {
+    "hello": { "type": "chinese", "subtype": "mandarin" },
+    "fizz": { "type": "city", "subtype": "hong-kong" }
+  },
+  "services": {
+    "world": { "type": "solar-system", "subtype": "earth" },
+    "buzz": { "type": "country", "subtype": "morocco" }
+
+  },
+  "relations": {
+    "hello": "world",
+    "fizz": "buzz"
+  }
+}
