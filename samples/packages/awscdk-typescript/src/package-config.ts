@@ -15,7 +15,7 @@ import { Relations } from "./construct/relations";
 export class PackageGeneralConfig implements cdf.GeneralConfig {
   constructor(
     public readonly name: string,
-  ) { }
+  ) {}
 }
 
 export enum NetworkSubnetType {
@@ -30,7 +30,7 @@ export class NetworkSubnetDetail implements cdf.NameAware {
     public readonly name: string,
     public readonly type: NetworkSubnetType,
     public readonly mask: number,
-  ) { }
+  ) {}
 
   public static subnetType(type: NetworkSubnetType): SubnetType {
     switch (type) {
@@ -45,9 +45,6 @@ export class NetworkSubnetDetail implements cdf.NameAware {
     }
   }
 
-  // getSubnetType(): SubnetType {
-  //   return NetworkSubnetDetail.subnetType(this.type);
-  // }
 }
 
 export class PackageNetworkConfig implements cdf.NetworkConfig {
@@ -57,7 +54,7 @@ export class PackageNetworkConfig implements cdf.NetworkConfig {
     public readonly cidr?: string,
     public readonly zones?: number,
     public readonly subnets?: NetworkSubnetDetail[],
-  ) { }
+  ) {}
 }
 
 export interface PackageComponentConfig extends cdf.ComponentConfig {
@@ -91,7 +88,7 @@ export class PackageComponentKeySoftwareConfig implements PackageComponentConfig
     public readonly usage?: ComponentKeyUsage,
     public readonly enabled?: boolean,
     public readonly rotation?: boolean,
-  ) { }
+  ) {}
 
   public static has(config: cdf.TraitConfig<PackageComponentConfig>): boolean {
     return config.type == 'key' && config.subtype == 'software';
@@ -112,10 +109,6 @@ export class PackageComponentKeySoftwareConfig implements PackageComponentConfig
     }
   }
 
-  // getAwsKeySpec(): KeySpec {
-  //   return PackageComponentKeySoftwareConfig.awsKeySpec(this.spec);
-  // }
-
   public static awsKeyUsage(usage?: ComponentKeyUsage): KeyUsage {
     switch (usage) {
       case ComponentKeyUsage.ENCRYPT_DECRYPT:
@@ -127,9 +120,6 @@ export class PackageComponentKeySoftwareConfig implements PackageComponentConfig
     }
   }
 
-  // getAwsKeyUsage(): KeyUsage {
-  //   return PackageComponentKeySoftwareConfig.awsKeyUsage(this.usage);
-  // }
 }
 
 export class PackageComponentMessageQueueConfig implements PackageComponentConfig {
@@ -138,7 +128,7 @@ export class PackageComponentMessageQueueConfig implements PackageComponentConfi
     public readonly name: string,
     public readonly fifo?: boolean,
     public readonly dlq?: number,
-  ) { }
+  ) {}
 
   public static has(config: cdf.TraitConfig<PackageComponentConfig>): boolean {
     return config.type == 'message' && config.subtype == 'queue';
@@ -150,7 +140,7 @@ export class PackageComponentMessageTopicConfig implements PackageComponentConfi
   constructor(
     public readonly name: string,
     public readonly fifo?: boolean,
-  ) { }
+  ) {}
 
   public static has(config: cdf.TraitConfig<PackageComponentConfig>): boolean {
     return config.type == 'message' && config.subtype == 'topic';
@@ -163,7 +153,7 @@ export class PackageComponentStorageBucketConfig implements PackageComponentConf
     public readonly name: string,
     public readonly bucketName: string,
     public readonly blockPublicAccess?: ComponentBlockPublicAccess,
-  ) { }
+  ) {}
 
   public static has(config: cdf.TraitConfig<PackageComponentConfig>): boolean {
     return config.type == 'storage' && config.subtype == 'bucket';
@@ -187,7 +177,7 @@ export class PackageComponentStaticWebsiteHostingConfig implements PackageCompon
     public readonly name: string,
     public readonly hostName: string,
     public readonly domain: string, //TODO: figure out how best to handle none AWS hosted DNS management
-  ) { }
+  ) {}
 
   public static has(config: cdf.TraitConfig<PackageComponentConfig>): boolean {
     return config.type == 'distribution' && config.subtype == 'staticWebsite';
@@ -196,7 +186,6 @@ export class PackageComponentStaticWebsiteHostingConfig implements PackageCompon
 
 
 export interface PackageServiceConfig extends cdf.ServiceConfig {
-  // fields TBA
 }
 
 export enum ServiceApplicationType {
@@ -212,8 +201,8 @@ export class PackageServiceContainerEcsConfig implements PackageServiceConfig {
     public readonly application: ServiceApplicationType,
     public readonly cpu: number,
     public readonly mem: number,
-    public readonly containerRegistry: string, // TODO: change to and enum
-    public readonly containerImageName: string,
+    public readonly containerRegistry?: string, // TODO: change to and enum
+    public readonly containerImageName?: string,
     public readonly replicas?: number,
     
   ) { }
@@ -236,7 +225,23 @@ export class PackageServiceContainerEcsConfig implements PackageServiceConfig {
 
 
 export interface PackageRelationConfig extends cdf.RelationConfig {
-  // fields TBA
+}
+
+export enum RelationMessagingType {
+  PUBLISH = 'PUBLISH',
+  SUBSCRIBE = 'SUBSCRIBE',
+}
+
+export class PackageRelationMessagingConfig implements PackageRelationMessagingConfig {
+  public readonly bidi = false;
+
+  constructor(
+    public readonly name: string,
+    public readonly start: string,
+    public readonly finish: string,
+    public readonly type: RelationMessagingType,
+  ) {}
+
 }
 
 export class PackageInfraPlanConstructs implements cdf.InfraPlanConstructs {
@@ -253,7 +258,7 @@ export class PackageInfraPlanConstructs implements cdf.InfraPlanConstructs {
   ) {}
 }
 
-export class PackagePlanner implements cdf.Planner<PackageInfraPlanConstructs, PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfig, PackageServiceConfig, PackageRelationConfig> {
+export class PackagePlanner implements cdf.Planner<PackageInfraPlanConstructs, PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfig, PackageServiceConfig, PackageRelationConfigChoices> {
 
   runWith(config: PackageInfraConfig, scope: any): Result<cdf.InfraPlan<PackageInfraPlanConstructs>, cdf.PlanError> {
 
@@ -278,7 +283,13 @@ export class PackagePlanner implements cdf.Planner<PackageInfraPlanConstructs, P
 
 }
 
-export type PackageInfraConfig = cdf.InfraConfig<PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfig, PackageServiceConfig, PackageRelationConfig>;
+export type PackageComponentConfigChoices = PackageComponentKeySoftwareConfig | PackageComponentMessageQueueConfig | PackageComponentMessageTopicConfig | PackageComponentStorageBucketConfig | PackageComponentStaticWebsiteHostingConfig;
 
-export type PackageCustomModule = cdf.Custom<PackageInfraPlanConstructs, PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfig, PackageServiceConfig, PackageRelationConfig>;
+export type PackageServiceConfigChoices = PackageServiceContainerEcsConfig;
+
+export type PackageRelationConfigChoices = PackageRelationMessagingConfig;
+
+export type PackageInfraConfig = cdf.InfraConfig<PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfigChoices, PackageServiceConfigChoices, PackageRelationConfigChoices>;
+
+export type PackageCustomModule = cdf.Custom<PackageInfraPlanConstructs, PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfig, PackageServiceConfig, PackageRelationConfigChoices>;
 

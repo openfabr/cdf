@@ -65,7 +65,7 @@ export class Services extends Construct {
           //   networkMode: NetworkMode.HOST,
           // });
 
-          const image = ContainerImage.fromRegistry(s.containerImageName); // deploy from public container on DockerHub
+          const image = ContainerImage.fromRegistry(s.containerImageName ?? 'hello-world'); // deploy from public container on DockerHub
           //const image = ContainerImage.fromDockerImageAsset(asset); // deploy from local docker file
 
           const taskDefinition = new FargateTaskDefinition(
@@ -124,7 +124,7 @@ export class Services extends Construct {
           // });
 
           const appContainer = taskdef.addContainer(`${prefix}-container`, {
-            image: ContainerImage.fromRegistry(s.containerImageName),
+            image: ContainerImage.fromRegistry(s.containerImageName ?? 'hello-world'),
             //image: ContainerImage.fromDockerImageAsset(asset),
           });
 

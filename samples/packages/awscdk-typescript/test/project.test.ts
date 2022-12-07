@@ -1,14 +1,14 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import * as cdf from '@openfabr/cdf';
-import { PackageComponentConfig, PackageCustomModule, PackageGeneralConfig, PackageInfraConfig, PackageInfraPlanConstructs, PackageNetworkConfig, PackagePlanner, PackageRelationConfig, PackageServiceConfig } from '../src/package-config';
+import { PackageComponentConfigChoices, PackageCustomModule, PackageGeneralConfig, PackageInfraConfig, PackageInfraPlanConstructs, PackageNetworkConfig, PackagePlanner, PackageRelationConfigChoices, PackageServiceConfigChoices } from '../src/package-config';
 import configA from './configA.json';
 import configB from './configB.json';
 import { ok, Result } from 'neverthrow';
 
 class CustomModuleStub implements PackageCustomModule {
 
-  enhanceWith(config: cdf.InfraConfig<PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfig, PackageServiceConfig, PackageRelationConfig>, result: cdf.InfraPlan<PackageInfraPlanConstructs>, scope: any): Result<cdf.InfraPlanOutputs, cdf.PlanError> {
+  enhanceWith(config: cdf.InfraConfig<PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfigChoices, PackageServiceConfigChoices, PackageRelationConfigChoices>, result: cdf.InfraPlan<PackageInfraPlanConstructs>, scope: any): Result<cdf.InfraPlanOutputs, cdf.PlanError> {
     return ok(new Map<string, any>());
   }
 

@@ -2,15 +2,15 @@ import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
 import * as cdf from "@openfabr/cdf";
 import {
-  PackageComponentConfig,
   PackageCustomModule,
   PackageGeneralConfig,
   PackageInfraConfig,
   PackageInfraPlanConstructs,
   PackageNetworkConfig,
   PackagePlanner,
-  PackageRelationConfig,
-  PackageServiceConfig,
+  PackageComponentConfigChoices,
+  PackageRelationConfigChoices,
+  PackageServiceConfigChoices,
 } from "../src/package-config";
 import configA from "./component-distribution-staticwebsite.config.json";
 import { ok, Result } from "neverthrow";
@@ -21,9 +21,9 @@ class CustomModuleStub implements PackageCustomModule {
     config: cdf.InfraConfig<
       PackageGeneralConfig,
       PackageNetworkConfig,
-      PackageComponentConfig,
-      PackageServiceConfig,
-      PackageRelationConfig
+      PackageComponentConfigChoices,
+      PackageServiceConfigChoices,
+      PackageRelationConfigChoices
     >,
     result: cdf.InfraPlan<PackageInfraPlanConstructs>,
     scope: any
