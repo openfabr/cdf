@@ -148,13 +148,64 @@ The package metadata consist a pack of files covering all that has been mentione
 
 An example of the files is show below,
 
-![files in PDP](../assets/cdf-package-definition-pack-example.png)
+![files in PDP](../assets/cdf-package-definition-files.png)
 
 Those files are described individually below.
 
 ### Package Manifest
 
 It is aptly named `cdf.manifest.json` inside a package at root level, which contains attributes listed below to describe the package and links to other metadata files. It is the master plan when defining a package for consumption. 
+
+An example (as defined in `metadata.ts` in cdf-typescript) is shown below,
+
+```typescript
+/**
+ * Interface for modelling a package manifest json file that provides informations about the package.
+ * Crucially it also carries two references respectively to a) a json schema file for validating json config files and b) a template file for custom code blocks.
+ *
+ * @group For both project creators and package authors
+ */
+export interface PackageManifest extends OptionalIconAware {
+  /**
+   * The descriptive name of the package.
+   */
+  name?: string;
+  /**
+   * The unique identifier of the package.
+   */
+  identifier: string;
+  /**
+   * The author of the package.
+   */
+  vendor: string;
+  /**
+   * The SPDX license identifier for the license that the package is released under.
+   *
+   * @see https://spdx.org/licenses/
+   */
+  license: string;
+  /**
+   * The description of the package.
+   */
+  description?: string;
+  /**
+   * Information about the support provided for the package.
+   */
+  support?: SupportInfo;
+  /**
+   * The version of OpenFABR CDF that this package is compatible with, following semantic versioning.
+   */
+  cdf: string;
+  /**
+   * Information about tooling the package relies on.
+   */
+  tooling: ToolingInfo;
+  /**
+   * Information about constructs defined in the package.
+   */
+  constructs: ConstructsInfo;
+}
+```
 
 *The exact file name `cdf.manifest.json` has to be used in order to be located by any software tooling.*
 
@@ -190,46 +241,15 @@ Icon: URL
 CloudVendors: TEXT_LIST | IN_LIST(pre-fined list of all cloud vendors)
 DefaultCloudVendor: TEXT | IN_LIST(pre-fined list of all cloud vendors)
 
+#### Types Definition via Plan JSON
+
+It is a JSON file that contains available types and subtypes defined by a package for `Component`, `Service` and `Relation`. It is usually created manually by package authors following the structure defined in CDF framework. Below is an example structure,
+
 ### Config Definition via JSON Schema
 
 It is a JSON schema file, usually generated with the help of `cdf-cli` tool from reading the TypeScript based package configurations. It is not expected to be manually edited afterwards. Whenever there is a change to the package configurations, the schema file should be re-generated.
 
 *The name of the config definition can be arbitrary as long as it is referenced correctly by the `Package Manifest` file.*
-
-### Types Definition via Plan JSON
-
-It is a JSON file that contains available types and subtypes defined by a package for `Component`, `Service` and `Relation`. It is usually created manually by package authors following the structure defined in CDF framework. Below is an example structure,
-
-```typescript
-/**
- * A convenient interface to represent a typing classification.
- *
- */
-export interface NestedType extends TypeAware, SubtypeAware {}
-
-/**
- * Interface used to model typing information for a package's components, services and relations.
- * Each package is expected to have a `types.json` file containing the available types and subtypes.
- *
- */
-export interface TypesInfo {
-  /**
-   * Available types and subtypes for components.
-   */
-  components: { [key: string]: NestedType };
-  /**
-   * Available types and subtypes for services.
-   */
-  services: { [key: string]: NestedType };
-  /**
-   * Available relations between a specific component/service and another component/service.
-   * Both the key and value here refer to the entries defined in `components` and `services` fields.
-   */
-  relations: { [key: string]: string };
-}
-```
-
-*The name of the types definition file can be arbitrary as long as it is referenced correctly by the `Package Manifest` file.*
 
 ### Template for Custom Code Block
 
