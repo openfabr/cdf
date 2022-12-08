@@ -1,8 +1,8 @@
 # Framework Spec
 
-OpenFABR CDF defines a configuration language for package authors to describe how they define reusable cloud infrastructure, in the form of a `package definition pack` a.k.a `PDP`. 
+OpenFABR CDF defines a configuration language for package authors to describe how they define reusable cloud infrastructure, in the form of package metadata which consist of a number of files. 
 
-It is worth pointing that `PDP`s are mandatory when a package is integrated into a GUI-based tool such as [FABR Infra](https://fabrhq.com) because those software tooling can only rely on machine readable information to assist project creators to build cloud infrastructure using a specific package. It is however optional, though highly recommended when using a package directly with CDF, as long as the same information is documented by package authors. it is therefore package authors' responsibility to maintain up-to-date documentations for packages they develop. 
+It is worth pointing that the package metadata files are mandatory when a package is integrated into a GUI-based tool such as [FABR Infra](https://fabrhq.com) because those software tooling can only rely on machine readable information to assist project creators to build cloud infrastructure using a specific package. It is however optional, though highly recommended when using a package directly with CDF, as long as the same information is documented by package authors. it is therefore package authors' responsibility to maintain up-to-date documentations for packages they develop. 
 
 ## Types and Constraints
 
@@ -60,7 +60,7 @@ IP_ADDRESS: in either IPv4 or IPv6 format
 
 ## Construct Types
 
-`Constructs` (see definition below) are the building blocks of an infrastructure architecture (defined as an `InfraPlan` below). Each construct must be one of the following types:
+`Constructs` (see definitions below) are the building blocks of an infrastructure architecture (defined as an `InfraPlan` below). Each construct must be one of the following types:
 
 `General`
 : not directly infrastructure related, it defines necessary metadata about the package itself. 
@@ -142,19 +142,19 @@ There can be as many Custom modules as needed.
 
 TBD
 
-## Package Definition Pack
+## Package Metadata
 
-The `PDP` is a pack of files covering all that has been mentioned above. It’s intended to be used by software tooling to understand the abstraction that a package makes available for project creators to use. The primary goal is making it a machine readable protocol so that software tooling can be developed to further aid project creators when using a selected package. 
+The package metadata consist a pack of files covering all that has been mentioned above. It’s intended to be used by software tooling to understand the abstraction that a package makes available for project creators to use. The primary goal is making it a machine readable protocol so that software tooling can be developed to further aid project creators when using a selected package. 
 
-An example of the pack is show below,
+An example of the files is show below,
 
 ![files in PDP](../assets/cdf-package-definition-pack-example.png)
 
-The pack consists of the files described individually below.
+Those files are described individually below.
 
 ### Package Manifest
 
-It is aptly named `cdf.manifest.json` inside a package at root level, which contains attributes listed below to describe the package and links to other definition files. It is the master plan when defining a package for consumption. 
+It is aptly named `cdf.manifest.json` inside a package at root level, which contains attributes listed below to describe the package and links to other metadata files. It is the master plan when defining a package for consumption. 
 
 *The exact file name `cdf.manifest.json` has to be used in order to be located by any software tooling.*
 

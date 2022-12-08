@@ -24,7 +24,7 @@ An instance of a `Construct` with a particular configuration supplied by the app
 
 Implementation of the base structure of the in-memory representation of an infra design/plan. It’s exposed by the package and generated at runtime based on the `config.json` supplied. This essentially describes the infrastructure that will be deployed by the IaC Runtime.
 
-## InfraRunner
+## Planner
 
 Implementation of the base factory used to create instances of `InfraPlan` based on the application dev supplied `Config` (`config.json`).
 
