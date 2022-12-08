@@ -144,7 +144,13 @@ TBD
 
 ## Package Definition Pack
 
-The `PDP` is based on the Framework spec `Types`, `Constraints`, and `Construct Types` defined above. It’s intended to serve as the interface between the high-level user-facing language layer and the low-level implementation layer. The primary goal is making it a machine readable protocol so that additional tooling can be developed to further aid project creators when using a selected package. 
+The `PDP` is a pack of files covering all that has been mentioned above. It’s intended to be used by software tooling to understand the abstraction that a package makes available for project creators to use. The primary goal is making it a machine readable protocol so that software tooling can be developed to further aid project creators when using a selected package. 
+
+An example of the pack is show below,
+
+![files in PDP](../assets/cdf-package-definition-pack-example.png)
+
+The pack consists of the files described individually below.
 
 ### Package Manifest
 
