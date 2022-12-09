@@ -148,19 +148,19 @@ The package metadata consist a pack of files covering all that has been mentione
 
 An example of the files is show below,
 
-![files in PDP](../assets/cdf-package-definition-files.png)
+![Package metadata files](../assets/cdf-package-definition-files.png)
 
 Those files are described individually below.
 
 ### Package Manifest
 
-It is aptly named `cdf.manifest.json` inside a package at root level, which contains attributes listed below to describe the package and links to other metadata files. It is the master plan when defining a package for consumption. 
+It is aptly named `cdf.manifest.json` inside a package at root level, which contains attributes listed below to describe the package and links to other metadata files. It is the top-level plan when defining a package for consumption. 
 
 An example (as defined in `metadata.ts` in cdf-typescript) is shown below,
 
 ```typescript
 /**
- * Interface for modelling a package manifest json file that provides informations about the package.
+ * Interface for modelling a package manifest json file that provides information about the package.
  * Crucially it also carries two references respectively to a) a json schema file for validating json config files and b) a template file for custom code blocks.
  *
  * @group For both project creators and package authors
@@ -249,7 +249,7 @@ It is a JSON file that contains available types and subtypes defined by a packag
 
 It is a JSON schema file, usually generated with the help of `cdf-cli` tool from reading the TypeScript based package configurations. It is not expected to be manually edited afterwards. Whenever there is a change to the package configurations, the schema file should be re-generated.
 
-*The name of the config definition can be arbitrary as long as it is referenced correctly by the `Package Manifest` file.*
+*The name of the config definition can be arbitrary as long as it is referenced correctly by the package manifest, i.e. `cdf.manifest.json`.*
 
 ### Template for Custom Code Block
 

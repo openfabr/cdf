@@ -56,7 +56,7 @@ export class ProjectStack<
 /**
  * Convenient function that constructs a top-level stack with CDKTF as IaC runtime.
  *
- * @param scope Parent construct, usually a {@link App} in CDKTF.
+ * @param scope Parent construct, usually an `App` instance in CDKTF.
  * @param config The project configuration.
  * @param planner The planner offered by the package.
  * @param modules Custom code modules for the project.

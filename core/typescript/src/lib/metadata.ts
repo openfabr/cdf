@@ -7,7 +7,7 @@ import {
 
 /**
  * Interface that offers an optional icon field.
- * This is normally a valid URL pointing to the icon file; alternative formats such as Font Awesome can be supported later.
+ * This is normally a valid URL pointing to the icon file publicly available on the web; alternative formats such as Font Awesome can be supported later.
  *
  * @group For both project creators and package authors
  */
@@ -121,10 +121,8 @@ export interface ServicesInfo extends OptionalIconAware, OptionalDescAware {
 
 /**
  * Interface that represents information about available relation constructs.
- * It relies on the typing definitions in both `ComponentInfo` and `ServicesInfo`.
+ * It relies on the typing definitions in both {@link ComponentInfo} and {@link ServicesInfo}.
  *
- * @see ComponentsInfo
- * @see ServicesInfo
  * @group For both project creators and package authors
  */
 export interface RelationsInfo extends OptionalIconAware, OptionalDescAware {
@@ -200,7 +198,7 @@ export interface PackageManifest extends OptionalIconAware {
   /**
    * The SPDX license identifier for the license that the package is released under.
    *
-   * @see https://spdx.org/licenses/
+   * @see [SPDX](https://spdx.org/licenses/)
    */
   license: string;
   /**
