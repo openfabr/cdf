@@ -217,8 +217,83 @@ export interface PackageManifest extends OptionalIconAware {
 }
 ```
 
+A sample `cdf.manifest.json` file is shown below,
+
+``` json title="cdf.manifest.json"
+{
+  "identifier": "fabr-cdktf-gcp",
+  "vendor": "FABR",
+  "license": "UNLICENSED",
+  "cdf": "1.x",
+  "name": "A test package built by CDKTF for AWS",
+  "description": "This package is for testing only",
+  "support": {
+    "email": "hello@abc.com",
+    "phone": "0800123456789"
+  },
+  "tooling": {
+    "command": "cdktf deploy",
+    "runtime": "cdktf",
+    "language": "typescript"
+  },
+  "constructs": {
+    "schema": "schema.json",
+    "network": {
+      "icon": "https://abc.com/network.png"
+    },
+    "components": {
+      "types": {
+        "hello": { "type": "chinese", "subtype": "mandarin", "icon": "https://abc.com/hello.png", "description": "Hello Component" },
+        "fizz": { "type": "city", "subtype": "hong-kong" }
+      }
+    },
+    "services": {
+      "types": {
+        "world": { "type": "solar-system", "subtype": "earth", "deployment": "NASA would help" },
+        "buzz": { "type": "country", "subtype": "morocco", "deployment": "Fly over", "icon": "https://abc.com/morocco.png", "description": "Well done in World Cup" }
+      }
+    },
+    "relations": {
+      "types": {
+        "hello": "world",
+        "fizz": "buzz"
+      }
+    },
+    "custom": {
+      "icon": "https://abc.com/code.png",
+      "template": "template.ts"
+    }
+  }
+}
+```
+
 *The exact file name `cdf.manifest.json` has to be used in order to be located by any software tooling.*
 
+Within `constructs` field defined as `ConstructsInfo` interface in CDF, it carries important typing information for Components, Services and Relations, among other metadata.
+
+#### Types and Subtypes in Components
+
+For a package, all available Component typings (expressed as Type + Subtype with a unique name) are expected to be listed here. 
+
+*See `ComponentsInfo` interface defined in CDF*
+
+#### Types and Subtypes in Services
+
+For a package, all available Service typings (expressed as Type + Subtype with a unique name) are expected to be listed here. 
+
+*See `ServicesInfo` interface defined in CDF*
+
+#### Pairings between Components and Services in Relations
+
+For a package, all available Relations (expressed as a pair between a Service/Component and another Service/Component, both of which are expressed as a unique name mentioned above for Component and Service typings) are expected to be listed here. 
+
+*See `RelationsInfo` interface defined in CDF*
+
+#### Misc.
+
+Each different type of Components, Services and Relations is encouraged to carry its own icon and description. Same goes for Network and Custom constructs.
+
+*See `NetworkInfo` and `CustomInfo` interfaces defined in CDF*
 
 ### Config Definition via JSON Schema
 
