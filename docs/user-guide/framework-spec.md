@@ -1,10 +1,14 @@
 # Framework Spec
 
-OpenFABR CDF defines a configuration language for users to describe their cloud infrastructure.
+OpenFABR CDF defines a configuration language for package authors to describe how they define reusable cloud infrastructure, in the form of package metadata which consist of a number of files. 
 
-OpenFABR CDF as a language needs types and constraints to set up the foundation for the value system, just like other programming languages such as SQL. Clarification about package and file formats for the language is also needed.
+It is worth pointing that the package metadata files are mandatory when a package is integrated into a GUI-based tool such as [FABR Infra](https://fabrhq.com) because those software tooling can only rely on machine readable information to assist project creators to build cloud infrastructure using a specific package. It is however optional, though highly recommended when using a package directly with CDF, as long as the same information is documented by package authors. it is therefore package authors' responsibility to maintain up-to-date documentations for packages they develop. 
 
-## Types
+## Types and Constraints
+
+OpenFABR CDF as a specification needs types and constraints to set up the foundation for the value system, just like other programming languages such as SQL. 
+
+### Types
 
 `PLAIN_TEXT`
 : a plain text string value, UTF-8 encoded, usually less than 2,000 characters in length
@@ -31,7 +35,7 @@ OpenFABR CDF as a language needs types and constraints to set up the foundation 
 : a Markdown-formatted string value, usually for descriptive purposes, UTF-8 encoded, [CommonMark spec](https://github.com/commonmark/commonmark-spec), less than 2,000 characters in length
 IP_ADDRESS: in either IPv4 or IPv6 format
 
-## Constraints
+### Constraints
 
 `REQUIRED`
 : can apply to all types
@@ -56,7 +60,10 @@ IP_ADDRESS: in either IPv4 or IPv6 format
 
 ## Construct Types
 
-`Constructs` (see definition below) are the building blocks of an infrastructure architecture (defined as an `InfraPlan` below). Each construct must be one of the following types:
+`Constructs` (see definitions below) are the building blocks of an infrastructure architecture (defined as an `InfraPlan` below). Each construct must be one of the following types:
+
+`General`
+: not directly infrastructure related, it defines necessary metadata about the package itself. 
 
 `Network`
 : the foundational network environment an application runs in. e.g. AWS VPC
@@ -76,15 +83,24 @@ IP_ADDRESS: in either IPv4 or IPv6 format
 `Aspect`
 : another way to apply local customisation, albeit targeting a specific resource provisioned in the underlying cloud vendor.
 
+Below are the **framework-defined** attributes for each construct. 
+
+**More can be defined by package authors per package** and package authors are encouraged to do so to expose configurable options for project creators to fine-tune underlying infrastructure. 
+## General
+
+Name: SIMPLE_TEXT
+
+*See `GeneralConfig` interface defined in CDF*
+
 ## Network
 
 Name: SIMPLE_TEXT
 
 Cidr: complex type [subnet: IP_ADDRESS, mask: NUMBER]
 
-Subnets: list of SubnetConfig
+*See `NetworkConfig` interface defined in CDF*
 
-## Component
+## Component (and Trait)
 
 Name: SIMPLE_TEXT
 
@@ -94,7 +110,9 @@ Type: SIMPLE_TEXT
 
 Subtype: SIMPLE_TEXT
 
-## Service
+*See `TraitConfig` and `ComponentConfig` interfaces defined in CDF*
+
+## Service (and Runtime)
 
 Name: SIMPLE_TEXT
 
@@ -104,6 +122,8 @@ Type: SIMPLE_TEXT
 
 Subtype: SIMPLE_TEXT
 
+*See `RuntimeConfig` and `ServiceConfig` interfaces defined in CDF*
+
 ## Relation
 
 Start: SIMPLE_TEXT | IN_LIST (all Service & Component names defined in the same Plan)
@@ -111,6 +131,8 @@ Start: SIMPLE_TEXT | IN_LIST (all Service & Component names defined in the same 
 Finish: SIMPLE_TEXT | IN_LIST (all Service & Component names defined in the same Plan)
 
 Bidirectional: BOOLEAN
+
+*See `RelationConfig` interface defined in CDF*
 
 ## Custom
 
@@ -124,64 +146,178 @@ With those inputs, further customisations are expected to be packaged in a Custo
 
 There can be as many Custom modules as needed.
 
+*See `Custom` abstract class defined in CDF*
+
 ## Aspect
 
 TBD
 
-## Package Spec
+## Package Metadata
 
-The `Package Spec` is based on the Framework spec `Types`, `Constraints`, and `Construct Types` defined above. It’s intended to serve as the interface between the high-level user-facing (App Devs) language layer and the low-level implementation layer. This leaks implementation hence not part of the framework spec at this point.
+The package metadata consist a pack of files covering all that has been mentioned above. It’s intended to be used by software tooling to understand the abstraction that a package makes available for project creators to use. The primary goal is making it a machine readable protocol so that software tooling can be developed to further aid project creators when using a selected package. 
 
-### Package Level Attributes
+An example of the files is shown below,
 
-Vendor: TEXT | REQUIRED
+![Package metadata files](../assets/cdf-package-definition-files.png)
 
-Name: SIMPLE_TEXT | REQUIRED
+Those files are described individually below.
 
-Identifier: TEXT | UNIQUE
+### Package Manifest
 
-OpenFABR CDF: NUMBER | REQUIRED
+It is aptly named `cdf.manifest.json` inside a package at root level, which contains attributes listed below to describe the package and links to other metadata files. It is the top-level plan when defining a package for consumption. 
 
-Description: MARKDOWN_TEXT
+An example (as defined in `PackageManifest` interface defined in CDF) is shown below,
 
-Link: URL
+```typescript
+/**
+ * Interface for modelling a package manifest json file that provides information about the package.
+ * Crucially it also carries two references respectively to a) a json schema file for validating json config files and b) a template file for custom code blocks.
+ *
+ * @group For both project creators and package authors
+ */
+export interface PackageManifest extends OptionalIconAware {
+  /**
+   * The descriptive name of the package.
+   */
+  name?: string;
+  /**
+   * The unique identifier of the package.
+   */
+  identifier: string;
+  /**
+   * The author of the package.
+   */
+  vendor: string;
+  /**
+   * The SPDX license identifier for the license that the package is released under.
+   *
+   * @see https://spdx.org/licenses/
+   */
+  license: string;
+  /**
+   * The description of the package.
+   */
+  description?: string;
+  /**
+   * Information about the support provided for the package.
+   */
+  support?: SupportInfo;
+  /**
+   * The version of OpenFABR CDF that this package is compatible with, following semantic versioning.
+   */
+  cdf: string;
+  /**
+   * Information about tooling the package relies on.
+   */
+  tooling: ToolingInfo;
+  /**
+   * Information about constructs defined in the package.
+   */
+  constructs: ConstructsInfo;
+}
+```
 
-License: TEXT
+A sample `cdf.manifest.json` file is shown below,
 
-Icon: URL
+``` json title="cdf.manifest.json"
+{
+  "identifier": "fabr-cdktf-gcp",
+  "vendor": "FABR",
+  "license": "UNLICENSED",
+  "cdf": "1.x",
+  "name": "A test package built by CDKTF for AWS",
+  "description": "This package is for testing only",
+  "support": {
+    "email": "hello@abc.com",
+    "phone": "0800123456789"
+  },
+  "tooling": {
+    "command": "cdktf deploy",
+    "runtime": "cdktf",
+    "language": "typescript"
+  },
+  "constructs": {
+    "schema": "schema.json",
+    "network": {
+      "icon": "https://abc.com/network.png"
+    },
+    "components": {
+      "types": {
+        "hello": { "type": "chinese", "subtype": "mandarin", "icon": "https://abc.com/hello.png", "description": "Hello Component" },
+        "fizz": { "type": "city", "subtype": "hong-kong" }
+      }
+    },
+    "services": {
+      "types": {
+        "world": { "type": "solar-system", "subtype": "earth", "deployment": "NASA would help" },
+        "buzz": { "type": "country", "subtype": "morocco", "deployment": "Fly over", "icon": "https://abc.com/morocco.png", "description": "Well done in World Cup" }
+      }
+    },
+    "relations": {
+      "types": {
+        "hello": "world",
+        "fizz": "buzz"
+      }
+    },
+    "custom": {
+      "icon": "https://abc.com/code.png",
+      "template": "template.ts"
+    }
+  }
+}
+```
 
-IacRuntime: TEXT | REQUIRED & IN_LIST(‘cdktf’, ‘pulumi’, ‘awscdk’)
+*The exact file name `cdf.manifest.json` has to be used in order to be located by any software tooling.*
 
-Command: TEXT | REQUIRED
+Within `constructs` field defined as `ConstructsInfo` interface in CDF, it carries important typing information for Components, Services and Relations, among other metadata.
 
-Vendors: TEXT_LIST | IN_LIST(pre-fined list of all cloud vendors)
+#### Types and Subtypes in Components
 
-### Construct Level Attributes
+For a package, all available Component typings (expressed as Type + Subtype with a unique name) are expected to be listed here. 
 
-#### Shared attributes
+*See `ComponentsInfo` interface defined in CDF*
 
-Name: SIMPLE_TEXT | REQUIRED
-Description: MARKDOWN_TEXT
-Icon: URL
-CloudVendors: TEXT_LIST | IN_LIST(pre-fined list of all cloud vendors)
-DefaultCloudVendor: TEXT | IN_LIST(pre-fined list of all cloud vendors)
+#### Types and Subtypes in Services
 
-#### Network
+For a package, all available Service typings (expressed as Type + Subtype with a unique name) are expected to be listed here. 
 
-Exactly one Construct of type `Network` (see Framework level definition above).
+*See `ServicesInfo` interface defined in CDF*
 
-#### Services
+#### Pairings between Components and Services in Relations
 
-Collection of zero or many Constructs of type `Service` (see Framework level definition above).
+For a package, all available Relations (expressed as a pair between a Service/Component and another Service/Component, both of which are expressed as a unique name mentioned above for Component and Service typings) are expected to be listed here. 
 
-#### Components
+*See `RelationsInfo` interface defined in CDF*
 
-Collection of zero or many Constructs of type `Component` (see Framework level definition above).
+#### Misc.
 
-#### Relations
+Each different type of Components, Services and Relations is encouraged to carry its own icon and description. Same goes for Network and Custom constructs.
 
-Collection of zero or many Constructs of type `Relation` (see Framework level definition above).
+*See `NetworkInfo` and `CustomInfo` interfaces defined in CDF*
 
-### Config Definition
+### Config Definition via JSON Schema
 
-Defines the schema of the package-specific `Constructs` and their config. This schema inherits from the `Package Schema` which inherits from the `Framework Schema`. It lives in `config.def.json`
+It is a JSON schema file, usually generated with the help of `cdf-cli` tool from reading the TypeScript based package configurations. It is not expected to be manually edited afterwards. Whenever there is a change to the package configurations, the schema file should be re-generated.
+
+*The name of the config definition can be arbitrary as long as it is referenced correctly by the package manifest, i.e. `cdf.manifest.json`.*
+
+### Template for Custom Code Block
+
+It is IaC runtime and language specific, i.e. if the package is created for Terraform CDF TypeScript, then the template is expected to be in TypeScript. Below is an example,
+
+```typescript
+import { err, Result } from "neverthrow";
+import * as cdf from "@openfabr/cdf";
+import { PackageCustomModule, PackageInfraConfig, PackageInfraPlanConstructs } from "./package-config";
+
+export class ProjectCustomModule implements PackageCustomModule {
+
+  enhanceWith(config: PackageInfraConfig, result: cdf.InfraPlan<PackageInfraPlanConstructs>, scope: any): Result<cdf.InfraPlanOutputs, cdf.PlanError> {
+    // Write your customisation here and remove the line below.
+    return err({ message: "Method not implemented." });
+  }
+  
+}
+```
+
+*The name of the template can be arbitrary as long as it is referenced correctly by the `Package Manifest` file.*

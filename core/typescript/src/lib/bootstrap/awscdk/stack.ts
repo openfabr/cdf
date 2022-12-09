@@ -56,7 +56,7 @@ export class ProjectStack<
 /**
  * Convenient function that constructs a top-level stack with AWS CDK as IaC runtime.
  *
- * @param scope Parent construct, usually a {@link App} in AWS CDK.
+ * @param scope Parent construct, usually an `App` instance in AWS CDK.
  * @param config The project configuration.
  * @param planner The planner offered by the package.
  * @param modules Custom code modules for the project.

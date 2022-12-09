@@ -1,0 +1,36 @@
+{
+  "identifier": "fabr-cdktf-gcp",
+  "vendor": "FABR",
+  "license": "UNLICENSED",
+  "cdf": "1.x",
+  "tooling": {
+    "command": "cdktf deploy",
+    "runtime": "cdktf",
+    "language": "typescript"
+  },
+  "constructs": {
+    "schema": "schema.json",
+    "network": {},
+    "components": {
+      "types": {
+        "hello": { "type": "chinese", "subtype": "mandarin" },
+        "fizz": { "type": "city", "subtype": "hong-kong" }
+      }
+    },
+    "services": {
+      "types": {
+        "world": { "type": "solar-system", "subtype": "earth", "deployment": "NASA would help" },
+        "buzz": { "type": "country", "subtype": "morocco", "deployment": "Fly over" }
+      }
+    },
+    "relations": {
+      "types": {
+        "hello": "world",
+        "fizz": "buzz"
+      }
+    },
+    "custom": {
+      "template": "template.ts"
+    }
+  }
+}

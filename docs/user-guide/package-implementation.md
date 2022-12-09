@@ -9,4 +9,4 @@ A `Package` - is a concrete implementation of a collection of `Constructs` based
 
 - **`InfraPlan` implementation** - the package-specific implementation of the `InfraPlan` interface exposing `Construct Instances` and their relationships. Note: `Relation` is a `Construct` type. Application Developers can hook into this using Custom Modules 1) further customise provisioning 2) implement Cloud Vendor services that aren’t part of the package.
 
-- **`InfraRunner`** implementation - factory containing logic for instantiating the package-specific InfraPlan instance based on the specific infra configuration (config.json) provided at runtime.
+- **`Planner`** implementation - factory containing logic for instantiating the package-specific InfraPlan instance based on the specific infra configuration (config.json) provided at runtime.

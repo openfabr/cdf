@@ -1,0 +1,45 @@
+{
+  "identifier": "fabr-cdktf-gcp",
+  "vendor": "FABR",
+  "license": "UNLICENSED",
+  "cdf": "1.x",
+  "name": "A test package built by CDKTF for AWS",
+  "description": "This package is for testing only",
+  "support": {
+    "email": "hello@abc.com",
+    "phone": "0800123456789"
+  },
+  "tooling": {
+    "command": "cdktf deploy",
+    "runtime": "cdktf",
+    "language": "typescript"
+  },
+  "constructs": {
+    "schema": "schema.json",
+    "network": {
+      "icon": "https://abc.com/network.png"
+    },
+    "components": {
+      "types": {
+        "hello": { "type": "chinese", "subtype": "mandarin", "icon": "https://abc.com/hello.png", "description": "Hello Component" },
+        "fizz": { "type": "city", "subtype": "hong-kong" }
+      }
+    },
+    "services": {
+      "types": {
+        "world": { "type": "solar-system", "subtype": "earth", "deployment": "NASA would help" },
+        "buzz": { "type": "country", "subtype": "morocco", "deployment": "Fly over", "icon": "https://abc.com/morocco.png", "description": "Well done in World Cup" }
+      }
+    },
+    "relations": {
+      "types": {
+        "hello": "world",
+        "fizz": "buzz"
+      }
+    },
+    "custom": {
+      "icon": "https://abc.com/code.png",
+      "template": "template.ts"
+    }
+  }
+}
