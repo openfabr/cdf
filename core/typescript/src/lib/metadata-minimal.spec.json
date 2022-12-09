@@ -12,17 +12,22 @@
     "schema": "schema.json",
     "network": {},
     "components": {
-      "hello": { "type": "chinese", "subtype": "mandarin" },
-      "fizz": { "type": "city", "subtype": "hong-kong" }
+      "types": {
+        "hello": { "type": "chinese", "subtype": "mandarin" },
+        "fizz": { "type": "city", "subtype": "hong-kong" }
+      }
     },
     "services": {
-      "world": { "type": "solar-system", "subtype": "earth" },
-      "buzz": { "type": "country", "subtype": "morocco" }
-
+      "types": {
+        "world": { "type": "solar-system", "subtype": "earth", "deployment": "NASA would help" },
+        "buzz": { "type": "country", "subtype": "morocco", "deployment": "Fly over" }
+      }
     },
     "relations": {
-      "hello": "world",
-      "fizz": "buzz"
+      "types": {
+        "hello": "world",
+        "fizz": "buzz"
+      }
     },
     "custom": {
       "template": "template.ts"

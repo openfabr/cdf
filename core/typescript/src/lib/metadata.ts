@@ -16,6 +16,14 @@ export interface OptionalIconAware {
 }
 
 /**
+ * Interface that offers an optional description field.
+ * This is normally in plain text; markdown can be used too.
+ */
+export interface OptionalDescAware {
+  description?: string;
+}
+
+/**
  * Interface that offers support information about the package.
  *
  * @group For both project creators and package authors
@@ -56,21 +64,76 @@ export interface ToolingInfo {
 }
 
 /**
- * Interface that represents a typing classification.
+ * Interface that represents a typing classification for components.
  *
  * @group For both project creators and package authors
  */
-export interface NestedType
+export interface ComponentType
   extends TypeAware,
     SubtypeAware,
-    OptionalIconAware {}
+    OptionalIconAware,
+    OptionalDescAware {}
+
+/**
+ * Interface that represents a typing classification for services.
+ * In particular, it contains a field for deployment instructions for the type of services defined.
+ *
+ * @group For both project creators and package authors
+ */
+export interface ServiceType
+  extends TypeAware,
+    SubtypeAware,
+    OptionalIconAware,
+    OptionalDescAware {
+  deployment: string;
+}
 
 /**
  * Interface that represents information about network construct.
  *
  * @group For both project creators and package authors
  */
-export interface NetworkInfo extends OptionalIconAware {}
+export interface NetworkInfo extends OptionalIconAware, OptionalDescAware {}
+
+/**
+ * Interface that represents information about available component constructs.
+ *
+ * @group For both project creators and package authors
+ */
+export interface ComponentsInfo extends OptionalIconAware, OptionalDescAware {
+  /**
+   * Available types and subtypes for components.
+   */
+  types: { [key: string]: ComponentType };
+}
+
+/**
+ * Interface that represents information about available service constructs.
+ *
+ * @group For both project creators and package authors
+ */
+export interface ServicesInfo extends OptionalIconAware, OptionalDescAware {
+  /**
+   * Available types and subtypes for services.
+   */
+  types: { [key: string]: ServiceType };
+}
+
+/**
+ * Interface that represents information about available relation constructs.
+ * It relies on the typing definitions in both `ComponentInfo` and `ServicesInfo`.
+ *
+ * @see ComponentsInfo
+ * @see ServicesInfo
+ * @group For both project creators and package authors
+ */
+export interface RelationsInfo extends OptionalIconAware, OptionalDescAware {
+  /**
+   * Available relations between a specific component/service and another component/service.
+   * Both the key and value here refer to the entries defined in `components` and `services` fields.
+   */
+  types: { [key: string]: string };
+}
 
 /**
  * Interface that represents information about custom (code blocks) construct.
@@ -78,7 +141,7 @@ export interface NetworkInfo extends OptionalIconAware {}
  *
  * @group For both project creators and package authors
  */
-export interface CustomInfo extends OptionalIconAware {
+export interface CustomInfo extends OptionalIconAware, OptionalDescAware {
   template: string;
 }
 
@@ -98,18 +161,17 @@ export interface ConstructsInfo {
    */
   network: NetworkInfo;
   /**
-   * Available types and subtypes for components.
+   * Information about components.
    */
-  components: { [key: string]: NestedType };
+  components: ComponentsInfo;
   /**
-   * Available types and subtypes for services.
+   * Information about services.
    */
-  services: { [key: string]: NestedType };
+  services: ServicesInfo;
   /**
-   * Available relations between a specific component/service and another component/service.
-   * Both the key and value here refer to the entries defined in `components` and `services` fields.
+   * Information about relations.
    */
-  relations: { [key: string]: string };
+  relations: RelationsInfo;
   /**
    * Information about custom (code blocks).
    */

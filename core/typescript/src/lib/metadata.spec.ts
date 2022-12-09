@@ -14,9 +14,9 @@ test('de-serialises from a normal manifest file', (t) => {
 test('de-serialises from a manifest file with minimal required set of values', (t) => {
   const manifest = minimalManifest as PackageManifest;
 
-  t.deepEqual(manifest.constructs.components['hello'], {
+  t.deepEqual(manifest.constructs.components.types['hello'], {
     type: 'chinese',
     subtype: 'mandarin',
   });
-  t.falsy(manifest.constructs.services['not-there']);
+  t.falsy(manifest.constructs.services.types['not-there']);
 });
