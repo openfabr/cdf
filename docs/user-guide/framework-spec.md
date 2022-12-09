@@ -90,15 +90,17 @@ Below are the **framework-defined** attributes for each construct.
 
 Name: SIMPLE_TEXT
 
+*See `GeneralConfig` interface defined in CDF*
+
 ## Network
 
 Name: SIMPLE_TEXT
 
 Cidr: complex type [subnet: IP_ADDRESS, mask: NUMBER]
 
-Subnets: list of SubnetConfig
+*See `NetworkConfig` interface defined in CDF*
 
-## Component
+## Component (and Trait)
 
 Name: SIMPLE_TEXT
 
@@ -108,7 +110,9 @@ Type: SIMPLE_TEXT
 
 Subtype: SIMPLE_TEXT
 
-## Service
+*See `TraitConfig` and `ComponentConfig` interfaces defined in CDF*
+
+## Service (and Runtime)
 
 Name: SIMPLE_TEXT
 
@@ -118,6 +122,8 @@ Type: SIMPLE_TEXT
 
 Subtype: SIMPLE_TEXT
 
+*See `RuntimeConfig` and `ServiceConfig` interfaces defined in CDF*
+
 ## Relation
 
 Start: SIMPLE_TEXT | IN_LIST (all Service & Component names defined in the same Plan)
@@ -125,6 +131,8 @@ Start: SIMPLE_TEXT | IN_LIST (all Service & Component names defined in the same 
 Finish: SIMPLE_TEXT | IN_LIST (all Service & Component names defined in the same Plan)
 
 Bidirectional: BOOLEAN
+
+*See `RelationConfig` interface defined in CDF*
 
 ## Custom
 
@@ -138,6 +146,8 @@ With those inputs, further customisations are expected to be packaged in a Custo
 
 There can be as many Custom modules as needed.
 
+*See `Custom` abstract class defined in CDF*
+
 ## Aspect
 
 TBD
@@ -146,7 +156,7 @@ TBD
 
 The package metadata consist a pack of files covering all that has been mentioned above. It’s intended to be used by software tooling to understand the abstraction that a package makes available for project creators to use. The primary goal is making it a machine readable protocol so that software tooling can be developed to further aid project creators when using a selected package. 
 
-An example of the files is show below,
+An example of the files is shown below,
 
 ![Package metadata files](../assets/cdf-package-definition-files.png)
 
@@ -156,7 +166,7 @@ Those files are described individually below.
 
 It is aptly named `cdf.manifest.json` inside a package at root level, which contains attributes listed below to describe the package and links to other metadata files. It is the top-level plan when defining a package for consumption. 
 
-An example (as defined in `metadata.ts` in cdf-typescript) is shown below,
+An example (as defined in `PackageManifest` interface defined in CDF) is shown below,
 
 ```typescript
 /**
@@ -209,41 +219,6 @@ export interface PackageManifest extends OptionalIconAware {
 
 *The exact file name `cdf.manifest.json` has to be used in order to be located by any software tooling.*
 
-#### Package Level Attributes
-
-Vendor: TEXT | REQUIRED
-
-Name: SIMPLE_TEXT | REQUIRED
-
-Identifier: TEXT | UNIQUE
-
-OpenFABR CDF: NUMBER | REQUIRED
-
-Description: MARKDOWN_TEXT
-
-Link: URL
-
-License: TEXT
-
-Icon: URL
-
-IacRuntime: TEXT | REQUIRED & IN_LIST(‘cdktf’, ‘pulumi’, ‘awscdk’)
-
-Command: TEXT | REQUIRED
-
-Vendors: TEXT_LIST | IN_LIST(pre-fined list of all cloud vendors)
-
-#### Construct Level Attributes
-
-Name: SIMPLE_TEXT | REQUIRED
-Description: MARKDOWN_TEXT
-Icon: URL
-CloudVendors: TEXT_LIST | IN_LIST(pre-fined list of all cloud vendors)
-DefaultCloudVendor: TEXT | IN_LIST(pre-fined list of all cloud vendors)
-
-#### Types Definition via Plan JSON
-
-It is a JSON file that contains available types and subtypes defined by a package for `Component`, `Service` and `Relation`. It is usually created manually by package authors following the structure defined in CDF framework. Below is an example structure,
 
 ### Config Definition via JSON Schema
 
