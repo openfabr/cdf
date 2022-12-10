@@ -6,7 +6,10 @@
   "tooling": {
     "command": "cdktf deploy",
     "runtime": "cdktf",
-    "language": "typescript"
+    "language": "typescript",
+    "vendors": [
+      "AWS"
+    ]
   },
   "constructs": {
     "schema": "schema.json",
