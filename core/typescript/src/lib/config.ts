@@ -4,7 +4,7 @@
  *
  * @module
  */
-import { NameAware, SubtypeAware, TypeAware } from './domain';
+import { Connectable, NameAware, SubtypeAware, TypeAware } from './domain';
 
 /**
  * Interface for the top-level *general* section of the configuration.
@@ -37,20 +37,7 @@ export interface NetworkConfig extends NameAware {
  *
  * @group For both project creators and package authors
  */
-export interface RelationConfig extends NameAware, TypeAware {
-  /**
-   * The start of a relation, specified by the name of a service or component defined in the same configuration.
-   */
-  readonly start: string;
-  /**
-   * The end of a relation, specified by the name of a service or component defined in the same configuration.
-   */
-  readonly finish: string;
-  /**
-   * Indicating whether the relation is bidirectional, i.e. no directional difference between start and end points.
-   */
-  readonly bidi: boolean;
-}
+export interface RelationConfig extends NameAware, TypeAware, Connectable {}
 
 /**
  * Concrete class for a group of services sharing the same *runtime*.

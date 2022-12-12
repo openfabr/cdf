@@ -37,8 +37,8 @@
     },
     "relations": {
       "types": {
-        "hello": "world",
-        "fizz": "buzz"
+        "hello-world": { "start": "world", "finish": "hello", "bidi": true },
+        "fizz-buzz": {"start": "fizz", "finish": "buzz", "bidi": false }
       }
     },
     "custom": {
