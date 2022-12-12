@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/openfabr/cdf/compare/cdf-typescript-v1.2.0...cdf-typescript-v1.3.0) (2022-12-12)
+
+
+### Features
+
+* **cdf-typescript:** Improve package manifest and docs ([#46](https://github.com/openfabr/cdf/issues/46)) ([e080c5d](https://github.com/openfabr/cdf/commit/e080c5da3c88f3487aeb3a174bd9e11586ef3440))
+
 ## [1.2.0](https://github.com/openfabr/cdf/compare/cdf-typescript-v1.1.0...cdf-typescript-v1.2.0) (2022-12-12)
 
 
