@@ -51,7 +51,8 @@
     "doc:json": "typedoc src/ --exclude **/*.spec.ts --json build/docs/typedoc.json",
     "sitedoc": "typedoc --plugin typedoc-plugin-markdown src/ --exclude **/*.spec.ts --out ../../docs/references/typescript/${npm_package_version}",
     "reset-hard": "git clean -dfx && git reset --hard && npm i",
-    "prepare-release": "run-s reset-hard test cov:check sitedoc"
+    "schema": "typescript-json-schema -required true --titles true --out ../../docs/references/typescript/${npm_package_version}/manifest.schema.json ./tsconfig.json PackageManifest",
+    "prepare-release": "run-s reset-hard test cov:check sitedoc schema"
   },
   "engines": {
     "node": ">=16"
@@ -84,7 +85,8 @@
     "ts-node": "^9.0.0",
     "typedoc": "^0.23.21",
     "typedoc-plugin-markdown": "^3.13.6",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "typescript-json-schema": "^0.55.0"
   },
   "files": [
     "build/main",

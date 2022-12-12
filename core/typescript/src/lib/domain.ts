@@ -13,10 +13,29 @@
  * @group For both project creators and package authors
  */
 export enum CloudVendor {
+  /**
+   * Vendor: Amazon Web Services
+   */
   AWS = 'AWS',
+  /**
+   * Vendor: Azure / Microsoft Cloud
+   */
   AZR = 'AZR',
+  /**
+   * Vendor: Google Cloud Platform
+   */
   GCP = 'GCP',
+  /**
+   * Vendor: Digital Ocean
+   */
   DO = 'DO',
+  /**
+   * Vendor: CloudFlare
+   */
+  CF = 'CF',
+  /**
+   * Vendor: Alibaba Cloud / Aliyun
+   */
   ALI = 'ALI',
 }
 

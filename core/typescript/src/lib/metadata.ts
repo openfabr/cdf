@@ -1,4 +1,5 @@
 import {
+  CloudVendor,
   SubtypeAware,
   ToolingLanguage,
   ToolingRuntime,
@@ -61,6 +62,11 @@ export interface ToolingInfo {
    * The supported IaC language.
    */
   language: ToolingLanguage;
+  /**
+   * The supported cloud vendors.
+   * Usually a package chooses support one vendor but some choose to have multiple-vendor support.
+   */
+  vendors: CloudVendor[];
 }
 
 /**
