@@ -88,13 +88,24 @@ export interface TypeAware {
 }
 
 /**
- * Interface that offers a subtype field
+ * Interface that offers a subtype field.
  * It is expected to be implemented, usually with {@link TypeAware} together.
  *
  * @group For both project creators and package authors
  */
 export interface SubtypeAware {
   readonly subtype: string;
+}
+
+/**
+ * Interface that models a connection starts from one point and finishes at another, with indication whether the connection is bidirectional.
+ *
+ * @group For both project creators and package authors
+ */
+export interface Connectable {
+  readonly start: string;
+  readonly finish: string;
+  readonly bidi: boolean;
 }
 
 /**

@@ -1,5 +1,6 @@
 import {
   CloudVendor,
+  Connectable,
   SubtypeAware,
   ToolingLanguage,
   ToolingRuntime,
@@ -13,7 +14,7 @@ import {
  * @group For both project creators and package authors
  */
 export interface OptionalIconAware {
-  icon?: string;
+  readonly icon?: string;
 }
 
 /**
@@ -21,7 +22,7 @@ export interface OptionalIconAware {
  * This is normally in plain text; markdown can be used too.
  */
 export interface OptionalDescAware {
-  description?: string;
+  readonly description?: string;
 }
 
 /**
@@ -33,15 +34,15 @@ export interface SupportInfo {
   /**
    * The URL to the support site of the package.
    */
-  url?: string;
+  readonly url?: string;
   /**
    * The support email address of the package.
    */
-  email?: string;
+  readonly email?: string;
   /**
    * The support phone number of the package.
    */
-  phone?: string;
+  readonly phone?: string;
 }
 
 /**
@@ -53,20 +54,20 @@ export interface ToolingInfo {
   /**
    * The shell command to run deployment with the package.
    */
-  command: string;
+  readonly command: string;
   /**
    * The supported IaC runtime.
    */
-  runtime: ToolingRuntime;
+  readonly runtime: ToolingRuntime;
   /**
    * The supported IaC language.
    */
-  language: ToolingLanguage;
+  readonly language: ToolingLanguage;
   /**
    * The supported cloud vendors.
    * Usually a package chooses support one vendor but some choose to have multiple-vendor support.
    */
-  vendors: CloudVendor[];
+  readonly vendors: CloudVendor[];
 }
 
 /**
@@ -91,7 +92,11 @@ export interface ServiceType
     SubtypeAware,
     OptionalIconAware,
     OptionalDescAware {
-  deployment: string;
+  /**
+   * The deployment instructions.
+   * This is normally in plain text; markdown can be used too.
+   */
+  readonly deployment: string;
 }
 
 /**
@@ -108,9 +113,9 @@ export interface NetworkInfo extends OptionalIconAware, OptionalDescAware {}
  */
 export interface ComponentsInfo extends OptionalIconAware, OptionalDescAware {
   /**
-   * Available types and subtypes for components.
+   * Available types and subtypes for components, keyed by a unique identifier among all components/services/relations.
    */
-  types: { [key: string]: ComponentType };
+  readonly types: { [key: string]: ComponentType };
 }
 
 /**
@@ -120,13 +125,13 @@ export interface ComponentsInfo extends OptionalIconAware, OptionalDescAware {
  */
 export interface ServicesInfo extends OptionalIconAware, OptionalDescAware {
   /**
-   * Available types and subtypes for services.
+   * Available types and subtypes for services, keyed by a unique identifier among all components/services/relations.
    */
-  types: { [key: string]: ServiceType };
+  readonly types: { [key: string]: ServiceType };
 }
 
 /**
- * Interface that represents information about available relation constructs.
+ * Interface that represents information about available relation constructs, keyed by a unique identifier among all components/services/relations.
  * It relies on the typing definitions in both {@link ComponentInfo} and {@link ServicesInfo}.
  *
  * @group For both project creators and package authors
@@ -134,9 +139,9 @@ export interface ServicesInfo extends OptionalIconAware, OptionalDescAware {
 export interface RelationsInfo extends OptionalIconAware, OptionalDescAware {
   /**
    * Available relations between a specific component/service and another component/service.
-   * Both the key and value here refer to the entries defined in `components` and `services` fields.
+   * Both the `start` and `finish` points here refer to the keys defined in `components` and `services` fields.
    */
-  types: { [key: string]: string };
+  readonly types: { [key: string]: Connectable };
 }
 
 /**
@@ -146,7 +151,10 @@ export interface RelationsInfo extends OptionalIconAware, OptionalDescAware {
  * @group For both project creators and package authors
  */
 export interface CustomInfo extends OptionalIconAware, OptionalDescAware {
-  template: string;
+  /**
+   * The reference to the code template file for creating a valid custom code block when using the package.
+   */
+  readonly template: string;
 }
 
 /**
@@ -159,27 +167,27 @@ export interface ConstructsInfo {
   /**
    * The reference to the json schema file for creating a valid json config when using the package.
    */
-  schema: string;
+  readonly schema: string;
   /**
    * Information about network.
    */
-  network: NetworkInfo;
+  readonly network: NetworkInfo;
   /**
    * Information about components.
    */
-  components: ComponentsInfo;
+  readonly components: ComponentsInfo;
   /**
    * Information about services.
    */
-  services: ServicesInfo;
+  readonly services: ServicesInfo;
   /**
    * Information about relations.
    */
-  relations: RelationsInfo;
+  readonly relations: RelationsInfo;
   /**
    * Information about custom (code blocks).
    */
-  custom: CustomInfo;
+  readonly custom: CustomInfo;
 }
 
 /**
@@ -192,39 +200,39 @@ export interface PackageManifest extends OptionalIconAware {
   /**
    * The descriptive name of the package.
    */
-  name?: string;
+  readonly name?: string;
   /**
    * The unique identifier of the package.
    */
-  identifier: string;
+  readonly identifier: string;
   /**
    * The author of the package.
    */
-  vendor: string;
+  readonly vendor: string;
   /**
    * The SPDX license identifier for the license that the package is released under.
    *
    * @see [SPDX](https://spdx.org/licenses/)
    */
-  license: string;
+  readonly license: string;
   /**
    * The description of the package.
    */
-  description?: string;
+  readonly description?: string;
   /**
    * Information about the support provided for the package.
    */
-  support?: SupportInfo;
+  readonly support?: SupportInfo;
   /**
    * The version of OpenFABR CDF that this package is compatible with, following semantic versioning.
    */
-  cdf: string;
+  readonly cdf: string;
   /**
    * Information about tooling the package relies on.
    */
-  tooling: ToolingInfo;
+  readonly tooling: ToolingInfo;
   /**
    * Information about constructs defined in the package.
    */
-  constructs: ConstructsInfo;
+  readonly constructs: ConstructsInfo;
 }
