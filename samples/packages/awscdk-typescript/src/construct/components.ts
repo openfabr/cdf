@@ -37,7 +37,8 @@ export class Components extends Construct {
     this.staticWebsites = [];
 
     props.config.components.forEach(t => {
-
+      console.log(PackageComponentKeySoftwareConfig.has(t));
+console.log("%s %s %s %s %s", PackageComponentKeySoftwareConfig.has(t), PackageComponentMessageQueueConfig.has(t), PackageComponentMessageTopicConfig.has(t), PackageComponentStorageBucketConfig.has(t), PackageComponentStaticWebsiteHostingConfig.has(t));
       if (PackageComponentKeySoftwareConfig.has(t)) {
         t.details.map(c => c as PackageComponentKeySoftwareConfig).forEach(c => {
           const k = new Key(this, c.name, {
@@ -90,6 +91,7 @@ export class Components extends Construct {
         });
       }
       else if (PackageComponentStaticWebsiteHostingConfig.has(t)) {
+        console.log(t);
         t.details.map(c => c as PackageComponentStaticWebsiteHostingConfig).forEach(c => {
           const b = new Bucket(this, `${c.name}_${c.hostName}${c.domain}`,
             {

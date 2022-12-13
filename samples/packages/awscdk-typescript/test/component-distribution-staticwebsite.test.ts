@@ -9,10 +9,10 @@ import {
   PackageNetworkConfig,
   PackagePlanner,
   PackageComponentConfigChoices,
-  PackageRelationConfigChoices,
+  PackageRelationConfig,
   PackageServiceConfigChoices,
 } from "../src/package-config";
-import configA from "./component-distribution-staticwebsite.config.json";
+import config from "./component-distribution-staticwebsite.config.json";
 import { ok, Result } from "neverthrow";
 import { Match, Template } from "aws-cdk-lib/assertions";
 
@@ -23,7 +23,7 @@ class CustomModuleStub implements PackageCustomModule {
       PackageNetworkConfig,
       PackageComponentConfigChoices,
       PackageServiceConfigChoices,
-      PackageRelationConfigChoices
+      PackageRelationConfig
     >,
     result: cdf.InfraPlan<PackageInfraPlanConstructs>,
     scope: any
@@ -37,7 +37,7 @@ describe("A project", () => {
     const app = new cdk.App();
 
     const orchestrator = new cdf.Orchestrator(
-      configA as PackageInfraConfig,
+      config as PackageInfraConfig,
       new PackagePlanner(),
       []
     );
@@ -48,7 +48,7 @@ describe("A project", () => {
 
     const template = Template.fromStack(stack);
 
-    // The following line output the entire plan in json. Usefull during test development.
+    // The following line output the entire plan in json. Useful during test development.
 
     console.log(JSON.stringify(template.toJSON(), null, 2));
 

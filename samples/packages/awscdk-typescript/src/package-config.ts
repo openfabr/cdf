@@ -11,6 +11,8 @@ import { Components, StaticWebsiteHosting } from "./construct/components";
 import { Network } from "./construct/network";
 import { Services } from "./construct/services";
 import { Relations } from "./construct/relations";
+import * as manifest from "./cdf.manifest.json";
+import { PackageManifest } from "@openfabr/cdf";
 
 export class PackageGeneralConfig implements cdf.GeneralConfig {
   constructor(
@@ -80,7 +82,16 @@ export enum ComponentBlockPublicAccess {
   DEFAULT = BLOCK_ALL,
 }
 
+export enum ComponentTyping {
+  MESSAGE_TOPIC = 'MESSAGE_TOPIC',
+  MESSAGE_QUEUE = 'MESSAGE_QUEUE',
+  STORE_OBJECT = 'STORE_OBJECT',
+  DISTRIBUTION_WEBSITE = 'DISTRIBUTION_WEBSITE',
+  KEY_SOFTWARE = 'KEY_SOFTWARE',
+}
+
 export class PackageComponentKeySoftwareConfig implements PackageComponentConfig {
+  static TYPING = (manifest as PackageManifest).constructs.components.types[ComponentTyping.KEY_SOFTWARE];
 
   constructor(
     public readonly name: string,
@@ -91,7 +102,7 @@ export class PackageComponentKeySoftwareConfig implements PackageComponentConfig
   ) {}
 
   public static has(config: cdf.TraitConfig<PackageComponentConfig>): boolean {
-    return config.type == 'key' && config.subtype == 'software';
+    return config.type == this.TYPING.type && config.subtype == this.TYPING.subtype;
   }
 
   public static awsKeySpec(spec?: ComponentKeySpec): KeySpec {
@@ -123,6 +134,7 @@ export class PackageComponentKeySoftwareConfig implements PackageComponentConfig
 }
 
 export class PackageComponentMessageQueueConfig implements PackageComponentConfig {
+  static TYPING = (manifest as PackageManifest).constructs.components.types[ComponentTyping.MESSAGE_QUEUE];
 
   constructor(
     public readonly name: string,
@@ -131,11 +143,12 @@ export class PackageComponentMessageQueueConfig implements PackageComponentConfi
   ) {}
 
   public static has(config: cdf.TraitConfig<PackageComponentConfig>): boolean {
-    return config.type == 'message' && config.subtype == 'queue';
+    return config.type == this.TYPING.type && config.subtype == this.TYPING.subtype;
   }
 }
 
 export class PackageComponentMessageTopicConfig implements PackageComponentConfig {
+  static TYPING = (manifest as PackageManifest).constructs.components.types[ComponentTyping.MESSAGE_TOPIC];
 
   constructor(
     public readonly name: string,
@@ -143,12 +156,14 @@ export class PackageComponentMessageTopicConfig implements PackageComponentConfi
   ) {}
 
   public static has(config: cdf.TraitConfig<PackageComponentConfig>): boolean {
-    return config.type == 'message' && config.subtype == 'topic';
+    return config.type == this.TYPING.type && config.subtype == this.TYPING.subtype;
   }
 }
 
 
 export class PackageComponentStorageBucketConfig implements PackageComponentConfig {
+  static TYPING = (manifest as PackageManifest).constructs.components.types[ComponentTyping.STORE_OBJECT];
+  
   constructor(
     public readonly name: string,
     public readonly bucketName: string,
@@ -156,7 +171,7 @@ export class PackageComponentStorageBucketConfig implements PackageComponentConf
   ) {}
 
   public static has(config: cdf.TraitConfig<PackageComponentConfig>): boolean {
-    return config.type == 'storage' && config.subtype == 'bucket';
+    return config.type == this.TYPING.type && config.subtype == this.TYPING.subtype;
   }
 
   public static awsBlockPublicAccess(blockPublicAccess?: ComponentBlockPublicAccess): BlockPublicAccess {
@@ -173,6 +188,8 @@ export class PackageComponentStorageBucketConfig implements PackageComponentConf
 }
 
 export class PackageComponentStaticWebsiteHostingConfig implements PackageComponentConfig {
+  static TYPING = (manifest as PackageManifest).constructs.components.types[ComponentTyping.DISTRIBUTION_WEBSITE];
+
   constructor(
     public readonly name: string,
     public readonly hostName: string,
@@ -180,7 +197,7 @@ export class PackageComponentStaticWebsiteHostingConfig implements PackageCompon
   ) {}
 
   public static has(config: cdf.TraitConfig<PackageComponentConfig>): boolean {
-    return config.type == 'distribution' && config.subtype == 'staticWebsite';
+    return config.type == this.TYPING.type && config.subtype == this.TYPING.subtype;
   }
 }
 
@@ -194,7 +211,12 @@ export enum ServiceApplicationType {
   DEFAULT = TASK,
 }
 
+export enum ServiceTyping {
+  CONTAINER_ECS = 'CONTAINER_ECS',
+}
+
 export class PackageServiceContainerEcsConfig implements PackageServiceConfig {
+  static TYPING = (manifest as PackageManifest).constructs.services.types[ServiceTyping.CONTAINER_ECS];
 
   constructor(
     public readonly name: string,
@@ -208,7 +230,7 @@ export class PackageServiceContainerEcsConfig implements PackageServiceConfig {
   ) { }
 
   public static has(config: cdf.TraitConfig<PackageServiceConfig>): boolean {
-    return config.type == 'container' && config.subtype == 'ecs';
+    return config.type == this.TYPING.type && config.subtype == this.TYPING.subtype;
   }
 
   public static serviceApplicationType(serviceApplicationType?: ServiceApplicationType): ServiceApplicationType {
@@ -224,24 +246,23 @@ export class PackageServiceContainerEcsConfig implements PackageServiceConfig {
 }
 
 
-export interface PackageRelationConfig extends cdf.RelationConfig {
-}
-
-export enum RelationMessagingType {
-  PUBLISH = 'PUBLISH',
-  SUBSCRIBE = 'SUBSCRIBE',
-}
-
-export class PackageRelationMessagingConfig implements PackageRelationMessagingConfig {
-  public readonly bidi = false;
-
+export class PackageRelationConfig implements cdf.RelationConfig {
   constructor(
     public readonly name: string,
     public readonly start: string,
     public readonly finish: string,
-    public readonly type: RelationMessagingType,
+    public readonly bidi: boolean,
+    public readonly type: RelationTyping,
   ) {}
+}
 
+export enum RelationTyping {
+  PUBLISH_TOPIC = 'PUBLISH_TOPIC',
+  SUBSCRIBE_TOPIC = 'SUBSCRIBE_TOPIC',
+  SEND_QUEUE = 'SEND_QUEUE',
+  RECEIVE_QUEUE = 'RECEIVE_QUEUE',
+  READONLY_OBJECT = 'READONLY_OBJECT',
+  READWRITE_OBJECT = 'READWRITE_OBJECT',
 }
 
 export class PackageInfraPlanConstructs implements cdf.InfraPlanConstructs {
@@ -258,7 +279,7 @@ export class PackageInfraPlanConstructs implements cdf.InfraPlanConstructs {
   ) {}
 }
 
-export class PackagePlanner implements cdf.Planner<PackageInfraPlanConstructs, PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfig, PackageServiceConfig, PackageRelationConfigChoices> {
+export class PackagePlanner implements cdf.Planner<PackageInfraPlanConstructs, PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfig, PackageServiceConfig, PackageRelationConfig> {
 
   runWith(config: PackageInfraConfig, scope: any): Result<cdf.InfraPlan<PackageInfraPlanConstructs>, cdf.PlanError> {
 
@@ -287,9 +308,7 @@ export type PackageComponentConfigChoices = PackageComponentKeySoftwareConfig | 
 
 export type PackageServiceConfigChoices = PackageServiceContainerEcsConfig;
 
-export type PackageRelationConfigChoices = PackageRelationMessagingConfig;
+export type PackageInfraConfig = cdf.InfraConfig<PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfigChoices, PackageServiceConfigChoices, PackageRelationConfig>;
 
-export type PackageInfraConfig = cdf.InfraConfig<PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfigChoices, PackageServiceConfigChoices, PackageRelationConfigChoices>;
-
-export type PackageCustomModule = cdf.Custom<PackageInfraPlanConstructs, PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfig, PackageServiceConfig, PackageRelationConfigChoices>;
+export type PackageCustomModule = cdf.Custom<PackageInfraPlanConstructs, PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfig, PackageServiceConfig, PackageRelationConfig>;
 

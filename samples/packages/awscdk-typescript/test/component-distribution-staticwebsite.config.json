@@ -24,7 +24,7 @@
     {
       "name": "static-website-hosting",
       "type": "distribution",
-      "subtype": "staticWebsite",
+      "subtype": "website",
       "details": [
         {
           "name": "test-static-website",
