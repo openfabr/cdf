@@ -50,7 +50,7 @@ describe("A project", () => {
 
     // The following line output the entire plan in json. Useful during test development.
 
-    console.log(JSON.stringify(template.toJSON(), null, 2));
+    // console.log(JSON.stringify(template.toJSON(), null, 2));
 
     template.resourceCountIs("AWS::CloudFront::Distribution", 1);
     template.resourceCountIs("AWS::S3::BucketPolicy", 1);

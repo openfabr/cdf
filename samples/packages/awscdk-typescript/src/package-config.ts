@@ -257,25 +257,28 @@ export class PackageRelationConfig implements cdf.RelationConfig {
 }
 
 export enum RelationTyping {
+  ENCRYPT_KEY = 'ENCRYPT_KEY',
+  DECRYPT_KEY = 'DECRYPT_KEY',
+  ADMIN_KEY = 'ADMIN_KEY',
   PUBLISH_TOPIC = 'PUBLISH_TOPIC',
   SUBSCRIBE_TOPIC = 'SUBSCRIBE_TOPIC',
   SEND_QUEUE = 'SEND_QUEUE',
   RECEIVE_QUEUE = 'RECEIVE_QUEUE',
-  READONLY_OBJECT = 'READONLY_OBJECT',
-  READWRITE_OBJECT = 'READWRITE_OBJECT',
+  READ_OBJECT = 'READ_OBJECT',
+  WRITE_OBJECT = 'WRITE_OBJECT',
 }
 
 export class PackageInfraPlanConstructs implements cdf.InfraPlanConstructs {
   constructor(
     public readonly vpc: Vpc,
-    public readonly queues: Queue[],
-    public readonly topics: Topic[],
-    public readonly keys: Key[],
-    public readonly taskdefs: FargateTaskDefinition[],
-    public readonly services: FargateService[],
-    public readonly staticWebsites: StaticWebsiteHosting[],
+    public readonly keys: { [key: string]: Key },
+    public readonly queues: { [key: string]: Queue },
+    public readonly topics: { [key: string]: Topic },
+    public readonly buckets: { [key: string]: Bucket },
+    public readonly websites: { [key: string]: StaticWebsiteHosting },
+    public readonly taskdefs: { [key: string]: FargateTaskDefinition },
+    public readonly services: { [key: string]: FargateService },
     public readonly cluster: Cluster,
-
   ) {}
 }
 
@@ -285,13 +288,13 @@ export class PackagePlanner implements cdf.Planner<PackageInfraPlanConstructs, P
 
     try {
       const network = new Network(scope, 'network', { config });
-      const components = new Components(scope, 'components', { config });
+      const components = new Components(scope, 'components', { config: config, vpc: network.vpc });
       const services = new Services(scope, 'services', { config: config, vpc: network.vpc });
-      const relations = new Relations(scope, 'relations', { config });
+      const relations = new Relations(scope, 'relations', { config, components, services });
 
       const constructs = new PackageInfraPlanConstructs(
-        network.vpc, components.queues, components.topics, components.keys, 
-        services.taskdefs, services.services, components.staticWebsites, services.cluster, 
+        network.vpc, components.keys, components.queues, components.topics, components.buckets, components.websites, 
+        services.taskdefs, services.services, services.cluster, 
       );
       const outputs = new Map<string, any>();
 

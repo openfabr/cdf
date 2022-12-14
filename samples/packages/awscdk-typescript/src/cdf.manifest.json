@@ -39,12 +39,15 @@
     },
     "relations": {
       "types": {
+        "ENCRYPT_KEY": { "start": "CONTAINER_ECS", "finish": "KEY_SOFTWARE", "bidi": false },
+        "DECRYPT_KEY": { "start": "CONTAINER_ECS", "finish": "KEY_SOFTWARE", "bidi": false },
+        "ADMIN_KEY": { "start": "CONTAINER_ECS", "finish": "KEY_SOFTWARE", "bidi": false },
         "PUBLISH_TOPIC": { "start": "CONTAINER_ECS", "finish": "MESSAGE_TOPIC", "bidi": false },
-        "SUBSCRIBE_TOPIC": { "start": "CONTAINER_ECS", "finish": "MESSAGE_TOPIC", "bidi": false },
+        "SUBSCRIBE_TOPIC": { "start": "MESSAGE_QUEUE", "finish": "MESSAGE_TOPIC", "bidi": false },
         "SEND_QUEUE": { "start": "CONTAINER_ECS", "finish": "MESSAGE_QUEUE", "bidi": false },
         "RECEIVE_QUEUE": { "start": "CONTAINER_ECS", "finish": "MESSAGE_QUEUE", "bidi": false },
-        "READONLY_OBJECT": { "start": "CONTAINER_ECS", "finish": "STORE_OBJECT", "bidi": false },
-        "READWRITE_OBJECT": { "start": "CONTAINER_ECS", "finish": "STORE_OBJECT", "bidi": false }
+        "READ_OBJECT": { "start": "CONTAINER_ECS", "finish": "STORE_OBJECT", "bidi": false },
+        "WRITE_OBJECT": { "start": "CONTAINER_ECS", "finish": "STORE_OBJECT", "bidi": false }
       }
     },
     "custom": {

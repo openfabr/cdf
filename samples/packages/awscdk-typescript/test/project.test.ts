@@ -2,9 +2,10 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import * as cdf from '@openfabr/cdf';
 import { PackageComponentConfigChoices, PackageCustomModule, PackageGeneralConfig, PackageInfraConfig, PackageInfraPlanConstructs, PackageNetworkConfig, PackagePlanner, PackageRelationConfig, PackageServiceConfigChoices } from '../src/package-config';
-import configA from './configA.json';
-import configB from './configB.json';
+import shortConfig from './short-config.json';
+import longConfig from './long-config.json';
 import { ok, Result } from 'neverthrow';
+import { Template } from 'aws-cdk-lib/assertions';
 
 class CustomModuleStub implements PackageCustomModule {
 
@@ -21,7 +22,7 @@ describe('A project', () => {
     const app = new cdk.App();
 
     const orchestrator = new cdf.Orchestrator(
-      configA as PackageInfraConfig,
+      shortConfig as PackageInfraConfig,
       new PackagePlanner(),
       [],
     );
@@ -34,13 +35,17 @@ describe('A project', () => {
     const app = new cdk.App();
 
     const orchestrator = new cdf.Orchestrator(
-      configB as PackageInfraConfig,
+      longConfig as PackageInfraConfig,
       new PackagePlanner(),
       [
         new CustomModuleStub(),
       ],
     );
   
-    new cdf.awscdk.ProjectStack(app, 'ProjectStack', { orchestrator });
+    const stack = new cdf.awscdk.ProjectStack(app, 'ProjectStack', { orchestrator });
+
+    const template = Template.fromStack(stack);
+
+    console.log(template.toJSON());
   });
 });

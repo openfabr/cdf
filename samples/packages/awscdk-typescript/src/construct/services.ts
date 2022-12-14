@@ -13,7 +13,6 @@ import {
   PackageServiceContainerEcsConfig,
   ServiceApplicationType,
 } from "../package-config";
-import * as path from "path";
 import { ApplicationLoadBalancedFargateService } from "aws-cdk-lib/aws-ecs-patterns";
 
 export interface ServicesProps {
@@ -22,13 +21,9 @@ export interface ServicesProps {
 }
 
 export class Services extends Construct {
-  // private _cluster: Cluster;
-  // public get cluster(): Cluster {
-  //   return this._cluster;
-  // }
   readonly cluster: Cluster;
-  readonly taskdefs: FargateTaskDefinition[];
-  readonly services: FargateService[];
+  readonly taskdefs: { [key: string]: FargateTaskDefinition };
+  readonly services: { [key: string]: FargateService };
 
   constructor(scope: Construct, id: string, props: ServicesProps) {
     super(scope, id);
@@ -45,8 +40,8 @@ export class Services extends Construct {
       });
     }
 
-    this.taskdefs = [];
-    this.services = [];
+    this.taskdefs = {};
+    this.services = {};
 
     const vpc: Vpc = props.vpc;
 
@@ -103,8 +98,8 @@ export class Services extends Construct {
               }
             );
 
-          this.services.push(loadBalancedFargateService.service);
-          this.taskdefs.push(loadBalancedFargateService.taskDefinition);
+          this.services[s.name] = loadBalancedFargateService.service;
+          this.taskdefs[s.name] = loadBalancedFargateService.taskDefinition;
         } else if (
           PackageServiceContainerEcsConfig.serviceApplicationType(
             s.application
@@ -139,8 +134,8 @@ export class Services extends Construct {
             taskDefinition: taskdef,
           });
 
-          this.taskdefs.push(taskdef);
-          this.services.push(service);
+          this.taskdefs[s.name] = taskdef;
+          this.services[s.name] = service;
         }
       });
   }

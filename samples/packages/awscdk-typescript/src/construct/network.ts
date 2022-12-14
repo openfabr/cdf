@@ -1,4 +1,3 @@
-import { Distribution } from "aws-cdk-lib/aws-cloudfront";
 import { Vpc, IpAddresses, SubnetConfiguration } from "aws-cdk-lib/aws-ec2";
 import { Construct } from "constructs";
 import { NetworkSubnetDetail, NetworkSubnetType, PackageInfraConfig } from "../package-config";

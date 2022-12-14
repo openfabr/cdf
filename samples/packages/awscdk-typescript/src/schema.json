@@ -1,0 +1,409 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "NetworkSubnetDetail": {
+            "properties": {
+                "mask": {
+                    "title": "mask",
+                    "type": "number"
+                },
+                "name": {
+                    "title": "name",
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/NetworkSubnetType",
+                    "title": "type"
+                }
+            },
+            "title": "NetworkSubnetDetail",
+            "type": "object"
+        },
+        "NetworkSubnetType": {
+            "enum": [
+                "isolated",
+                "private",
+                "public"
+            ],
+            "title": "NetworkSubnetType",
+            "type": "string"
+        },
+        "PackageComponentConfigChoices": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/PackageComponentKeySoftwareConfig"
+                },
+                {
+                    "$ref": "#/definitions/PackageComponentMessageQueueConfig"
+                },
+                {
+                    "$ref": "#/definitions/PackageComponentMessageTopicConfig"
+                },
+                {
+                    "$ref": "#/definitions/PackageComponentStorageBucketConfig"
+                },
+                {
+                    "$ref": "#/definitions/PackageComponentStaticWebsiteHostingConfig"
+                }
+            ],
+            "title": "PackageComponentConfigChoices"
+        },
+        "PackageComponentKeySoftwareConfig": {
+            "properties": {
+                "enabled": {
+                    "title": "enabled",
+                    "type": "boolean"
+                },
+                "name": {
+                    "title": "name",
+                    "type": "string"
+                },
+                "rotation": {
+                    "title": "rotation",
+                    "type": "boolean"
+                },
+                "spec": {
+                    "enum": [
+                        "ECC_NIST_P521",
+                        "ECC_SECG_P256K1",
+                        "RSA_4096",
+                        "SYMMETRIC_DEFAULT"
+                    ],
+                    "title": "spec",
+                    "type": "string"
+                },
+                "usage": {
+                    "enum": [
+                        "ENCRYPT_DECRYPT",
+                        "SIGN_VERIFY"
+                    ],
+                    "title": "usage",
+                    "type": "string"
+                }
+            },
+            "title": "PackageComponentKeySoftwareConfig",
+            "type": "object"
+        },
+        "PackageComponentMessageQueueConfig": {
+            "properties": {
+                "dlq": {
+                    "title": "dlq",
+                    "type": "number"
+                },
+                "fifo": {
+                    "title": "fifo",
+                    "type": "boolean"
+                },
+                "name": {
+                    "title": "name",
+                    "type": "string"
+                }
+            },
+            "title": "PackageComponentMessageQueueConfig",
+            "type": "object"
+        },
+        "PackageComponentMessageTopicConfig": {
+            "properties": {
+                "fifo": {
+                    "title": "fifo",
+                    "type": "boolean"
+                },
+                "name": {
+                    "title": "name",
+                    "type": "string"
+                }
+            },
+            "title": "PackageComponentMessageTopicConfig",
+            "type": "object"
+        },
+        "PackageComponentStaticWebsiteHostingConfig": {
+            "properties": {
+                "domain": {
+                    "title": "domain",
+                    "type": "string"
+                },
+                "hostName": {
+                    "title": "hostName",
+                    "type": "string"
+                },
+                "name": {
+                    "title": "name",
+                    "type": "string"
+                }
+            },
+            "title": "PackageComponentStaticWebsiteHostingConfig",
+            "type": "object"
+        },
+        "PackageComponentStorageBucketConfig": {
+            "properties": {
+                "blockPublicAccess": {
+                    "enum": [
+                        "BLOCK_ACLS",
+                        "BLOCK_ALL"
+                    ],
+                    "title": "blockPublicAccess",
+                    "type": "string"
+                },
+                "bucketName": {
+                    "title": "bucketName",
+                    "type": "string"
+                },
+                "name": {
+                    "title": "name",
+                    "type": "string"
+                }
+            },
+            "title": "PackageComponentStorageBucketConfig",
+            "type": "object"
+        },
+        "PackageGeneralConfig": {
+            "properties": {
+                "name": {
+                    "title": "name",
+                    "type": "string"
+                }
+            },
+            "title": "PackageGeneralConfig",
+            "type": "object"
+        },
+        "PackageNetworkConfig": {
+            "properties": {
+                "cidr": {
+                    "description": "CIDR notation, either IPv4 or IPv6.",
+                    "title": "cidr",
+                    "type": "string"
+                },
+                "domain": {
+                    "title": "domain",
+                    "type": "string"
+                },
+                "name": {
+                    "title": "name",
+                    "type": "string"
+                },
+                "subnets": {
+                    "items": {
+                        "$ref": "#/definitions/NetworkSubnetDetail"
+                    },
+                    "title": "subnets",
+                    "type": "array"
+                },
+                "zones": {
+                    "description": "Number of availability zones.",
+                    "title": "zones",
+                    "type": "number"
+                }
+            },
+            "title": "PackageNetworkConfig",
+            "type": "object"
+        },
+        "PackageRelationConfig": {
+            "properties": {
+                "bidi": {
+                    "title": "bidi",
+                    "type": "boolean"
+                },
+                "finish": {
+                    "title": "finish",
+                    "type": "string"
+                },
+                "name": {
+                    "title": "name",
+                    "type": "string"
+                },
+                "start": {
+                    "title": "start",
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/RelationTyping",
+                    "title": "type"
+                }
+            },
+            "title": "PackageRelationConfig",
+            "type": "object"
+        },
+        "PackageServiceContainerEcsConfig": {
+            "properties": {
+                "application": {
+                    "$ref": "#/definitions/ServiceApplicationType",
+                    "title": "application"
+                },
+                "containerImageName": {
+                    "title": "containerImageName",
+                    "type": "string"
+                },
+                "containerRegistry": {
+                    "title": "containerRegistry",
+                    "type": "string"
+                },
+                "cpu": {
+                    "title": "cpu",
+                    "type": "number"
+                },
+                "mem": {
+                    "title": "mem",
+                    "type": "number"
+                },
+                "name": {
+                    "title": "name",
+                    "type": "string"
+                },
+                "replicas": {
+                    "title": "replicas",
+                    "type": "number"
+                }
+            },
+            "title": "PackageServiceContainerEcsConfig",
+            "type": "object"
+        },
+        "RelationTyping": {
+            "enum": [
+                "ADMIN_KEY",
+                "DECRYPT_KEY",
+                "ENCRYPT_KEY",
+                "PUBLISH_TOPIC",
+                "READ_OBJECT",
+                "RECEIVE_QUEUE",
+                "SEND_QUEUE",
+                "SUBSCRIBE_TOPIC",
+                "WRITE_OBJECT"
+            ],
+            "title": "RelationTyping",
+            "type": "string"
+        },
+        "RuntimeConfig<PackageServiceContainerEcsConfig>": {
+            "description": "Concrete class for a group of services sharing the same *runtime*.",
+            "properties": {
+                "config": {
+                    "$ref": "#/definitions/PackageServiceContainerEcsConfig",
+                    "description": "The fallback config that applies to all services defined for the runtime.",
+                    "title": "config"
+                },
+                "details": {
+                    "description": "A list of services sharing the same runtime.",
+                    "items": {
+                        "$ref": "#/definitions/PackageServiceContainerEcsConfig"
+                    },
+                    "title": "details",
+                    "type": "array"
+                },
+                "name": {
+                    "description": "Name of the runtime.",
+                    "title": "name",
+                    "type": "string"
+                },
+                "subtype": {
+                    "description": "Subtype of the runtime.",
+                    "title": "subtype",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Type of the runtime.",
+                    "title": "type",
+                    "type": "string"
+                }
+            },
+            "title": "RuntimeConfig<PackageServiceContainerEcsConfig>",
+            "type": "object"
+        },
+        "ServiceApplicationType": {
+            "enum": [
+                "PUBLIC",
+                "TASK"
+            ],
+            "title": "ServiceApplicationType",
+            "type": "string"
+        },
+        "TraitConfig<PackageComponentConfigChoices>": {
+            "description": "Concrete class for a group of components sharing the same *trait*.",
+            "properties": {
+                "config": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/PackageComponentKeySoftwareConfig"
+                        },
+                        {
+                            "$ref": "#/definitions/PackageComponentMessageQueueConfig"
+                        },
+                        {
+                            "$ref": "#/definitions/PackageComponentMessageTopicConfig"
+                        },
+                        {
+                            "$ref": "#/definitions/PackageComponentStorageBucketConfig"
+                        },
+                        {
+                            "$ref": "#/definitions/PackageComponentStaticWebsiteHostingConfig"
+                        }
+                    ],
+                    "description": "The fallback config that applies to all components defined for the trait.",
+                    "title": "config"
+                },
+                "details": {
+                    "description": "A list of components sharing the same trait.",
+                    "items": {
+                        "$ref": "#/definitions/PackageComponentConfigChoices"
+                    },
+                    "title": "details",
+                    "type": "array"
+                },
+                "name": {
+                    "description": "Name of the trait.",
+                    "title": "name",
+                    "type": "string"
+                },
+                "subtype": {
+                    "description": "Subtype of the trait.",
+                    "title": "subtype",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Type of the trait.",
+                    "title": "type",
+                    "type": "string"
+                }
+            },
+            "title": "TraitConfig<PackageComponentConfigChoices>",
+            "type": "object"
+        }
+    },
+    "description": "Concrete class that models the configuration for an infra project when using a package.\nIt has 5 top-level sections (general, network, components, services and relations), each of which is expected to extended by packages for their own needs.",
+    "properties": {
+        "components": {
+            "description": "Top-level **components** section which carries a list of *trait* sub-sections.",
+            "items": {
+                "$ref": "#/definitions/TraitConfig<PackageComponentConfigChoices>"
+            },
+            "title": "components",
+            "type": "array"
+        },
+        "general": {
+            "$ref": "#/definitions/PackageGeneralConfig",
+            "description": "Top-level **general** section.",
+            "title": "general"
+        },
+        "network": {
+            "$ref": "#/definitions/PackageNetworkConfig",
+            "description": "Top-level **network** section.",
+            "title": "network"
+        },
+        "relations": {
+            "description": "Top-level **relations** section which carries a list of *relation* sub-section.",
+            "items": {
+                "$ref": "#/definitions/PackageRelationConfig"
+            },
+            "title": "relations",
+            "type": "array"
+        },
+        "services": {
+            "description": "Top-level **services** section which carries a list of *runtime* sub-sections.",
+            "items": {
+                "$ref": "#/definitions/RuntimeConfig<PackageServiceContainerEcsConfig>"
+            },
+            "title": "services",
+            "type": "array"
+        }
+    },
+    "type": "object"
+}
+

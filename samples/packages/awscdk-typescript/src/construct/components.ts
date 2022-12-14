@@ -8,37 +8,37 @@ import { CfnOutput, RemovalPolicy } from "aws-cdk-lib";
 import { Distribution, OriginAccessIdentity } from "aws-cdk-lib/aws-cloudfront";
 import { S3Origin } from "aws-cdk-lib/aws-cloudfront-origins";
 import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
-import * as path from "path";
+import { Vpc } from "aws-cdk-lib/aws-ec2";
 
 export interface ComponentsProps {
   config: PackageInfraConfig,
+  vpc: Vpc,
 }
 
 export interface StaticWebsiteHosting {
   bucket: Bucket,
-  distribution: Distribution
+  distribution: Distribution,
 }
 
 export class Components extends Construct {
-  readonly queues: Queue[];
-  readonly topics: Topic[];
-  readonly keys: Key[];
-  readonly buckets: Bucket[];
-  readonly staticWebsites: StaticWebsiteHosting[];
+  readonly queues: { [key: string]: Queue };
+  readonly topics: { [key: string]: Topic };
+  readonly keys: { [key: string]: Key };
+  readonly buckets: { [key: string]: Bucket };
+  readonly websites: { [key: string]: StaticWebsiteHosting };
 
 
   constructor(scope: Construct, id: string, props: ComponentsProps) {
     super(scope, id);
 
-    this.queues = [];
-    this.topics = [];
-    this.keys = [];
-    this.buckets = [];
-    this.staticWebsites = [];
+    this.queues = {};
+    this.topics = {};
+    this.keys = {};
+    this.buckets = {};
+    this.websites = {};
 
     props.config.components.forEach(t => {
-      console.log(PackageComponentKeySoftwareConfig.has(t));
-console.log("%s %s %s %s %s", PackageComponentKeySoftwareConfig.has(t), PackageComponentMessageQueueConfig.has(t), PackageComponentMessageTopicConfig.has(t), PackageComponentStorageBucketConfig.has(t), PackageComponentStaticWebsiteHostingConfig.has(t));
+
       if (PackageComponentKeySoftwareConfig.has(t)) {
         t.details.map(c => c as PackageComponentKeySoftwareConfig).forEach(c => {
           const k = new Key(this, c.name, {
@@ -48,7 +48,7 @@ console.log("%s %s %s %s %s", PackageComponentKeySoftwareConfig.has(t), PackageC
             ... { enabled: c.enabled, enableKeyRotation: c.rotation }
           });
 
-          this.keys.push(k);
+          this.keys[c.name] = k;
         });
       }
       else if (PackageComponentMessageQueueConfig.has(t)) {
@@ -62,16 +62,16 @@ console.log("%s %s %s %s %s", PackageComponentKeySoftwareConfig.has(t), PackageC
             ... { fifo: c.fifo, deadLetterQueue: dlq },
           });
 
-          this.queues.push(q);
+          this.queues[c.name] = q;
         });
       }
       else if (PackageComponentMessageTopicConfig.has(t)) {
         t.details.map(c => c as PackageComponentMessageTopicConfig).forEach(c => {
-          const t = new Topic(this, c.name, {
+          const topic = new Topic(this, c.name, {
             ... { fifo: c.fifo }
           });
 
-          this.topics.push(t);
+          this.topics[c.name] = topic;
         });
       }
       else if (PackageComponentStorageBucketConfig.has(t)) {
@@ -87,11 +87,10 @@ console.log("%s %s %s %s %s", PackageComponentKeySoftwareConfig.has(t), PackageC
               }
             }
           )
-          this.buckets.push(b);
+          this.buckets[c.name] = b;
         });
       }
       else if (PackageComponentStaticWebsiteHostingConfig.has(t)) {
-        console.log(t);
         t.details.map(c => c as PackageComponentStaticWebsiteHostingConfig).forEach(c => {
           const b = new Bucket(this, `${c.name}_${c.hostName}${c.domain}`,
             {
@@ -122,7 +121,7 @@ console.log("%s %s %s %s %s", PackageComponentKeySoftwareConfig.has(t), PackageC
 
           new CfnOutput(d, 'distributionDomainName', { value: d.distributionDomainName, description: 'distrinutionDomainName' });
 
-          this.staticWebsites.push({ bucket: b, distribution: d });
+          this.websites[c.name] = { bucket: b, distribution: d };
         });
       }
 
