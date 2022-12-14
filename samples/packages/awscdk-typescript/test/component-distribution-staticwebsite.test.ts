@@ -2,17 +2,17 @@ import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
 import * as cdf from "@openfabr/cdf";
 import {
-  PackageComponentConfig,
   PackageCustomModule,
   PackageGeneralConfig,
   PackageInfraConfig,
   PackageInfraPlanConstructs,
   PackageNetworkConfig,
   PackagePlanner,
+  PackageComponentConfigChoices,
   PackageRelationConfig,
-  PackageServiceConfig,
+  PackageServiceConfigChoices,
 } from "../src/package-config";
-import configA from "./component-distribution-staticwebsite.config.json";
+import config from "./component-distribution-staticwebsite.config.json";
 import { ok, Result } from "neverthrow";
 import { Match, Template } from "aws-cdk-lib/assertions";
 
@@ -21,8 +21,8 @@ class CustomModuleStub implements PackageCustomModule {
     config: cdf.InfraConfig<
       PackageGeneralConfig,
       PackageNetworkConfig,
-      PackageComponentConfig,
-      PackageServiceConfig,
+      PackageComponentConfigChoices,
+      PackageServiceConfigChoices,
       PackageRelationConfig
     >,
     result: cdf.InfraPlan<PackageInfraPlanConstructs>,
@@ -37,7 +37,7 @@ describe("A project", () => {
     const app = new cdk.App();
 
     const orchestrator = new cdf.Orchestrator(
-      configA as PackageInfraConfig,
+      config as PackageInfraConfig,
       new PackagePlanner(),
       []
     );
@@ -48,9 +48,9 @@ describe("A project", () => {
 
     const template = Template.fromStack(stack);
 
-    // The following line output the entire plan in json. Usefull during test development.
+    // The following line output the entire plan in json. Useful during test development.
 
-    console.log(JSON.stringify(template.toJSON(), null, 2));
+    // console.log(JSON.stringify(template.toJSON(), null, 2));
 
     template.resourceCountIs("AWS::CloudFront::Distribution", 1);
     template.resourceCountIs("AWS::S3::BucketPolicy", 1);

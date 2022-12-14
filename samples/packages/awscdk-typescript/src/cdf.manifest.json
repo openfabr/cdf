@@ -1,0 +1,58 @@
+{
+  "$schema": "https://openfabr.github.io/cdf/references/typescript/1.3.0/manifest.schema.json",
+  "identifier": "awscdk-typescript",
+  "vendor": "OpenFABR",
+  "license": "AGPL-3.0-only",
+  "cdf": "^1.2.0",
+  "name": "awscdk-typescript",
+  "description": "A sample package using AWS CDK with TypeScript",
+  "support": {
+    "email": "open@fabr.ltd",
+    "url": "https://open.fabrhq.com"
+  },
+  "tooling": {
+    "command": "cdk deploy",
+    "runtime": "awscdk",
+    "language": "typescript",
+    "vendors": [
+      "AWS"
+    ]
+  },
+  "constructs": {
+    "schema": "schema.json",
+    "network": {
+      "icon": "fas:network-wired"
+    },
+    "components": {
+      "types": {
+        "KEY_SOFTWARE": { "type": "key", "subtype": "software", "icon": "fas:key", "description": "A software-based key in key management components" },
+        "MESSAGE_TOPIC": { "type": "message", "subtype": "topic", "icon": "fas:comment-dots", "description": "A topic in messaging components" },
+        "MESSAGE_QUEUE": { "type": "message", "subtype": "queue", "icon": "fas:grip-lines", "description": "A queue in messaging components" },
+        "STORE_OBJECT": { "type": "store", "subtype": "object", "icon": "fas:book", "description": "An object store in storage components" },
+        "DISTRIBUTION_WEBSITE": { "type": "distribution", "subtype": "website", "icon": "fas:share-alt", "description": "A static website in distribution components" }
+      }
+    },
+    "services": {
+      "types": {
+        "CONTAINER_ECS": { "type": "container", "subtype": "ecs", "deployment": "Use AWS ECR per service to trigger deployment", "icon": "fas:cube", "description": "Container runtime via AWS ECS" }
+      }
+    },
+    "relations": {
+      "types": {
+        "ENCRYPT_KEY": { "start": "CONTAINER_ECS", "finish": "KEY_SOFTWARE", "bidi": false },
+        "DECRYPT_KEY": { "start": "CONTAINER_ECS", "finish": "KEY_SOFTWARE", "bidi": false },
+        "ADMIN_KEY": { "start": "CONTAINER_ECS", "finish": "KEY_SOFTWARE", "bidi": false },
+        "PUBLISH_TOPIC": { "start": "CONTAINER_ECS", "finish": "MESSAGE_TOPIC", "bidi": false },
+        "SUBSCRIBE_TOPIC": { "start": "MESSAGE_QUEUE", "finish": "MESSAGE_TOPIC", "bidi": false },
+        "SEND_QUEUE": { "start": "CONTAINER_ECS", "finish": "MESSAGE_QUEUE", "bidi": false },
+        "RECEIVE_QUEUE": { "start": "CONTAINER_ECS", "finish": "MESSAGE_QUEUE", "bidi": false },
+        "READ_OBJECT": { "start": "CONTAINER_ECS", "finish": "STORE_OBJECT", "bidi": false },
+        "WRITE_OBJECT": { "start": "CONTAINER_ECS", "finish": "STORE_OBJECT", "bidi": false }
+      }
+    },
+    "custom": {
+      "icon": "fas:code",
+      "template": "template.ts"
+    }
+  }
+}

@@ -1,14 +1,14 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import * as cdf from '@openfabr/cdf';
-import { PackageComponentConfig, PackageCustomModule, PackageGeneralConfig, PackageInfraConfig, PackageInfraPlanConstructs, PackageNetworkConfig, PackagePlanner, PackageRelationConfig, PackageServiceConfig } from '../src/package-config';
+import { PackageComponentConfigChoices, PackageCustomModule, PackageGeneralConfig, PackageInfraConfig, PackageInfraPlanConstructs, PackageNetworkConfig, PackagePlanner, PackageRelationConfig, PackageServiceConfigChoices } from '../src/package-config';
 import configA from './container-ecs.config.json';
 import { ok, Result } from 'neverthrow';
 import { Match, Template } from 'aws-cdk-lib/assertions';
 
 class CustomModuleStub implements PackageCustomModule {
 
-  enhanceWith(config: cdf.InfraConfig<PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfig, PackageServiceConfig, PackageRelationConfig>, result: cdf.InfraPlan<PackageInfraPlanConstructs>, scope: any): Result<cdf.InfraPlanOutputs, cdf.PlanError> {
+  enhanceWith(config: cdf.InfraConfig<PackageGeneralConfig, PackageNetworkConfig, PackageComponentConfigChoices, PackageServiceConfigChoices, PackageRelationConfig>, result: cdf.InfraPlan<PackageInfraPlanConstructs>, scope: any): Result<cdf.InfraPlanOutputs, cdf.PlanError> {
     return ok(new Map<string, any>());
   }
 
@@ -16,7 +16,7 @@ class CustomModuleStub implements PackageCustomModule {
 
 describe('A project', () => {
 
-  it('deploys a public web servies on ECS Fargate', () => {
+  it('deploys a public web service on ECS Fargate', () => {
 
     const app = new cdk.App();
 

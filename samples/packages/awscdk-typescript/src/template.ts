@@ -1,6 +1,6 @@
 import { err, Result } from "neverthrow";
 import * as cdf from "@openfabr/cdf";
-import { PackageCustomModule, PackageInfraConfig, PackageInfraPlanConstructs } from "./package-config";
+import { PackageCustomModule, PackageInfraConfig, PackageInfraPlanConstructs } from "@openfabr/package-ri-awscdk";
 
 export class ProjectCustomModule implements PackageCustomModule {
 
