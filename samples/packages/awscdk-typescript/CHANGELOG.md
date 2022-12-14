@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/openfabr/cdf/compare/package-ri-awscdk-typescript-v1.0.1...package-ri-awscdk-typescript-v2.0.0) (2022-12-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **awscdk-ri-package:** Add package manifest ([#41](https://github.com/openfabr/cdf/issues/41))
+
+### Features
+
+* **awscdk-ri-package:** Add package manifest ([#41](https://github.com/openfabr/cdf/issues/41)) ([47229c6](https://github.com/openfabr/cdf/commit/47229c67574fc97dd585077633ba709007ca87cd))
+
 ## [1.0.1](https://github.com/openfabr/cdf/compare/package-ri-awscdk-typescript-v1.0.0...package-ri-awscdk-typescript-v1.0.1) (2022-12-02)
 
 
