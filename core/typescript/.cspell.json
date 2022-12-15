@@ -4,6 +4,7 @@
   "language": "en-GB",
   "words": [
     "vars",
+    "firestore",
     "aliyun",
     "bitjson",
     "bitauth",

@@ -72,3 +72,53 @@ export abstract class Planner<
     scope: any
   ): Result<InfraPlan<IPC>, PlanError>;
 }
+
+/**
+ * Abstract class for packages to implement in order to handle outputs or errors from the result.
+ *
+ * @group For package authors
+ */
+export class ResultHandler {
+  /**
+   * The default handler.
+   */
+  public static DEFAULT = new ResultHandler();
+
+  constructor(
+    /**
+     * Function to handle results.
+     */
+    readonly onOk?: (outputs: InfraPlanOutputs) => void,
+    /**
+     * Function to to handle errors.
+     */
+    readonly onErr?: (error: PlanError) => void
+  ) {}
+
+  /**
+   * Function that handles infra provisioning result by delegating to `onErr` and `onOk` functions to be implemented.
+   *
+   * @param result The result of infra provisioning.
+   */
+  handle(result?: Result<InfraPlanOutputs, PlanError>): void {
+    if (result) {
+      result
+        .map((outputs) => {
+          if (this.onOk) {
+            this.onOk(outputs);
+          }
+        })
+        .mapErr((error) => {
+          if (this.onErr) {
+            this.onErr(error);
+          } else {
+            throw new Error(error.message);
+          }
+        });
+    } else {
+      throw new Error(
+        'Unknown error when provisioning infra, please check your configurations!'
+      );
+    }
+  }
+}

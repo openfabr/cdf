@@ -63,6 +63,7 @@
   "peerDependencies": {
     "aws-cdk-lib": "2.x",
     "cdktf": "0.x",
+    "@cdktf/provider-google": "^4.0.3",
     "constructs": "10.x"
   },
   "devDependencies": {

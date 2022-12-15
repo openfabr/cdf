@@ -10,7 +10,7 @@ import {
   ServiceConfig,
 } from '../../config';
 import { Orchestrator } from '../../orchestrator';
-import { InfraPlanConstructs, Planner } from '../../package';
+import { InfraPlanConstructs, Planner, ResultHandler } from '../../package';
 import { Custom } from '../../project';
 
 /**
@@ -27,6 +27,7 @@ export interface ProjectStackProps<
   RC extends RelationConfig
 > {
   orchestrator: Orchestrator<IPC, GC, NC, CC, SC, RC>;
+  handler?: ResultHandler;
 }
 
 /**
@@ -49,7 +50,9 @@ export class ProjectStack<
   ) {
     super(scope, id);
 
-    props?.orchestrator.runIn(this);
+    const result = props?.orchestrator.runIn(this);
+    (props?.handler ?? ResultHandler.DEFAULT).handle(result);
+    props?.handler?.handle(result);
   }
 }
 
@@ -77,10 +80,12 @@ export function initProjectStack<
   config: InfraConfig<GC, NC, CC, SC, RC>,
   planner: Planner<IPC, GC, NC, CC, SC, RC>,
   modules: Custom<IPC, GC, NC, CC, SC, RC>[],
-  name?: string
+  name?: string,
+  handler?: ResultHandler
 ): ProjectStack<IPC, GC, NC, CC, SC, RC> {
   const orchestrator = new Orchestrator(config, planner, modules);
   return new ProjectStack(scope, name ? name : 'ProjectStack', {
     orchestrator,
+    handler,
   });
 }
