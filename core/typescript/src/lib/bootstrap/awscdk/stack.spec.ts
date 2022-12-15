@@ -13,7 +13,14 @@ test('initialises a project stack', (t) => {
   const planner = new PlannerStub(ok(infraPlan));
   const name = 'test-app';
 
-  const stack = initProjectStack(new App(), infraConfig, planner, [], name, resultHandler);
+  const stack = initProjectStack(
+    new App(),
+    infraConfig,
+    planner,
+    [],
+    name,
+    resultHandler
+  );
 
   t.true(stack.stackName == name);
 });

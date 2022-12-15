@@ -54,8 +54,8 @@ test('uses supplied onErr function', (t) => {
 });
 
 test('throws an unknown error for invalid result', (t) => {
-  const invalids = [ undefined ];
-  invalids.forEach(r => {
+  const invalids = [undefined];
+  invalids.forEach((r) => {
     const error = t.throws(() => new ResultHandler().handle(r));
     t.true(error?.message.startsWith('Unknown error'));
   });

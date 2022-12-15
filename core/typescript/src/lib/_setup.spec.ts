@@ -198,8 +198,10 @@ export const setupTests = {
     ['year', 2022],
   ]),
 
-  resultHandler: new ResultHandler(() => {}, () => {}),
-
+  resultHandler: new ResultHandler(
+    () => {},
+    () => {}
+  ),
 };
 
 export const awscdkResults = (scope: Stack) => {

@@ -15,7 +15,9 @@ test('initialises a project stack', (t) => {
   const planner = new PlannerStub(ok(infraPlan));
   const name = 'test-app';
 
-  t.notThrows(() => initProjectStack(app, infraConfig, planner, [], name, resultHandler));
+  t.notThrows(() =>
+    initProjectStack(app, infraConfig, planner, [], name, resultHandler)
+  );
 });
 
 test('throws error for failed provisioning if no result handler is provided', (t) => {
