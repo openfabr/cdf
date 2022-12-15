@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/openfabr/cdf/compare/cdf-typescript-v1.3.0...cdf-typescript-v1.4.0) (2022-12-15)
+
+
+### Features
+
+* **cdf-typescript:** Add error handling ([#49](https://github.com/openfabr/cdf/issues/49)) ([6aa8296](https://github.com/openfabr/cdf/commit/6aa8296ef9890d4109286406befd4ea12469bdc1))
+
 ## [1.3.0](https://github.com/openfabr/cdf/compare/cdf-typescript-v1.2.0...cdf-typescript-v1.3.0) (2022-12-12)
 
 

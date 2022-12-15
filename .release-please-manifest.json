@@ -1,5 +1,5 @@
 {
-  "core/typescript": "1.3.0",
+  "core/typescript": "1.4.0",
   "samples/packages/awscdk-typescript": "2.0.0",
   "samples/packages/cdktf-typescript": "3.0.0"
 }
