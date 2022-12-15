@@ -46,13 +46,12 @@ export class ProjectStack<
   constructor(
     scope: Construct,
     id: string,
-    props?: ProjectStackProps<IPC, GC, NC, CC, SC, RC>
+    props: ProjectStackProps<IPC, GC, NC, CC, SC, RC>
   ) {
     super(scope, id);
 
-    const result = props?.orchestrator.runIn(this);
-    (props?.handler ?? ResultHandler.DEFAULT).handle(result);
-    props?.handler?.handle(result);
+    const result = props.orchestrator.runIn(this);
+    (props.handler ?? ResultHandler.DEFAULT).handle(result);
   }
 }
 
@@ -84,7 +83,7 @@ export function initProjectStack<
   handler?: ResultHandler
 ): ProjectStack<IPC, GC, NC, CC, SC, RC> {
   const orchestrator = new Orchestrator(config, planner, modules);
-  return new ProjectStack(scope, name ? name : 'ProjectStack', {
+  return new ProjectStack(scope, name ?? 'ProjectStack', {
     orchestrator,
     handler,
   });

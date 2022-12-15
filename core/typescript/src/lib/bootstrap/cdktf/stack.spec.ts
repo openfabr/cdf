@@ -9,12 +9,13 @@ import { initProjectStack } from './stack';
 test('initialises a project stack', (t) => {
   const app = new App();
   const scope = new TerraformStack(app, 'test-stack');
-  const { infraConfig } = setupTests;
+  const { infraConfig, resultHandler } = setupTests;
   const { infraPlan } = cdktfResults(scope);
 
   const planner = new PlannerStub(ok(infraPlan));
+  const name = 'test-app';
 
-  t.notThrows(() => initProjectStack(app, infraConfig, planner, []));
+  t.notThrows(() => initProjectStack(app, infraConfig, planner, [], name, resultHandler));
 });
 
 test('throws error for failed provisioning if no result handler is provided', (t) => {

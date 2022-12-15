@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { firestoreDocument } from '@cdktf/provider-google';
@@ -23,6 +24,7 @@ import {
   InfraPlanConstructs,
   InfraPlanOutputs,
   Planner,
+  ResultHandler,
 } from './package';
 import { Custom } from './project';
 
@@ -126,7 +128,7 @@ export class CustomModuleStub extends Custom<
   }
 }
 
-class PlanErrorStub implements PlanError {
+export class PlanErrorStub implements PlanError {
   constructor(public readonly message: string) {}
 }
 
@@ -195,6 +197,9 @@ export const setupTests = {
     ['url', 'https://fabrhq.dev'],
     ['year', 2022],
   ]),
+
+  resultHandler: new ResultHandler(() => {}, () => {}),
+
 };
 
 export const awscdkResults = (scope: Stack) => {
