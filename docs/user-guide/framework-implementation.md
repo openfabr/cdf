@@ -2,7 +2,7 @@
 
 This is a concrete implementation of the `Framework Spec`.
 
-![OpenFABR CDF](../assets/2022-11-16-17-37-04.png)
+![OpenFABR CDF](../assets/cdf-stack-overview.png)
 
 ## Framework Schema
 
