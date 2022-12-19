@@ -64,11 +64,13 @@
     "aws-cdk-lib": "2.x",
     "cdktf": "0.x",
     "cdk8s": "2.x",
+    "@pulumi/pulumi": "3.x",
     "constructs": "10.x"
   },
   "devDependencies": {
     "cdk8s-plus-25": "^2.2.1",
     "@cdktf/provider-google": "^4.0.3",
+    "@pulumi/azure-native": "^1.0.0",
     "@ava/typescript": "^1.1.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
