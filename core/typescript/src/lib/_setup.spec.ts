@@ -5,6 +5,8 @@ import { firestoreDocument } from '@cdktf/provider-google';
 import { Stack } from 'aws-cdk-lib';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { Queue } from 'aws-cdk-lib/aws-sqs';
+import { Chart } from 'cdk8s';
+import { Deployment } from 'cdk8s-plus-25';
 import { Construct } from 'constructs';
 import { Result } from 'neverthrow';
 
@@ -32,6 +34,11 @@ export class InfraPlanConstructsStub implements InfraPlanConstructs {}
 
 export class InfraPlanConstructsStubAwscdk extends InfraPlanConstructsStub {
   constructor(public readonly bucket: Bucket, public readonly queue: Queue) {
+    super();
+  }
+}
+export class InfraPlanConstructsStubCdk8s extends InfraPlanConstructsStub {
+  constructor(public readonly deployment: Deployment) {
     super();
   }
 }
@@ -215,6 +222,20 @@ export const awscdkResults = (scope: Stack) => {
     ),
     bucket,
     queue,
+  };
+};
+
+export const cdk8sResults = (scope: Chart) => {
+  const deployment = new Deployment(scope, 'test-deployment', {
+    containers: [{ image: 'nginx' }],
+  });
+
+  return {
+    infraPlan: new InfraPlan(
+      new InfraPlanConstructsStubCdk8s(deployment),
+      new Map<string, any>(setupTests.outputA)
+    ),
+    deployment,
   };
 };
 
