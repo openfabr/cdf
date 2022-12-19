@@ -8,3 +8,11 @@ src/**.js
 coverage
 *.log
 yarn.lock
+bin
+cdktf.out
+cdktf.log
+.gen
+.terraform
+*terraform.*.tfstate*
+cdk.out
+.cdk.staging
