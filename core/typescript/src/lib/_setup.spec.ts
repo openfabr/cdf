@@ -2,9 +2,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { firestoreDocument } from '@cdktf/provider-google';
+import { ResourceGroup } from '@pulumi/azure-native/resources';
+import { Kind, SkuName, StorageAccount } from '@pulumi/azure-native/storage';
+import { ComponentResource } from '@pulumi/pulumi';
 import { Stack } from 'aws-cdk-lib';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { Queue } from 'aws-cdk-lib/aws-sqs';
+import { Chart } from 'cdk8s';
+import { Deployment } from 'cdk8s-plus-25';
 import { Construct } from 'constructs';
 import { Result } from 'neverthrow';
 
@@ -35,9 +40,23 @@ export class InfraPlanConstructsStubAwscdk extends InfraPlanConstructsStub {
     super();
   }
 }
+export class InfraPlanConstructsStubCdk8s extends InfraPlanConstructsStub {
+  constructor(public readonly deployment: Deployment) {
+    super();
+  }
+}
 
 export class InfraPlanConstructsStubCdktf extends InfraPlanConstructsStub {
   constructor(public readonly firestore: firestoreDocument.FirestoreDocument) {
+    super();
+  }
+}
+
+export class InfraPlanConstructsStubPulumi extends InfraPlanConstructsStub {
+  constructor(
+    public readonly resourceGroup: ResourceGroup,
+    public readonly storageAccount: StorageAccount
+  ) {
     super();
   }
 }
@@ -218,6 +237,20 @@ export const awscdkResults = (scope: Stack) => {
   };
 };
 
+export const cdk8sResults = (scope: Chart) => {
+  const deployment = new Deployment(scope, 'test-deployment', {
+    containers: [{ image: 'nginx' }],
+  });
+
+  return {
+    infraPlan: new InfraPlan(
+      new InfraPlanConstructsStubCdk8s(deployment),
+      new Map<string, any>(setupTests.outputA)
+    ),
+    deployment,
+  };
+};
+
 export const cdktfResults = (scope: Construct) => {
   const firestore = new firestoreDocument.FirestoreDocument(
     scope,
@@ -235,5 +268,41 @@ export const cdktfResults = (scope: Construct) => {
       new Map<string, any>(setupTests.outputB)
     ),
     firestore,
+  };
+};
+
+export const pulumiResults = (scope: ComponentResource) => {
+  const resourceGroup = new ResourceGroup(
+    'test-resource-group',
+    {},
+    {
+      parent: scope,
+    }
+  );
+  const storageAccount = new StorageAccount(
+    'test-storage-account',
+    {
+      resourceGroupName: resourceGroup.name,
+      kind: Kind.StorageV2,
+      sku: {
+        name: SkuName.Standard_LRS,
+      },
+    },
+    {
+      parent: scope,
+    }
+  );
+  const outputs = new Map<string, any>([
+    ['resourceGroupName', resourceGroup.name],
+    ['storageAccountName', storageAccount.name],
+  ]);
+
+  return {
+    infraPlan: new InfraPlan(
+      new InfraPlanConstructsStubPulumi(resourceGroup, storageAccount),
+      outputs
+    ),
+    resourceGroup,
+    storageAccount,
   };
 };

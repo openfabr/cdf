@@ -18,6 +18,14 @@ export interface OptionalIconAware {
 }
 
 /**
+ * Interface that offers an optional label field.
+ * This should be short and concise.
+ */
+export interface OptionalLabelAware {
+  readonly label?: string;
+}
+
+/**
  * Interface that offers an optional description field.
  * This is normally in plain text; markdown can be used too.
  */
@@ -90,6 +98,7 @@ export interface ComponentType
 export interface ServiceType
   extends TypeAware,
     SubtypeAware,
+    OptionalLabelAware,
     OptionalIconAware,
     OptionalDescAware {
   /**
@@ -98,6 +107,17 @@ export interface ServiceType
    */
   readonly deployment: string;
 }
+
+/**
+ * Interface that represents a typing classification for relations.
+ *
+ * @group For both project creators and package authors
+ */
+export interface RelationType
+  extends Connectable,
+    OptionalLabelAware,
+    OptionalIconAware,
+    OptionalDescAware {}
 
 /**
  * Interface that represents information about network construct.
@@ -141,7 +161,7 @@ export interface RelationsInfo extends OptionalIconAware, OptionalDescAware {
    * Available relations between a specific component/service and another component/service.
    * Both the `start` and `finish` points here refer to the keys defined in `components` and `services` fields.
    */
-  readonly types: { [key: string]: Connectable };
+  readonly types: { [key: string]: RelationType };
 }
 
 /**
@@ -169,9 +189,10 @@ export interface ConstructsInfo {
    */
   readonly schema: string;
   /**
-   * Information about network.
+   * Information about optional network.
+   * Missing this field implies that the package does NOT support customisable virtual network.
    */
-  readonly network: NetworkInfo;
+  readonly network?: NetworkInfo;
   /**
    * Information about components.
    */
@@ -185,9 +206,10 @@ export interface ConstructsInfo {
    */
   readonly relations: RelationsInfo;
   /**
-   * Information about custom (code blocks).
+   * Information about optional custom (code blocks).
+   * Missing this field implies that the package does NOT support custom code blocks.
    */
-  readonly custom: CustomInfo;
+  readonly custom?: CustomInfo;
 }
 
 /**

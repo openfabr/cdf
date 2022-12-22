@@ -26,19 +26,19 @@
     "components": {
       "types": {
         "hello": { "type": "chinese", "subtype": "mandarin", "icon": "https://abc.com/hello.png", "description": "Hello Component" },
-        "fizz": { "type": "city", "subtype": "hong-kong" }
+        "fizz": { "type": "city", "subtype": "hong-kong", "label": "Hong Kong" }
       }
     },
     "services": {
       "types": {
-        "world": { "type": "solar-system", "subtype": "earth", "deployment": "NASA would help" },
+        "world": { "type": "solar-system", "subtype": "earth", "deployment": "NASA would help", "label": "Planet Earth" },
         "buzz": { "type": "country", "subtype": "morocco", "deployment": "Fly over", "icon": "https://abc.com/morocco.png", "description": "Well done in World Cup" }
       }
     },
     "relations": {
       "types": {
-        "hello-world": { "start": "world", "finish": "hello", "bidi": true },
-        "fizz-buzz": {"start": "fizz", "finish": "buzz", "bidi": false }
+        "hello-world": { "start": "world", "finish": "hello", "bidi": true, "label": "hello", "description": "a hello world relation type" },
+        "fizz-buzz": {"start": "fizz", "finish": "buzz", "bidi": false, "label": "fizz", "description": "a fizz buzz relation type" }
       }
     },
     "custom": {

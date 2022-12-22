@@ -5,4 +5,6 @@ export * from './lib/package';
 export * from './lib/project';
 export * from './lib/orchestrator';
 export * as awscdk from './lib/bootstrap/awscdk/stack';
+export * as cdk8s from './lib/bootstrap/cdk8s/chart';
 export * as cdktf from './lib/bootstrap/cdktf/stack';
+export * as pulumi from './lib/bootstrap/pulumi/component';
