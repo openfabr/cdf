@@ -13,7 +13,6 @@
   },
   "constructs": {
     "schema": "schema.json",
-    "network": {},
     "components": {
       "types": {
         "hello": { "type": "chinese", "subtype": "mandarin" },
@@ -31,9 +30,6 @@
         "hello-world": { "start": "world", "finish": "hello", "bidi": true },
         "fizz-buzz": {"start": "fizz", "finish": "buzz", "bidi": false }
       }
-    },
-    "custom": {
-      "template": "template.ts"
     }
   }
 }
