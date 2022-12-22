@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/openfabr/cdf/compare/cdf-typescript-v1.4.0...cdf-typescript-v2.0.0) (2022-12-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cdf-tyepscript:** Add cdk8s and pulumi support in CDF ([#51](https://github.com/openfabr/cdf/issues/51))
+
+### Features
+
+* **cdf-tyepscript:** Add cdk8s and pulumi support in CDF ([#51](https://github.com/openfabr/cdf/issues/51)) ([daab44c](https://github.com/openfabr/cdf/commit/daab44cb3814ab2a7a6bc715ad31229f06954892))
+
 ## [1.4.0](https://github.com/openfabr/cdf/compare/cdf-typescript-v1.3.0...cdf-typescript-v1.4.0) (2022-12-15)
 
 
