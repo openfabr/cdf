@@ -6,19 +6,24 @@
 
 ![OpenFABR CDK header](./docs/assets/header-640x320.png)
 
+| ![AWS CDK](./docs/assets/3rd-party/awscdk-icon-v2.png) | ![Terraform CDK](./docs/assets/3rd-party/cdktf-icon.png) | ![CDK8s](./docs/assets/3rd-party/cdk8s-icon-v2.png) | ![Pulumi](./docs/assets/3rd-party/pulumi-icon.png) |
+| :-- | :--: | :--: | --: |
+| AWS CDK | Terraform CDK | CDK8s | Pulumi |
+
+
 Framework:
 
-- TypeScript: ![NPM](https://img.shields.io/npm/v/@openfabr/cdf)
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" style="width:25px;height:25px" /> ![NPM](https://img.shields.io/npm/v/@openfabr/cdf)
 
 Packages as reference implementations:
 
-- TypeScript, AWS CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-awscdk)
-- TypeScript, Terraform CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-cdktf)
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" style="width:25px;height:25px" /> AWS CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-awscdk)
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" style="width:25px;height:25px" /> Terraform CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-cdktf)
 
 Sample projects using the packages above:
 
-  - [TypeScript, AWS CDK](./samples/projects/awscdk-typescript/README.md) for [AWS](https://aws.amazon.com)
-  - [TypeScript, Terraform CDK](./samples/projects/cdktf-typescript/README.md) for [Digital Ocean](https://digitalocean.com)
+  - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" style="width:25px;height:25px" /> [AWS CDK](./samples/projects/awscdk-typescript/README.md) for [AWS](https://aws.amazon.com)
+  - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" style="width:25px;height:25px" /> [Terraform CDK](./samples/projects/cdktf-typescript/README.md) for [Digital Ocean](https://digitalocean.com)
 
 ## [Documentation](https://openfabr.github.io/cdf/)
 
