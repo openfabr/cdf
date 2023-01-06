@@ -8,6 +8,10 @@ import { ProjectComponent, ProjectComponentOpts } from '@openfabr/cdf/build/main
 import * as pulumi from '@pulumi/pulumi';
 import { ComponentResource, Output } from '@pulumi/pulumi';
 import {error, log} from 'console'
+import { Network } from '../src/constructs/network';
+import { ecsCluster, Services } from '../src/constructs/services';
+import { Components } from '../src/constructs/components';
+import { Relations } from '../src/constructs/relations';
 
 
 class LocalProjectComponent<
@@ -18,9 +22,15 @@ class LocalProjectComponent<
   SC extends ServiceConfig,
   RC extends RelationConfig
 > extends ComponentResource {
-  //readonly network: Network;
 
   readonly outputs: Map<string, any>;
+  readonly network: Network;
+  readonly services: Services;
+  readonly components: Components;
+  readonly relations: Relations;
+  //readonly mycluster: ecsCluster;
+
+  
 
   constructor(
     name: string,
@@ -34,8 +44,8 @@ class LocalProjectComponent<
 
     new ResultHandler(
       (outputs: cdf.InfraPlanOutputs) => {
-        o = outputs; //.get("network") as Network
-        //console.log("resulthandler: ", o)
+        o = outputs; 
+        
         //this.outputs = o; 
       },
       (err: cdf.PlanError) => {
@@ -44,7 +54,18 @@ class LocalProjectComponent<
     ).handle(result);
 
     //more generic but less ituitive. will need more supporting docs and exmaples 
+    //log("resulthandler output: ", o!)
+
     this.outputs = o!;
+    this.network = o!.get("network") as Network;
+    this.services = o!.get("services") as Services;
+    this.components = o!.get("components") as Components;
+    this.relations = o!.get("relations") as Relations;
+
+    
+    // so we can take a peak at the output object to help write unit tests.
+    log("this an cluster services: ", this.services.ecsClusters["my-cluster"].services);
+    
 
     (props.handler ?? ResultHandler.DEFAULT).handle(result);
 
@@ -90,9 +111,6 @@ export const rootComponent = localinitProjectComponent( //note: the `export`
   new PackagePlanner(),
   [],
   "rootComponent",
-  // new ResultHandler((outputs) => {
-  //   const n = outputs.get("network") as Network
-  // })
 );
 
 

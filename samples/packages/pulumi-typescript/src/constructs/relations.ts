@@ -19,7 +19,7 @@ export interface RelationsArgs {
 
 
 /**
- * The CDF `Component` constructure type is a subset of the Pulumi ComponentResource type therefore the concept doesn't have the exact same means between the two frameworks.
+ * The CDF `Relations` constructure type is a subset of the Pulumi ComponentResource type therefore the concept doesn't have the exact same means between the two frameworks.
  */
 export class Relations extends pulumi.ComponentResource {
 

@@ -52,11 +52,23 @@ describe("OpenFABR CDF sample Pulumi Package - Services", () => {
         infra = await import("./test-bootstrap");
     });
 
-    describe("backend API container", () => {
-        it("`name` is `test-api`", async () => {
-            // const serviceName = await promiseOf(infra.rootComponent.outputs.get("test-api").service.name);
+    describe("Cluster", () => {
+        it("`name` is `my-cluster`", async () => {
+
+           
+            const cluster = infra.rootComponent.services.ecsClusters["my-cluster"].cluster;
+            //const service = await promiseOf(infra.rootComponent.services.ecsClusters["my-cluster"]!.services["test-api"]!.service.name);
+            expect(cluster).toBeDefined;
+
+            //const cluster = await promiseOf(infra.rootComponent.outputs.get("services")["my-cluster"] as pulumi.Output<ecsCluster>);
             // log(serviceName);
-            // expect(serviceName).toBe("test-api");
+            // const t = infra.rootComponent.outputs.get("services") as {[key: string]: pulumi.Output<ecsCluster>};
+
+            // expect(t).toBeDefined;
+            // expect(t["my-cluster"]).toBeDefined;
+            //const c = await promiseOf(t["my-cluster"]);
+            //expect(c).toBeDefined;
+            //expect(c.services!["test-api"]).toBeDefined
         });
     });
 });
