@@ -36,6 +36,9 @@ export class Network extends pulumi.ComponentResource {
    */
   readonly DefaultSubnets: aws.ec2.DefaultSubnet[]
 
+  readonly vpcName: pulumi.Output<string>;
+  readonly vpcId: string | undefined;
+
 
   constructor(type: string, name: string, args?: NetworkArgs | undefined, opts?: pulumi.ComponentResourceOptions | undefined, remote?: boolean | undefined) {
     super(type, name, args, opts, remote);
@@ -50,38 +53,41 @@ export class Network extends pulumi.ComponentResource {
       }],
     });
 
-    const vpcId = args?.config.network.vpc.name;
-    const vpcName= args?.config.network.vpc.name;
+    this.vpcId = args?.config.network.vpc.name;
+    this.vpcName = pulumi.concat(args?.config.network.vpc.name);
+    //this.vpc = new aws.ec2.Vpc("fabrtest")
 
-    if (vpcName == "default-vpc") {
+    if (args?.config.network.vpc.name == "default-vpc") {
       this.vpc = new aws.ec2.DefaultVpc("default-vpc");
-    } else if (vpcId) {
-      this.vpc = aws.ec2.getVpc({ id: vpcId }, {parent: this})
+    } else if (this.vpcId) {
+      this.vpc = aws.ec2.getVpc({ id: this.vpcId }, {parent: this})
+      this.vpcName = pulumi.concat("");
+      
     } else {
-      this.vpc = new aws.ec2.Vpc(vpcName!, {}, {parent: this})
+      this.vpc = new aws.ec2.Vpc(args!.config.network.vpc.name, {}, {parent: this})
       //TODO: flesh out with config like subnets etc.
     }
 
 
 
-    getAvailabilityZonesResult.then((azs) => {
+    // getAvailabilityZonesResult.then((azs) => {
 
-      azs.zoneIds.map((zid, i) => {
-        const azName = azs.names[i];
+    //   azs.zoneIds.map((zid, i) => {
+    //     const azName = azs.names[i];
 
-        this.AvailabilityZonesInRegion.push({ id: zid, name: azName });
-      });
-    });
+    //     this.AvailabilityZonesInRegion.push({ id: zid, name: azName });
+    //   });
+    // });
 
 
-    this.AvailabilityZonesInRegion.map((az)=>{
-      this.DefaultSubnets.push(new aws.ec2.DefaultSubnet(az.name, {
-        availabilityZone: az.name,
-        tags: {
-          Name: `${az.name}`,
-        },
-      }, { parent: this }));
-    });
+    // this.AvailabilityZonesInRegion.map((az)=>{
+    //   this.DefaultSubnets.push(new aws.ec2.DefaultSubnet(az.name, {
+    //     availabilityZone: az.name,
+    //     tags: {
+    //       Name: `${az.name}`,
+    //     },
+    //   }, { parent: this }));
+    // });
 
 
 
@@ -100,6 +106,8 @@ export class Network extends pulumi.ComponentResource {
     //   subnetConfiguration: subnets,
     //   ... { ipAddresses: addresses },
     // });
+
+    this.registerOutputs();
   }
 
 

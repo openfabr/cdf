@@ -11,7 +11,7 @@ function promiseOf<T>(output: pulumi.Output<T>): Promise<T> {
     return new Promise(resolve => output.apply(resolve));
 }
 
-describe("OpenFABR CDF sample Pulumi Package", () => {
+describe("OpenFABR CDF sample Pulumi Package - Network", () => {
 // Define the infra variable as a type whose shape matches that of the
     // to-be-defined resources module.
     // https://www.typescriptlang.org/docs/handbook/2/typeof-types.html
@@ -50,12 +50,10 @@ describe("OpenFABR CDF sample Pulumi Package", () => {
         infra = await import("./test-bootstrap");
     });
 
-    describe("Jest setup works", () => {
-        it("test Bucket name is `my-test-bucket`", async () => {
-            
-            const bucketName = await promiseOf(infra.mybucket.bucket)
-            
-            expect(bucketName).toBe("my-test-bucket")
+    describe("VPC", () => {
+        it("`name` is `default-vpc`", async () => {
+            const vpcname = await promiseOf((infra.rootComponent.outputs.get("network") as Network).vpcName);
+            expect(vpcname).toBe("default-vpc");
         });
     });
 });

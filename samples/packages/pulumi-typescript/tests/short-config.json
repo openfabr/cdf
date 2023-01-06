@@ -9,37 +9,36 @@
     },
     "domain": "acme.com"
   },
-  "components": [
-    {
-      "name": "static-website-hosting",
-      "type": "distribution",
-      "subtype": "website",
-      "details": [
-        {
-          "name": "test-static-website",
-          "hostName": "staticsite",
-          "domain": "test.fabrhq.dev"
-        }
-      ]
-    }
-  ],
+  "components": [],
   "services": [
     {
-      "name": "ecs-farget",
+      "name": "my-cluster",
       "type": "container",
       "subtype": "ecs",
       "details": [
         {
-          "name": "web-service",
-          "application": "PUBLIC",
-          "dockerfilePath": "/test-apps/api",
-          "cpu": 512,
-          "mem": 2048,
+          "name": "test-api",
+          "applicationType": "PUBLIC_LOADBALANCED",
+          "containerImage": "docker.io/janaka/test-api",
+          "cpu": 256,
+          "mem": 512,
           "replicas": 2
         }
       ]
+    },
+    {
+      "name": "static-websites",
+      "type": "distribution",
+      "subtype": "website",
+      "details": [
+        {
+          "name": "my-website",
+          "hostName": "my-website",
+          "domain": "test.fabrhq.dev"
+        }
+
+      ]
     }
   ],
-  "relations": [
-  ]
+  "relations": []
 }
