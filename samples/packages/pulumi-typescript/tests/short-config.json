@@ -1,0 +1,44 @@
+{
+  "general": {
+    "name": "fabr-sample"
+  },
+  "network": {
+    "name": "default-vpc",
+    "vpc": {
+      "name": "default-vpc"
+    },
+    "domain": "acme.com"
+  },
+  "components": [],
+  "services": [
+    {
+      "name": "my-cluster",
+      "type": "container",
+      "subtype": "ecs",
+      "details": [
+        {
+          "name": "test-api",
+          "applicationType": "PUBLIC_LOADBALANCED",
+          "containerImage": "docker.io/janaka/test-api",
+          "cpu": 256,
+          "mem": 512,
+          "replicas": 2
+        }
+      ]
+    },
+    {
+      "name": "static-websites",
+      "type": "distribution",
+      "subtype": "website",
+      "details": [
+        {
+          "name": "my-website",
+          "hostName": "my-website",
+          "domain": "test.fabrhq.dev"
+        }
+
+      ]
+    }
+  ],
+  "relations": []
+}
