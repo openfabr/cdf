@@ -102,3 +102,4 @@ Tools and libraries in use include:
 - [Conventional Commits](https://www.conventionalcommits.org/) spec is strictly followed which enabled the use of [Release Please](https://github.com/googleapis/release-please) across CDF releases in different languages.
 
 - [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) is used to generate the doc site from [markdown format](https://www.markdownguide.org/basic-syntax/). A Github Actions workflow handles CI/CD. It can also be [previewed locally](./preview-docs.sh) before creating pull requests.
+- [<img src="https://localstack.cloud/images/header-logo-new.svg" alt="LocalStack logo" style="height:30px; margin-top:10px;"/>](https://localstack.cloud) used to speed up development.
