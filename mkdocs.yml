@@ -75,6 +75,8 @@ nav:
   - Home: index.md
   - Introduction:
     - What is CDF: introduction/what-is-cdf.md
+    - Why MODULAR: introduction/why-modular.md
+    - Why CUSTOM: introduction/why-custom.md
     - React for Infrastructure-as-Code: introduction/react-for-iac.md
   - Getting Started:
     - Quick Start: getting-started/quick-start.md

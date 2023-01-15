@@ -10,9 +10,13 @@ We envisage a future where application developers (in product engineering) and D
 
 Ad-hoc, bespoke infra build project after project should be a thing of past. There are common patterns emerging that can be encapsulated into reusable modules, or L2/L3 constructs as AWS would call them. Bigger engineering organisations with platform engineering function also tend to have their own opinions about how their internal cloud operations can be constructed by high-level components, which in turn can be offered to the product engineering counterpart in the same organisation.  
 
+Read more [here](./why-modular.md).
+
 ## CUSTOM: Project-specific Code Blocks
 
 Abstraction (via packages mentioned above) is hard, and almost impossible to work without an escape hatch, because every infra project could have its own quirks, e.g. special permissions, external dependencies, or even different domain names. OpenFABR CDF fully acknowledges it by offering an inversion-of-control based custom code block feature for application developers to access all underlying cloud resources fully, for customisation.  
+
+Read more [here](./why-custom.md).
 
 ## The Framework
 
