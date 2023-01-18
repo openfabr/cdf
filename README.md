@@ -36,7 +36,7 @@ OpenFABR CDF aims to offer a brand new way of building cloud infrastructure, bas
 
 ![CDF: MODULAR + CUSTOM](./docs/assets/cdf-module_custom.png)
 
-We envisage a future where application developers (in product engineering) and DevOps engineers (in platform engineering) collaborate by code in a true Infrastructure-as-Code manner. There are various IaC runtime, imperative language supports and existing software delivery infrastructure such as code and artefact repositories. OpenFABR CDF is the missing piece that makes it happen.
+We envisage a future where application developers (in product engineering) and DevOps/Cloud engineers (in platform engineering) collaborate by code in a true Infrastructure-as-Code manner. OpenFABR CDF is the missing piece, the glue, that brings the entire tool chain together from IaC runtimes like CDK, to imperative languages like TypeScript, testing frameworks like Jest, and artefact repositories like NPM.
 
 ### MODULAR: Reusable, High-level Packages
 
@@ -56,6 +56,8 @@ For application developers, OpenFABR CDF is the framework that pieces together a
 For DevOps/Cloud/Platform engineers, adopting OpenFABR CDF means following a separation-of-concern approach by implementing modular, reusable packages from day one.
 
 Best of all, OpenFABR CDF does not have any opinions about what IaC runtime (AWS CDK and Terraform CDK; Pulumi and others coming soon) and language (Typescript; Python, Java, C# and Golang coming soon) one should use. It allows engineering organisations to pick their favourite runtime and language. It forms the foundation of an internal cloud platform and leaves the opinions about how to implement cloud infrastructure to package authors and application developers.
+
+![CDF Stack Overview](./docs/assets/cdf-stack-overview.png)
 
 ## Use
 

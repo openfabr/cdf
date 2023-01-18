@@ -28,3 +28,5 @@ For application developers, OpenFABR CDF is the framework that pieces together a
 For DevOps/Cloud/Platform engineers, adopting OpenFABR CDF means following a separation-of-concern approach by implementing modular, reusable packages from day one. It enables producing a clean contract with product engineers precisely defining what infrastructure is available and how to use it. 
 
 Best of all, OpenFABR CDF does not have any opinions about what IaC runtime (AWS CDK, CDK Terraform, and Pulumi) and language (Typescript; Python, Java, C# and Golang coming soon) one should use. It allows engineering organisations to pick what aligns with their stack and skills. It forms the foundation of an internal cloud platform and leaves the opinions about how to implement cloud infrastructure to package authors and application developers.
+
+![CDF Stack Overview](../assets/cdf-stack-overview.png)

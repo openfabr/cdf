@@ -10,9 +10,9 @@ Let's look at the **reasons** behind the claim and then the **similarities** and
 
 As developers, for a long time, we have benefited from frameworks that boost productivity when developing in certain languages. Think *Ruby on Rails* for *Ruby*, or *Spring (Boot)* for *Java*. 
 
-The arrival of *React* has completely changed how we develop UI (React DOM on web, React Native on mobile). Yes, we have had *JavaScript* for as many years as Internet, which seems to give us good enough web development experience. But there was nothing like React that gives us a component-based approach while marrying *HTML* and *JavaScript* seamlessly, and seeing *TypeScript* gaining popularity as a result. 
+The arrival of *React* has completely changed how we develop UI (React DOM on web, React Native on mobile). Yes, we have had *JavaScript* for as many years as Internet, which seems to give us good enough web development experience; along came the likes of *Angular* and other full-stack web framework that took an largely object-oriented view on how to develop. But there was nothing like *React* that gives us a component-based approach while marrying *HTML* and *JavaScript* seamlessly, and seeing *TypeScript* gaining popularity as a result. 
 
-*CDF* is aiming to do the same, in a different space. 
+*CDF* is aiming to do the same, in the cloud infrastructure space. 
 
 ## What's in Common
 
