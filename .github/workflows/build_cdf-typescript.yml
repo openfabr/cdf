@@ -7,12 +7,14 @@ on:
     paths:
       - "core/typescript/**"
       - ".github/workflows/build_cdf-typescript.yml"
+      - "!**/*.md"
   pull_request:
     branches:
       - "main"
     paths:
       - "core/typescript/**"
       - ".github/workflows/build_cdf-typescript.yml"
+      - "!**/*.md"
 
 defaults:
   run:

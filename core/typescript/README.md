@@ -6,7 +6,7 @@ See [GitHub](https://github.com/openfabr/cdf) for details.
 
 In particular, 
 
-- [Getting Started](https://openfabr.github.io/cdf/get-started/quick-start/)
+- [Getting Started](https://openfabr.github.io/cdf/getting-started/quick-start/)
 - [User Guide](https://openfabr.github.io/cdf/user-guide/overview/)
 - [API References](https://openfabr.github.io/cdf/references/typescript/)
 

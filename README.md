@@ -1,19 +1,22 @@
 # OpenFABR Cloud Development Framework (CDF)
 
-**OpenFABR CDF: The IaC framework to build cloud infrastructure faster**
+**The IaC framework to build cloud infrastructure faster**
+
+Because it is **React for Infrastructure-as-Code** - [see why](./docs/introduction/react-for-iac.md)
 
 *developed and sponsored by [FABR](https://fabrhq.com?utm_source=openfabr-cdf-docs&utm_medium=md-doc&utm_campaign=general-oss)*
 
 ![OpenFABR CDK header](./docs/assets/header-640x320.png)
 
-| ![AWS CDK](./docs/assets/3rd-party/awscdk-icon-v2.png) | ![Terraform CDK](./docs/assets/3rd-party/cdktf-icon.png) | ![CDK8s](./docs/assets/3rd-party/cdk8s-icon-v2.png) | ![Pulumi](./docs/assets/3rd-party/pulumi-icon.png) |
+| ![AWS CDK](./docs/assets/3rd-party/awscdk-icon-v2.png) | ![Terraform CDK](./docs/assets/3rd-party/cdktf-icon.png) | ![cdk8s](./docs/assets/3rd-party/cdk8s-icon-v2.png) | ![Pulumi](./docs/assets/3rd-party/pulumi-icon.png) |
 | :-- | :--: | :--: | --: |
-| AWS CDK | Terraform CDK | CDK8s | Pulumi |
+| AWS CDK | Terraform CDK | cdk8s | Pulumi |
 
 
-Framework:
+Framework(s):
 
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" style="width:25px;height:25px" /> ![NPM](https://img.shields.io/npm/v/@openfabr/cdf)
+- Coming Soon: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" style="width:25px;height:25px" /> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" style="width:25px;height:25px" /> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="Go" style="width:25px;height:25px" /> ([vote](https://github.com/openfabr/cdf/discussions/31))
 
 Packages as reference implementations:
 
@@ -33,7 +36,7 @@ OpenFABR CDF aims to offer a brand new way of building cloud infrastructure, bas
 
 ![CDF: MODULAR + CUSTOM](./docs/assets/cdf-module_custom.png)
 
-We envisage a future where application developers (in product engineering) and DevOps engineers (in platform engineering) collaborate by code in a true Infrastructure-as-Code manner. There are various IaC runtime, imperative language supports and existing software delivery infrastructure such as code and artefact repositories. OpenFABR CDF is the missing piece that makes it happen.
+We envisage a future where application developers (in product engineering) and DevOps/Cloud engineers (in platform engineering) collaborate by code in a true Infrastructure-as-Code manner. OpenFABR CDF is the missing piece, the glue, that brings the entire tool chain together from IaC runtimes like CDK, to imperative languages like TypeScript, testing frameworks like Jest, and artefact repositories like NPM.
 
 ### MODULAR: Reusable, High-level Packages
 
@@ -54,9 +57,11 @@ For DevOps/Cloud/Platform engineers, adopting OpenFABR CDF means following a sep
 
 Best of all, OpenFABR CDF does not have any opinions about what IaC runtime (AWS CDK and Terraform CDK; Pulumi and others coming soon) and language (Typescript; Python, Java, C# and Golang coming soon) one should use. It allows engineering organisations to pick their favourite runtime and language. It forms the foundation of an internal cloud platform and leaves the opinions about how to implement cloud infrastructure to package authors and application developers.
 
+![CDF Stack Overview](./docs/assets/cdf-stack-overview.png)
+
 ## Use
 
-Follow the [Getting Started](./docs/get-started/quick-start.md) to experience the workflow yourself.
+Follow the [Getting Started](./docs/getting-started/quick-start.md) to experience the workflow yourself.
 
 To dive deep, the [User Guide](./docs/user-guide/overview.md) covers the context as well as detailed manuals for both application developers and package authors.
 
@@ -92,7 +97,7 @@ The monorepo is structured in a way that different build tools are used for diff
   - [samples/projects/awscdk-typescript](./samples/projects/awscdk-typescript/README.md) for using the TypeScript AWS CDK package above
   - [samples/projects/cdktf-typescript](./samples/projects/cdktf-typescript/README.md) for using the TypeScript CDKTF package above
 - Documentation:
-  - [Quick Start](./docs/get-started/)
+  - [Quick Start](./docs/getting-started/)
   - [User Guide](./docs/user-guide/)
 
 Tools and libraries in use include:

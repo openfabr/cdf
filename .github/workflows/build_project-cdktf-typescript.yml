@@ -6,13 +6,14 @@ on:
     paths:
       - "samples/projects/cdktf-typescript/**"
       - ".github/workflows/build_project-cdktf-typescript.yml"
+      - "!**/*.md"
   push:
     branches:
       - "main"
     paths:
       - "samples/projects/cdktf-typescript/**"
       - ".github/workflows/build_project-cdktf-typescript.yml"
-
+      - "!**/*.md"
 
 defaults:
   run:

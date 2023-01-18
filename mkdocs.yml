@@ -73,9 +73,14 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
+  - Introduction:
+    - What is CDF: introduction/what-is-cdf.md
+    - Why MODULAR: introduction/why-modular.md
+    - Why CUSTOM: introduction/why-custom.md
+    - React for Infrastructure-as-Code: introduction/react-for-iac.md
   - Getting Started:
-    - Quick Start: get-started/quick-start.md
-    - Writing Tests: get-started/writing-tests.md 
+    - Quick Start: getting-started/quick-start.md
+    - Writing Tests: getting-started/writing-tests.md 
   - User Guide:
     - Overview: user-guide/overview.md
     - Situation: user-guide/situation.md
