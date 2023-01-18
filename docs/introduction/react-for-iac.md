@@ -8,7 +8,7 @@ Let's look at the **reasons** behind the claim and then the **similarities** and
 
 ## React for Building UI v. CDF for Building Infrastructure
 
-We developers have long benefited from the arrivals from frameworks that boost productivity when developing using certain languages. Think *Ruby on Rails* to *Ruby*, or *Spring (Boot)* to *Java*. 
+As developers, for a long time, we have benefited from frameworks that boost productivity when developing in certain languages. Think *Ruby on Rails* for *Ruby*, or *Spring (Boot)* for *Java*. 
 
 The arrival of *React* has completely changed how we develop UI (React DOM on web, React Native on mobile). Yes, we have had *JavaScript* for as many years as Internet, which seems to give us good enough web development experience. But there was nothing like React that gives us a component-based approach while marrying *HTML* and *JavaScript* seamlessly, and seeing *TypeScript* gaining popularity as a result. 
 
@@ -26,11 +26,11 @@ One less obvious point: *React* puts *HTML*, *CSS* and *JS/TS* in one basket and
 
 ## Where They Differ
 
-Managing **state** is tedious but necessary for UI development. One of *React*'s design goals is to simplify it. Cloud infrastructure is different in that we can about two states and two states only: **what it is before the change** and **what it is after the change**. As a result, *CDF* does not need to treat state as a key concept in its design. It does offer **test support** to make sure any change is having desirable effect.
+Managing **state** is tedious but necessary for UI development. One of *React*'s design goals is to simplify it. Cloud infrastructure is different in that we care about two states and two states only: **what it is before the change** and **what it is after the change**. As a result, *CDF* does not need to treat state as a key concept in its design. It does offer **test support** to make sure any change is having desirable effect.
 
 In recent years, *React* has moved away from a class-based component model, to encouraging the use of **functional components and hooks**. Part of the reason is also related to the complexity of state management in UI which may result in questionable patterns and hard-to-understand code. On the contrary, *CDF* follows and advocates **construct-based modularity** which has been made de-facto standard by *AWS CDK* and *Terraform CDK*, which is a kind of class-based component model. Here, a consistent programming and mental model is encouraged and able to be applied universally in constructing both low-level and high-level infrastructure components/modules. 
 
-Last but not least, while *React*'s programming model can be applied universally in UI development, *CDF* consciously makes effort to allow escape hatch which is a common and necessary pattern in cloud infrastructure. This is the **CUSTOM** part in *CDF*'s design principles. 
+Last but not least, while *React*'s programming model can be applied universally in UI development, *CDF* consciously provides an escape hatch which is a common and necessary pattern in cloud infrastructure. We believe that every platform abstraction should provide an escape hatch to the layer below. This is the **CUSTOM** part in *CDF*'s design principles. 
 
 ## One More Thing
 
