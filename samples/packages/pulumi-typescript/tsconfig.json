@@ -15,7 +15,7 @@
       "noImplicitAny": true,
       "noImplicitReturns": true,
       "noImplicitThis": true,
-      "noUnusedLocals": true,
+      "noUnusedLocals": false,
       "noUnusedParameters": true,
       "resolveJsonModule": true,
       "strict": true,
@@ -29,7 +29,7 @@
       "outDir": "dist",
     },
     "include": [
-      "src"
+      "src", "tests"
     ],
     "exclude": [
       "node_modules",

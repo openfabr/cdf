@@ -10,6 +10,9 @@
         "email": "open@fabrhq.com",
         "url": "https://github.com/orgs/openfabr/teams/team-cdf"
     },
+    "scripts": {
+        "test": "jest --silent=false"
+    },
     "engines": {
         "node": ">=16"
     },
@@ -17,7 +20,9 @@
         "dist/**/*"
     ],
     "devDependencies": {
-        "@types/node": "^14"
+        "@types/jest": "^29.2.4",
+        "@types/node": "^14",
+        "ts-jest": "^29.0.3"
     },
     "dependencies": {
         "@openfabr/cdf": "^2.0.0",
