@@ -31,12 +31,13 @@ describe("OpenFABR CDF AWS Pulumi Package - Services", () => {
     });
 
     describe("services - type container_ecs", () => {
-        it("created a cluster named `fargate-cluster`", async () => {
-            const cluster = services.ecsClusters["fargate-cluster"].cluster;
+        it("created a cluster named `my-cluster`", async () => {
+            const cluster = services.ecsClusters["my-cluster"].cluster;
             expect(cluster).toBeDefined;
         });
-        it("created a service named `` in the cluster `fargate-cluster`", async () => {
-            const cluster = services.ecsClusters["fargate-cluster"];
+
+        it("created a service named `test-api` in the cluster `my-cluster`", async () => {
+            const cluster = services.ecsClusters["my-cluster"];
             if (cluster && cluster.services) {
                 expect(cluster.services["test-api"]).toBeDefined;
             }
