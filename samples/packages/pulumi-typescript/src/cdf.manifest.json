@@ -24,7 +24,8 @@
       "icon": "fas:network-wired"
     },
     "components": {
-
+      "types": {
+      }
     },
     "services": {
       "types": {
@@ -33,6 +34,8 @@
       }
     },
     "relations": {
+      "types": {
+      }
     },
     "custom": {
       "icon": "fas:code",
