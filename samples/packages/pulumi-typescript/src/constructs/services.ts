@@ -57,7 +57,7 @@ export class Services extends pulumi.ComponentResource {
         _cluster.loadBalancer = new awsx.lb.ApplicationLoadBalancer(prefix, {}, { parent: this });
 
         (s as RuntimeConfig<PackageServiceContainerEcsConfig>).details.forEach((c) => {
-          if (PackageServiceContainerEcsConfig.serviceAppType(c.applicationType) == ServiceAppType.PUBLIC_LOADBALANCED) {
+          if (c.applicationType == ServiceAppType.PUBLIC_LOADBALANCED) {
             _cluster.services![c.name] = new awsx.ecs.FargateService(c.name, {
               cluster: _cluster.cluster!.arn,
               assignPublicIp: true,
@@ -76,9 +76,9 @@ export class Services extends pulumi.ComponentResource {
                 },
               },
             },);
-          } else if (PackageServiceContainerEcsConfig.serviceAppType(c.applicationType) == ServiceAppType.PRIVATE_LOADBALANCED) {
+          } else if (c.applicationType == ServiceAppType.PRIVATE_LOADBALANCED) {
             // implementation here
-          } else if (PackageServiceContainerEcsConfig.serviceAppType(c.applicationType) == ServiceAppType.PRIVATE_NOT_LOADBALANCED) {
+          } else if (c.applicationType == ServiceAppType.PRIVATE_NOT_LOADBALANCED) {
             // implementation here
           }
       

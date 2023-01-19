@@ -28,8 +28,8 @@ export class PackageServiceStaticWebsiteHostingConfig implements PackageServiceC
     public readonly name: string,
     public readonly hostName?: string,
     public readonly domain?: string, //TODO: figure out how best to handle none AWS hosted DNS management
-    
-  ) {}
+
+  ) { }
 
   public static has(config: cdf.TraitConfig<PackageServiceConfig>): boolean {
     return config.type == this.TYPING.type && config.subtype == this.TYPING.subtype;
@@ -50,27 +50,10 @@ export class PackageServiceContainerEcsConfig implements PackageServiceConfig {
      */
     public readonly containerImage?: string,
     public readonly replicas?: number,
-  ) {}
+  ) { }
 
   public static has(config: cdf.TraitConfig<PackageServiceConfig>): boolean {
     return config.type == this.TYPING.type && config.subtype == this.TYPING.subtype;
   }
 
-  public static exists(config: cdf.TraitConfig<PackageServiceConfig>[]): boolean {
-    return config.find((r) => this.has(r)) ? true : false;
-  }
-
-  public static serviceAppType(serviceAppType?: ServiceAppType): ServiceAppType {
-    switch (serviceAppType) {
-      case ServiceAppType.PUBLIC_LOADBALANCED:
-        return ServiceAppType.PUBLIC_LOADBALANCED
-      case ServiceAppType.PRIVATE_LOADBALANCED:
-        return ServiceAppType.PRIVATE_LOADBALANCED
-      case ServiceAppType.PRIVATE_NOT_LOADBALANCED:
-        return ServiceAppType.PRIVATE_NOT_LOADBALANCED
-      default:
-        return ServiceAppType.DEFAULT
-    }
-  }
-  
 }
