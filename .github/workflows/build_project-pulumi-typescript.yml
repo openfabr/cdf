@@ -1,0 +1,31 @@
+name: Build sample project based on pulumi-typescript RI package
+on: 
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "samples/projects/pulumi-typescript/**"
+      - ".github/workflows/build_project-pulumi-typescript.yml"
+  push:
+    branches:
+      - "main"
+    paths:
+      - "samples/projects/pulumi-typescript/**"
+      - ".github/workflows/build_project-pulumi-typescript.yml"
+
+
+defaults:
+  run:
+    working-directory: samples/projects/pulumi-typescript
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build the sample infra project
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm i -g aws-cdk
+      - run: npm run ci-build
