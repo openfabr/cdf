@@ -11,6 +11,7 @@
         "url": "https://github.com/orgs/openfabr/teams/team-cdf"
     },
     "scripts": {
+        "build": "tsc",
         "test": "jest --silent=false"
     },
     "engines": {
