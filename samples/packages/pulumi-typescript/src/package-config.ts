@@ -42,20 +42,12 @@ export enum RelationTyping {
 }
 
 export class PackageInfraPlanConstructs implements cdf.InfraPlanConstructs {
-  public readonly outputs:InfraPlanOutputs;
   constructor(
     public readonly network: Network,
     //public readonly buckets: { [key: string]: Buckets },
     public readonly websites: { [key: string]: StaticWebsiteHosting },
     public readonly ecsClusters: { [key: string]: ecsCluster },
-  ) { 
-    const _o = new Map<string, any>()
-    _o.set("network", network)
-    
-    //_o.set("test-api", ecsClusters["my-cluster"].services && ecsClusters["my-cluster"].services["test-api"].service)
-    _o.set("websites", websites)
-
-    this.outputs = _o;
+  ) {
   }
 }
 
@@ -75,8 +67,13 @@ export class PackagePlanner implements cdf.Planner<PackageInfraPlanConstructs, P
         // services.taskdefs, services.services, services.cluster, 
       );
 
-  
-      const ip:cdf.InfraPlan<PackageInfraPlanConstructs> = new cdf.InfraPlan(constructs, constructs.outputs)
+      const outputs: InfraPlanOutputs = new Map<string, any>();
+      outputs.set("services", services)
+      outputs.set("network", network)
+      outputs.set("components", components)
+      outputs.set("relations", relations)
+
+      const ip: cdf.InfraPlan<PackageInfraPlanConstructs> = new cdf.InfraPlan(constructs, outputs)
       return ok(ip);
     } catch (e) {
       return err(e instanceof Error ? { message: e.message } : { message: 'Unknown error' });

@@ -52,7 +52,8 @@ describe("OpenFABR CDF sample Pulumi Package - Network", () => {
 
     describe("VPC", () => {
         it("`name` is `default-vpc`", async () => {
-            const vpcname = await promiseOf((infra.rootComponent.outputs.get("network") as Network).vpcName);
+            //const vpcname = await promiseOf((infra.rootComponent.outputs.get("network") as Network).vpcName);
+            const vpcname = await promiseOf(infra.rootComponent.network.vpcName);
             expect(vpcname).toBe("default-vpc");
         });
     });

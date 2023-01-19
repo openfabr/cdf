@@ -39,7 +39,6 @@ export class Services extends pulumi.ComponentResource {
     this.websites = {};
     this.ecsClusters = {};
 
-
     args?.config.services.forEach(s => {
       if (PackageServiceStaticWebsiteHostingConfig.has(s)) {
       //log("count:", (s.details[0] as PackageServiceStaticWebsiteHostingConfig).name)
@@ -52,7 +51,7 @@ export class Services extends pulumi.ComponentResource {
         });
       } else if (PackageServiceContainerEcsConfig.has(s)) {
 
-        const clusterName = `${s.name}-cluster`
+        const clusterName = `${s.name}`
         const _cluster: ecsCluster = {};
         _cluster.services = {};
         // create service def
@@ -89,9 +88,9 @@ export class Services extends pulumi.ComponentResource {
           } else if (PackageServiceContainerEcsConfig.serviceAppType(c.applicationType) == ServiceAppType.PRIVATE_LOADBALANCED) {
             // to be implemented
           }
-          this.ecsClusters[clusterName] = _cluster;
-
         });
+
+        this.ecsClusters[clusterName] = _cluster;
       }
     });
 
