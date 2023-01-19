@@ -28,6 +28,20 @@ jobs:
         with:
           node-version: 16
       - run: npm i
+      - name: Start LocalStack
+        env:
+          LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+        run: |
+          pip install localstack pulumilocal        # install LocalStack cli and pulumilocal
+          docker pull localstack/localstack         # Make sure to pull the latest version of the image
+          localstack start -d                       # Start LocalStack in the background
+          
+          echo "Waiting for LocalStack startup..."  # Wait 30 seconds for the LocalStack container
+          localstack wait -t 30                     # to become ready before timing out 
+          echo "Startup complete"          
       - uses: pulumi/actions@v3
         with:
           command: preview
+          stack-name: openfabr/localstack           # Pulumi.localstack.yaml has `aws:endpoit` configured to the localstack endpoint
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_OPENFABRORG_ACCESS_TOKEN }}
