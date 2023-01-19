@@ -12,10 +12,7 @@ const rootComponent = cdf.pulumi.initProjectComponent(
 
   config as PackageInfraConfig,
   new PackagePlanner(),
-  [
-    new CustomModuleOne(),
-    new CustomModuleAnother(),
-  ],
+  [],
   "rootComponent",
 
 );
