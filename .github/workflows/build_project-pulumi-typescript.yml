@@ -40,6 +40,7 @@ jobs:
       - uses: pulumi/actions@v3
         with:
           command: preview
-          stack-name: openfabr/localstack           # Pulumi.localstack.yaml has `aws:endpoit` configured to the localstack endpoint
+          stack-name: openfabr/localstack
+          work-dir: samples/projects/pulumi-typescript     # Pulumi.localstack.yaml has `aws:endpoit` configured to the localstack endpoint
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_OPENFABRORG_ACCESS_TOKEN }}
