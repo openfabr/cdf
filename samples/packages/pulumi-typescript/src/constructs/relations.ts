@@ -26,7 +26,8 @@ export class Relations extends pulumi.ComponentResource {
   constructor(type: string, name: string, args?: RelationsArgs | undefined, opts?: pulumi.ComponentResourceOptions | undefined, remote?: boolean | undefined) {
     super(type, name, args, opts, remote);
 
-
+    // must be at the end of constructor
+    this.registerOutputs();
   }
 
 }
