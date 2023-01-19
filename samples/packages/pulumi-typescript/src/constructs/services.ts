@@ -15,18 +15,13 @@ export interface ServicesArgs {
   vpc: aws.ec2.Vpc | aws.ec2.DefaultVpc | Promise<aws.ec2.GetVpcResult>
 }
 
-// export interface StaticWebsiteHosting {
-//   bucket: aws.s3.Bucket,
-//   distribution: aws.cloudfront.Distribution,
-// }
-
 export interface ecsCluster {
   cluster?: aws.ecs.Cluster,
   loadBalancer?: awsx.lb.ApplicationLoadBalancer | awsx.lb.NetworkLoadBalancer,
   services?: { [key: string]: awsx.ecs.FargateService }
 }
 /**
- * The CDF `Component` construct type is a subset of the Pulumi ComponentResource type therefore the concept doesn't have the exact same means between the two frameworks.
+ * The CDF `Service` construct type is a subset of the Pulumi ComponentResource type therefore the concept doesn't have the exact same meaning as in CDK.
  */
 export class Services extends pulumi.ComponentResource {
 
@@ -41,12 +36,10 @@ export class Services extends pulumi.ComponentResource {
 
     args?.config.services.forEach(s => {
       if (PackageServiceStaticWebsiteHostingConfig.has(s)) {
-      //log("count:", (s.details[0] as PackageServiceStaticWebsiteHostingConfig).name)
+      
         s.details.map(w => w as PackageServiceStaticWebsiteHostingConfig).forEach(w => {
-        log("w: ", w.name)
-        //const sw = new StaticWebsiteHosting(w.name)
-
-        //   this.websites[w.name] = sw
+        
+        this.websites[w.name] = new StaticWebsiteHosting(w.name)
 
         });
       } else if (PackageServiceContainerEcsConfig.has(s)) {
@@ -72,9 +65,8 @@ export class Services extends pulumi.ComponentResource {
               desiredCount: c.replicas,
               taskDefinitionArgs: {
                 container: { // single container to keep the example simple
-                  //...args?.fargateArgs.container,
                   name: c.name,
-                  image: c.containerImage, //"docker.io/janaka/test-api", // Publish image on DockerHub
+                  image: c.containerImage, // format: "docker.io/janaka/test-api", Publish image on DockerHub
                   cpu: c.cpu,
                   memory: c.mem,
                   essential: true,
@@ -86,8 +78,11 @@ export class Services extends pulumi.ComponentResource {
               },
             },);
           } else if (PackageServiceContainerEcsConfig.serviceAppType(c.applicationType) == ServiceAppType.PRIVATE_LOADBALANCED) {
-            // to be implemented
+            // implementation here
+          } else if (PackageServiceContainerEcsConfig.serviceAppType(c.applicationType) == ServiceAppType.PRIVATE_NOT_LOADBALANCED) {
+            // implementation here
           }
+      
         });
 
         this.ecsClusters[clusterName] = _cluster;
