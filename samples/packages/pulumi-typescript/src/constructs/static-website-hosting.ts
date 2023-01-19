@@ -92,7 +92,7 @@ export class StaticWebsiteHosting extends pulumi.ComponentResource {
   }
 
 
-  private createWebsiteCloudFrontDistribution(namePrefix: string, contentBucket: Bucket, originAccessIdentity: OriginAccessIdentity, customDomain?: string, certificateArn?: pulumi.Input<string>): Distribution {
+  private createWebsiteCloudFrontDistribution(namePrefix: string, contentBucket: Bucket, originAccessIdentity: OriginAccessIdentity, customDomain?: string, _certificateArn?: pulumi.Input<string>): Distribution {
 
     const tenMinutes = 60 * 10;
 
