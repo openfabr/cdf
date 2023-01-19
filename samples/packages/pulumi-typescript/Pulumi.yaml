@@ -1,3 +1,0 @@
-name: pulumi-typescript
-runtime: nodejs
-description: OpenFABR CDF Package for AWS using Pulumi Typescript
