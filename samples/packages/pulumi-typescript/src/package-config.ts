@@ -1,15 +1,7 @@
-import * as aws from '@pulumi/aws';
-import * as awsx from '@pulumi/awsx';
-import * as pulumi from '@pulumi/pulumi';
 import { ok, err, Result } from 'neverthrow';
 import * as cdf from "@openfabr/cdf";
 import { ecsCluster } from "./constructs/services";
-//import { Components, StaticWebsiteHosting } from "./construct/components";
 import { Network } from "./constructs/network";
-//import { Services } from "./construct/services";
-//import { Relations } from "./construct/relations";
-//import * as manifest from "./cdf.manifest.json";
-//import { PackageManifest } from "@openfabr/cdf";
 import { PackageNetworkConfig } from './package-network-config';
 import { PackageServiceStaticWebsiteHostingConfig, PackageServiceContainerEcsConfig, PackageServiceConfig } from './package-service-config';
 import { Components, PackageComponentConfig } from './constructs/components';

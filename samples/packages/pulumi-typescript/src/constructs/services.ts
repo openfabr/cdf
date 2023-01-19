@@ -58,7 +58,6 @@ export class Services extends pulumi.ComponentResource {
 
         (s as RuntimeConfig<PackageServiceContainerEcsConfig>).details.forEach((c) => {
           if (PackageServiceContainerEcsConfig.serviceAppType(c.applicationType) == ServiceAppType.PUBLIC_LOADBALANCED) {
-            log("service name: ", c.name);
             _cluster.services![c.name] = new awsx.ecs.FargateService(c.name, {
               cluster: _cluster.cluster!.arn,
               assignPublicIp: true,
