@@ -39,7 +39,7 @@ export class Services extends pulumi.ComponentResource {
       
         s.details.map(w => w as PackageServiceStaticWebsiteHostingConfig).forEach(w => {
         
-        this.websites[w.name] = new StaticWebsiteHosting(w.name)
+        this.websites[w.name] = new StaticWebsiteHosting(w.name,{}, { parent: this })
 
         });
       } else if (PackageServiceContainerEcsConfig.has(s)) {
