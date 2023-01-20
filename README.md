@@ -22,6 +22,7 @@ Packages as reference implementations:
 
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" style="width:25px;height:25px" /> AWS CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-awscdk)
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" style="width:25px;height:25px" /> Terraform CDK: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-cdktf)
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" style="width:25px;height:25px" /> Pulumi: ![NPM](https://img.shields.io/npm/v/@openfabr/package-ri-pulumi)
 
 Sample projects using the packages above:
 
@@ -93,6 +94,7 @@ The monorepo is structured in a way that different build tools are used for diff
 - Packages as reference implementations:
   - [samples/packages/awscdk-typescript](./samples/packages/awscdk-typescript/README.md) for TypeScript based AWS CDK package
   - [samples/packages/cdktf-typescript](./samples/packages/cdktf-typescript/README.md) for TypeScript based CDKTF package
+  - [samples/packages/pulumi-typescript](./samples/packages/pulumi-typescript/README.md) for TypeScript based Pulumi package
 - Sample projects based on the use of the packages above:
   - [samples/projects/awscdk-typescript](./samples/projects/awscdk-typescript/README.md) for using the TypeScript AWS CDK package above
   - [samples/projects/cdktf-typescript](./samples/projects/cdktf-typescript/README.md) for using the TypeScript CDKTF package above
