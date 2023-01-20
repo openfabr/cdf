@@ -3,6 +3,9 @@
     "core/typescript": {
       "component": "cdf-typescript"
     },
+    "samples/packages/pulumi-typescript": {
+      "component": "package-ri-pulumi-typescript"
+    },
     "samples/packages/cdktf-typescript": {
       "component": "package-ri-cdktf-typescript"
     },

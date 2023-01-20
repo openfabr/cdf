@@ -1,5 +1,6 @@
 {
   "core/typescript": "2.0.0",
+  "samples/packages/pulumi-typescript": "1.0.0",
   "samples/packages/awscdk-typescript": "2.0.0",
   "samples/packages/cdktf-typescript": "3.0.0"
 }
