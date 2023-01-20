@@ -1,0 +1,37 @@
+{
+    "name": "@openfabr/package-ri-pulumi",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "license": "AGPL-3.0-only",
+    "homepage": "https://openfabr.github.io/cdf",
+    "author": {
+        "name": "OpenFABR CDF Contributors",
+        "email": "open@fabrhq.com",
+        "url": "https://github.com/orgs/openfabr/teams/team-cdf"
+    },
+    "scripts": {
+        "build": "tsc",
+        "test": "jest --silent=false"
+    },
+    "engines": {
+        "node": ">=16"
+    },
+    "files": [
+        "dist/**/*"
+    ],
+    "devDependencies": {
+        "@types/jest": "^29.2.4",
+        "@types/node": "^14",
+        "ts-jest": "^29.0.3"
+    },
+    "dependencies": {
+        "@openfabr/cdf": "^2.0.0",
+        "neverthrow": "^5.0.1"
+    },
+    "peerDependencies": {
+        "@pulumi/aws": "^5.0.0",
+        "@pulumi/awsx": "^1.0.0",
+        "@pulumi/pulumi": "^3.0.0"
+    }
+}

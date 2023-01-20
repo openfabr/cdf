@@ -1,4 +1,4 @@
-name: Build RI package for Terraform CDK
+name: Build RI package for CDK Terraform
 on: 
   pull_request:
     branches:

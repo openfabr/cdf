@@ -1,0 +1,45 @@
+{
+  "$schema": "https://openfabr.github.io/cdf/references/typescript/2.0.0/manifest.schema.json",
+  "identifier": "pulumi-typescript",
+  "vendor": "OpenFABR",
+  "license": "AGPL-3.0-only",
+  "cdf": "^2.0.0",
+  "name": "pulumi-typescript",
+  "description": "A sample package using Pulumi with TypeScript",
+  "support": {
+    "email": "open@fabr.ltd",
+    "url": "https://open.fabrhq.com"
+  },
+  "tooling": {
+    "command": "pulumi up",
+    "runtime": "pulumi",
+    "language": "typescript",
+    "vendors": [
+      "AWS"
+    ]
+  },
+  "constructs": {
+    "schema": "schema.json",
+    "network": {
+      "icon": "fas:network-wired"
+    },
+    "components": {
+      "types": {
+      }
+    },
+    "services": {
+      "types": {
+        "CONTAINER_ECS": { "type": "container", "subtype": "ecs", "deployment": "Use AWS ECR per service to trigger deployment", "icon": "fas:cube", "description": "Container runtime via AWS ECS" },
+        "DISTRIBUTION_WEBSITE": { "type": "distribution", "subtype": "website", "deployment": "Upload build static website files to the S3 bucket. Using the AWS CLI is one recommended appproach `aws s3 sync <source_folder> s3://<bucket_name> --delete --acl public-read`", "icon": "fas:share-alt", "description": "A static website in a distribution service" }
+      }
+    },
+    "relations": {
+      "types": {
+      }
+    },
+    "custom": {
+      "icon": "fas:code",
+      "template": "template.ts"
+    }
+  }
+}
