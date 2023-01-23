@@ -26,8 +26,7 @@
         "ts-jest": "^29.0.3"
     },
     "dependencies": {
-        "@openfabr/cdf": "^2.0.0",
-        "neverthrow": "^5.0.1"
+        "@openfabr/cdf": "^2.0.0"
     },
     "peerDependencies": {
         "@pulumi/aws": "^5.0.0",
