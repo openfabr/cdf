@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/openfabr/cdf/compare/package-ri-pulumi-typescript-v1.1.0...package-ri-pulumi-typescript-v1.1.1) (2023-01-23)
+
+
+### Bug Fixes
+
+* **Pulumi RI:** renove neverthrow reference ([#64](https://github.com/openfabr/cdf/issues/64)) ([70d0138](https://github.com/openfabr/cdf/commit/70d013859d267e8bba966b170dc431896a797aeb))
+
 ## [1.1.0](https://github.com/openfabr/cdf/compare/package-ri-pulumi-typescript-v1.0.0...package-ri-pulumi-typescript-v1.1.0) (2023-01-20)
 
 
