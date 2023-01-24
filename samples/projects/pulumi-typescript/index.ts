@@ -12,4 +12,3 @@ cdf.pulumi.initProjectComponent(
   [],
   "rootComponent",
 );
-/*  */

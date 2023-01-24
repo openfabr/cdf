@@ -5,7 +5,7 @@
         "@types/node": "^14"
     },
     "dependencies": {
-        "@openfabr/package-ri-pulumi": "^1.0.0",
+        "@openfabr/package-ri-pulumi": "^1.1.1",
         "@pulumi/aws": "^5.0.0",
         "@pulumi/awsx": "^1.0.0",
         "@pulumi/pulumi": "^3.0.0"
