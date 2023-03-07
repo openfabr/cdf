@@ -10,7 +10,14 @@
     "phone": "0800123456789"
   },
   "tooling": {
-    "command": "cdktf deploy",
+    "command": {
+      "provision": "cdktf deploy",
+      "destroy": "cdktf destroy",
+      "others": {
+        "logs": "cdktf logs",
+        "info": "cdktf info"
+      }
+    },
     "runtime": "cdktf",
     "language": "typescript",
     "vendors": [
