@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/openfabr/cdf/compare/cdf-typescript-v2.0.0...cdf-typescript-v3.0.0) (2023-03-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** improve `command` field for cdf manifest ([#69](https://github.com/openfabr/cdf/issues/69))
+
+### Features
+
+* **core:** improve `command` field for cdf manifest ([#69](https://github.com/openfabr/cdf/issues/69)) ([644066c](https://github.com/openfabr/cdf/commit/644066c631ccda389706dc1e34fb59c2932d6465))
+
 ## [2.0.0](https://github.com/openfabr/cdf/compare/cdf-typescript-v1.4.0...cdf-typescript-v2.0.0) (2022-12-22)
 
 
