@@ -26,17 +26,21 @@ export enum CloudVendor {
    */
   GCP = 'GCP',
   /**
-   * Vendor: Digital Ocean
+   * Vendor: DigitalOcean
    */
   DO = 'DO',
   /**
-   * Vendor: CloudFlare
+   * Vendor: Cloudflare
    */
   CF = 'CF',
   /**
    * Vendor: Alibaba Cloud / Aliyun
    */
   ALI = 'ALI',
+  /**
+   * On-premise, usually self-managed infrastructure, including own data centres or own racks, with or without virtualisation.
+   */
+  SELF = 'SELF',
 }
 
 /**
@@ -46,9 +50,25 @@ export enum CloudVendor {
  * @group For both project creators and package authors
  */
 export enum ToolingRuntime {
+  /**
+   * Tooling: AWS CDK, https://aws.amazon.com/cdk/
+   */
   AWSCDK = 'awscdk',
+  /**
+   * Tooling: CDK for Terraform, https://developer.hashicorp.com/terraform/cdktf
+   */
   CDKTF = 'cdktf',
+  /**
+   * Tooling: CDK for K8s, https://cdk8s.io/
+   */
+  CDK8S = 'cdk8s',
+  /**
+   * Tooling: Pulumi, https://www.pulumi.com/
+   */
   PULUMI = 'pulumi',
+  /**
+   * Custom tooling, including other vendors such as Ansible or in-house shell scripts
+   */
   CUSTOM = 'custom',
 }
 
@@ -59,11 +79,33 @@ export enum ToolingRuntime {
  * @group For both project creators and package authors
  */
 export enum ToolingLanguage {
+  /**
+   * Language: TypeScript, https://www.typescriptlang.org/
+   */
   TYPESCRIPT = 'typescript',
+  /**
+   * Language: Python, https://www.python.org/
+   */
   PYTHON = 'python',
+  /**
+   * Language: Java, https://www.java.com/
+   */
   JAVA = 'java',
+  /**
+   * Language: C#, https://learn.microsoft.com/en-us/dotnet/csharp/
+   */
   CSHARP = 'csharp',
+  /**
+   * Language: Go, https://go.dev/
+   */
   GO = 'go',
+  /**
+   * Language: shell scripts, https://en.wikipedia.org/wiki/Shell_script
+   */
+  SHELL = 'shell',
+  /**
+   * Custom (or mixed) solution
+   */
   CUSTOM = 'custom',
 }
 
