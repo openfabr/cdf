@@ -1,0 +1,403 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "CloudVendor": {
+            "description": "A list of cloud vendors.\nThe purpose of defining them is to regulate their names throughout the framework and all packages.",
+            "enum": [
+                "ALI",
+                "AWS",
+                "AZR",
+                "CF",
+                "DO",
+                "GCP",
+                "SELF"
+            ],
+            "title": "CloudVendor",
+            "type": "string"
+        },
+        "ComponentType": {
+            "description": "Interface that represents a typing classification for components.",
+            "properties": {
+                "description": {
+                    "title": "description",
+                    "type": "string"
+                },
+                "icon": {
+                    "title": "icon",
+                    "type": "string"
+                },
+                "subtype": {
+                    "title": "subtype",
+                    "type": "string"
+                },
+                "type": {
+                    "title": "type",
+                    "type": "string"
+                }
+            },
+            "title": "ComponentType",
+            "type": "object"
+        },
+        "ComponentsInfo": {
+            "description": "Interface that represents information about available component constructs.",
+            "properties": {
+                "description": {
+                    "title": "description",
+                    "type": "string"
+                },
+                "icon": {
+                    "title": "icon",
+                    "type": "string"
+                },
+                "types": {
+                    "additionalProperties": {
+                        "$ref": "#/definitions/ComponentType"
+                    },
+                    "description": "Available types and subtypes for components, keyed by a unique identifier among all components/services/relations.",
+                    "title": "types",
+                    "type": "object"
+                }
+            },
+            "title": "ComponentsInfo",
+            "type": "object"
+        },
+        "ConstructsInfo": {
+            "description": "Interface that represents information about custom (code blocks) construct.\nMost notably it includes a reference to the code template.",
+            "properties": {
+                "components": {
+                    "$ref": "#/definitions/ComponentsInfo",
+                    "description": "Information about components.",
+                    "title": "components"
+                },
+                "custom": {
+                    "$ref": "#/definitions/CustomInfo",
+                    "description": "Information about optional custom (code blocks).\nMissing this field implies that the package does NOT support custom code blocks.",
+                    "title": "custom"
+                },
+                "network": {
+                    "$ref": "#/definitions/NetworkInfo",
+                    "description": "Information about optional network.\nMissing this field implies that the package does NOT support customisable virtual network.",
+                    "title": "network"
+                },
+                "relations": {
+                    "$ref": "#/definitions/RelationsInfo",
+                    "description": "Information about relations.",
+                    "title": "relations"
+                },
+                "schema": {
+                    "description": "The reference to the json schema file for creating a valid json config when using the package.",
+                    "title": "schema",
+                    "type": "string"
+                },
+                "services": {
+                    "$ref": "#/definitions/ServicesInfo",
+                    "description": "Information about services.",
+                    "title": "services"
+                }
+            },
+            "title": "ConstructsInfo",
+            "type": "object"
+        },
+        "CustomInfo": {
+            "description": "Interface that represents information about custom (code blocks) construct.\nMost notably it includes a reference to the code template.",
+            "properties": {
+                "description": {
+                    "title": "description",
+                    "type": "string"
+                },
+                "icon": {
+                    "title": "icon",
+                    "type": "string"
+                },
+                "template": {
+                    "description": "The reference to the code template file for creating a valid custom code block when using the package.",
+                    "title": "template",
+                    "type": "string"
+                }
+            },
+            "title": "CustomInfo",
+            "type": "object"
+        },
+        "NetworkInfo": {
+            "description": "Interface that represents information about network construct.",
+            "properties": {
+                "description": {
+                    "title": "description",
+                    "type": "string"
+                },
+                "icon": {
+                    "title": "icon",
+                    "type": "string"
+                }
+            },
+            "title": "NetworkInfo",
+            "type": "object"
+        },
+        "RelationType": {
+            "description": "Interface that represents a typing classification for relations.",
+            "properties": {
+                "bidi": {
+                    "title": "bidi",
+                    "type": "boolean"
+                },
+                "description": {
+                    "title": "description",
+                    "type": "string"
+                },
+                "finish": {
+                    "title": "finish",
+                    "type": "string"
+                },
+                "icon": {
+                    "title": "icon",
+                    "type": "string"
+                },
+                "label": {
+                    "title": "label",
+                    "type": "string"
+                },
+                "start": {
+                    "title": "start",
+                    "type": "string"
+                }
+            },
+            "title": "RelationType",
+            "type": "object"
+        },
+        "RelationsInfo": {
+            "description": "Interface that represents information about available relation constructs, keyed by a unique identifier among all components/services/relations.\nIt relies on the typing definitions in both {@link ComponentInfo} and {@link ServicesInfo}.",
+            "properties": {
+                "description": {
+                    "title": "description",
+                    "type": "string"
+                },
+                "icon": {
+                    "title": "icon",
+                    "type": "string"
+                },
+                "types": {
+                    "additionalProperties": {
+                        "$ref": "#/definitions/RelationType"
+                    },
+                    "description": "Available relations between a specific component/service and another component/service.\nBoth the `start` and `finish` points here refer to the keys defined in `components` and `services` fields.",
+                    "title": "types",
+                    "type": "object"
+                }
+            },
+            "title": "RelationsInfo",
+            "type": "object"
+        },
+        "ServiceType": {
+            "description": "Interface that represents a typing classification for services.\nIn particular, it contains a field for deployment instructions for the type of services defined.",
+            "properties": {
+                "deployment": {
+                    "description": "The deployment instructions.\nThis is normally in plain text; markdown can be used too.",
+                    "title": "deployment",
+                    "type": "string"
+                },
+                "description": {
+                    "title": "description",
+                    "type": "string"
+                },
+                "icon": {
+                    "title": "icon",
+                    "type": "string"
+                },
+                "label": {
+                    "title": "label",
+                    "type": "string"
+                },
+                "subtype": {
+                    "title": "subtype",
+                    "type": "string"
+                },
+                "type": {
+                    "title": "type",
+                    "type": "string"
+                }
+            },
+            "title": "ServiceType",
+            "type": "object"
+        },
+        "ServicesInfo": {
+            "description": "Interface that represents information about available service constructs.",
+            "properties": {
+                "description": {
+                    "title": "description",
+                    "type": "string"
+                },
+                "icon": {
+                    "title": "icon",
+                    "type": "string"
+                },
+                "types": {
+                    "additionalProperties": {
+                        "$ref": "#/definitions/ServiceType"
+                    },
+                    "description": "Available types and subtypes for services, keyed by a unique identifier among all components/services/relations.",
+                    "title": "types",
+                    "type": "object"
+                }
+            },
+            "title": "ServicesInfo",
+            "type": "object"
+        },
+        "SupportInfo": {
+            "description": "Interface that offers support information about the package.",
+            "properties": {
+                "email": {
+                    "description": "The support email address of the package.",
+                    "title": "email",
+                    "type": "string"
+                },
+                "phone": {
+                    "description": "The support phone number of the package.",
+                    "title": "phone",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The URL to the support site of the package.",
+                    "title": "url",
+                    "type": "string"
+                }
+            },
+            "title": "SupportInfo",
+            "type": "object"
+        },
+        "ToolingCommandInfo": {
+            "description": "Interface that offers command information about the underlying tooling in the package.",
+            "properties": {
+                "destroy": {
+                    "description": "The destroy command, such as 'cdktf destroy' for a typical CDK for Terraform based package.",
+                    "title": "destroy",
+                    "type": "string"
+                },
+                "others": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The optional list of other available commands made available by a package.",
+                    "title": "others",
+                    "type": "object"
+                },
+                "provision": {
+                    "description": "The provision command, such as 'cdk deploy' for a typical AWS CDK based package.",
+                    "title": "provision",
+                    "type": "string"
+                }
+            },
+            "title": "ToolingCommandInfo",
+            "type": "object"
+        },
+        "ToolingInfo": {
+            "description": "Interface that offers information about IaC tooling.",
+            "properties": {
+                "command": {
+                    "$ref": "#/definitions/ToolingCommandInfo",
+                    "description": "The information about commands available to manage infra with the package.\n\nIf not present, it is auto-guessed from both `ToolingRuntime` and `ToolingLanguage`; therefore it is recommended to always provide the info.",
+                    "title": "command"
+                },
+                "language": {
+                    "$ref": "#/definitions/ToolingLanguage",
+                    "description": "The supported IaC language.",
+                    "title": "language"
+                },
+                "runtime": {
+                    "$ref": "#/definitions/ToolingRuntime",
+                    "description": "The supported IaC runtime.",
+                    "title": "runtime"
+                },
+                "vendors": {
+                    "description": "The supported cloud vendors.\nUsually a package chooses support one vendor but some choose to have multiple-vendor support.",
+                    "items": {
+                        "$ref": "#/definitions/CloudVendor"
+                    },
+                    "title": "vendors",
+                    "type": "array"
+                }
+            },
+            "title": "ToolingInfo",
+            "type": "object"
+        },
+        "ToolingLanguage": {
+            "description": "A list of IaC languages.\nThe purpose of defining them is to regulate their names throughout the framework and all packages.",
+            "enum": [
+                "csharp",
+                "custom",
+                "go",
+                "java",
+                "python",
+                "shell",
+                "typescript"
+            ],
+            "title": "ToolingLanguage",
+            "type": "string"
+        },
+        "ToolingRuntime": {
+            "description": "A list of IaC runtime.\nThe purpose of defining them is to regulate their names throughout the framework and all packages.",
+            "enum": [
+                "awscdk",
+                "cdk8s",
+                "cdktf",
+                "custom",
+                "pulumi"
+            ],
+            "title": "ToolingRuntime",
+            "type": "string"
+        }
+    },
+    "description": "Interface for modelling a package manifest json file that provides informations about the package.\nCrucially it also carries two references respectively to a) a json schema file for validating json config files and b) a template file for custom code blocks.",
+    "properties": {
+        "cdf": {
+            "description": "The version of OpenFABR CDF that this package is compatible with, following semantic versioning.",
+            "title": "cdf",
+            "type": "string"
+        },
+        "constructs": {
+            "$ref": "#/definitions/ConstructsInfo",
+            "description": "Information about constructs defined in the package.",
+            "title": "constructs"
+        },
+        "description": {
+            "description": "The description of the package.",
+            "title": "description",
+            "type": "string"
+        },
+        "icon": {
+            "title": "icon",
+            "type": "string"
+        },
+        "identifier": {
+            "description": "The unique identifier of the package.",
+            "title": "identifier",
+            "type": "string"
+        },
+        "license": {
+            "description": "The SPDX license identifier for the license that the package is released under.",
+            "title": "license",
+            "type": "string"
+        },
+        "name": {
+            "description": "The descriptive name of the package.",
+            "title": "name",
+            "type": "string"
+        },
+        "support": {
+            "$ref": "#/definitions/SupportInfo",
+            "description": "Information about the support provided for the package.",
+            "title": "support"
+        },
+        "tooling": {
+            "$ref": "#/definitions/ToolingInfo",
+            "description": "Information about tooling the package relies on.",
+            "title": "tooling"
+        },
+        "vendor": {
+            "description": "The author of the package.",
+            "title": "vendor",
+            "type": "string"
+        }
+    },
+    "type": "object"
+}
+
