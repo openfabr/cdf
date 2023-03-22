@@ -1,17 +1,18 @@
 
 import { err, ok, Result } from "neverthrow";
-import { PackageCustomModule, PackageInfraConfig, PackageInfraPlanConstructs, PackagePlanner } from "@openfabr/package-ri-awscdk";
-//import { PackageCustomModule, PackageInfraConfig, PackageInfraPlanConstructs, PackagePlanner } from "../../../packages/awscdk-typescript";
+import { PackageCustomModule, PackageInfraConfig, PackageInfraPlanConstructs, PackagePlanner } from "@openfabr/package-ri-pulumi";
+//import { PackageCustomModule, PackageInfraConfig, PackageInfraPlanConstructs, PackagePlanner } from "../../packages/pulumi-typescript/src";
 import { InfraPlan, InfraPlanOutputs, Orchestrator, PlanError } from "@openfabr/cdf";
+
+// Coming soon...
+// CDF currently doesn't support customisation for Pulumi due differences behavior compared to CDK.
 
 export class CustomModuleOne implements PackageCustomModule {
   
   enhanceWith(config: PackageInfraConfig, result: InfraPlan<PackageInfraPlanConstructs>, scope: any): Result<InfraPlanOutputs, PlanError> {
-    result.constructs.cluster.addDefaultCloudMapNamespace({
-      name: `ecs.${config.network.domain}`,
-      vpc: result.constructs.vpc,
-    });
-    return ok(new Map<string, any>());
+  
+    return err({message: 'Not implemented yet'});
+    //return ok(new Map<string, any>());
   }
 
 }
@@ -19,7 +20,6 @@ export class CustomModuleOne implements PackageCustomModule {
 export class CustomModuleAnother implements PackageCustomModule {
   
   enhanceWith(config: PackageInfraConfig, result: InfraPlan<PackageInfraPlanConstructs>, scope: any): Result<InfraPlanOutputs, PlanError> {
-    
     return err({message: 'Not implemented yet'});
   }
 
