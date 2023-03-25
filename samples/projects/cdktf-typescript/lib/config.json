@@ -1,6 +1,8 @@
 {
   "general": {
-    "name": "cdktf-sample"
+    "name": "cdktf-sample",
+    "defaultRegion": "lon",
+    "defaultRegionDatacenter": "lon1"
   },
   "network": {
     "name": "unsupported"
@@ -16,7 +18,6 @@
       "details": [
         {
           "name": "testapi",
-          "region": "lon",
           "dockerfilePath": "Dockerfile",
           "dockerhubRegistryName": "janaka",
           "containerRegistryRepoName": "test-api",

@@ -8,6 +8,9 @@ Pre-requisite: have a personal access token with read+write scope via the Digita
 
 Currently the project is using a local file-based state store.
 
+- set `export DIGITALOCEAN_ACCESS_TOKEN=`
+  
+
 Repeat whenever you need to reprovision:
 
 ```
