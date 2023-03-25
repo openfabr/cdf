@@ -2,7 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import * as cdf from "@openfabr/cdf";
-import config from '../lib/config.json';
+import config from '../lib/private-s3.config.json';
 import { PackageInfraConfig, PackagePlanner } from '@openfabr/package-ri-awscdk';
 //import { PackageInfraConfig, PackagePlanner } from '../../../packages/awscdk-typescript';
 import { CustomModuleAnother, CustomModuleOne } from '../lib/modules';
@@ -14,7 +14,8 @@ const stack = cdf.awscdk.initProjectStack(
   config as PackageInfraConfig, 
   new PackagePlanner(), 
   [
-    new CustomModuleOne(),
-    new CustomModuleAnother(),
-  ]
+    // new CustomModuleOne(),
+    // new CustomModuleAnother(),
+  ],
+  "stack-openfabr-awscdk-typescript-sample"
 );

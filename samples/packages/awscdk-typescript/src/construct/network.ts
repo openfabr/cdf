@@ -22,7 +22,7 @@ export class Network extends Construct {
     const addresses = props.config.network.cidr ? ec2.IpAddresses.cidr(props.config.network.cidr) : undefined;
     const vpcName = props.config.network.name;
 
-    if (vpcName !== "default-vpc" && addresses) {
+    if (vpcName !== "default-vpc" && props.config.network.cidr !== undefined) {
       this.vpc = new ec2.Vpc(this, 'vpc', {
         vpcName: vpcName,
         subnetConfiguration: subnets,

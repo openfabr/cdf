@@ -76,6 +76,7 @@ export class Components extends Construct {
       }
       else if (PackageComponentStorageBucketConfig.has(t)) {
         t.details.map(c => c as PackageComponentStorageBucketConfig).forEach(c => {
+        
           const b = new Bucket(this, c.name,
             {
               ...{
