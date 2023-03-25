@@ -19,10 +19,14 @@ export class Network extends Construct {
     });
 
     const addresses = props.config.network.cidr ? IpAddresses.cidr(props.config.network.cidr) : undefined;
-    this.vpc = new Vpc(this, 'vpc', {
-      vpcName: props.config.network.name,
-      subnetConfiguration: subnets,
-      ... { ipAddresses: addresses },
-    });
+    const vpcName = props.config.network.name;
+
+    if (vpcName !== "default-vpc" && addresses) {
+      this.vpc = new Vpc(this, 'vpc', {
+        vpcName: vpcName,
+        subnetConfiguration: subnets,
+        ... { ipAddresses: addresses },
+      });
+    };
   }
 }
