@@ -1,3 +1,5 @@
+@openfabr/cdf / [Exports](modules.md)
+
 # OpenFABR CDF | TypeScript
 
 ## Use

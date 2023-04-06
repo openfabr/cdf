@@ -4,7 +4,6 @@
   "license": "UNLICENSED",
   "cdf": "1.x",
   "tooling": {
-    "command": "cdktf deploy",
     "runtime": "cdktf",
     "language": "typescript",
     "vendors": [

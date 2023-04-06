@@ -54,15 +54,37 @@ export interface SupportInfo {
 }
 
 /**
+ * Interface that offers command information about the underlying tooling in the package.
+ *
+ * @group for both project creators and package authors
+ */
+export interface ToolingCommandInfo {
+  /**
+   * The provision command, such as 'cdk deploy' for a typical AWS CDK based package.
+   */
+  readonly provision: string;
+  /**
+   * The destroy command, such as 'cdktf destroy' for a typical CDK for Terraform based package.
+   */
+  readonly destroy: string;
+  /**
+   * The optional list of other available commands made available by a package.
+   */
+  readonly others?: { [key: string]: string };
+}
+
+/**
  * Interface that offers information about IaC tooling.
  *
  * @group For both project creators and package authors
  */
 export interface ToolingInfo {
   /**
-   * The shell command to run deployment with the package.
+   * The information about commands available to manage infra with the package.
+   *
+   * If not present, it is auto-guessed from both `ToolingRuntime` and `ToolingLanguage`; therefore it is recommended to always provide the info.
    */
-  readonly command: string;
+  readonly command?: ToolingCommandInfo;
   /**
    * The supported IaC runtime.
    */
