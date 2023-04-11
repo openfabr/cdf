@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/openfabr/cdf/compare/package-ri-awscdk-typescript-v2.0.0...package-ri-awscdk-typescript-v2.1.0) (2023-04-11)
+
+
+### Features
+
+* **cdf-ri-packages:** Bump RI packages ([a6bf097](https://github.com/openfabr/cdf/commit/a6bf097c30026f21615400f8179d4b55df72cbed))
+
 ## [2.0.0](https://github.com/openfabr/cdf/compare/package-ri-awscdk-typescript-v1.0.1...package-ri-awscdk-typescript-v2.0.0) (2022-12-14)
 
 
