@@ -23,7 +23,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@openfabr/cdf": "^2.0.0"
+    "@openfabr/cdf": "^3.0.0"
   },
   "peerDependencies": {
     "aws-cdk-lib": "2.x",

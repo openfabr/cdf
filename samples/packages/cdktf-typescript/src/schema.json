@@ -1,0 +1,247 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/Welcome8",
+  "definitions": {
+      "Welcome8": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+              "$schema": {
+                  "type": "string",
+                  "format": "uri",
+                  "qt-uri-protocols": [
+                      "https"
+                  ],
+                  "qt-uri-extensions": [
+                      ".json"
+                  ]
+              },
+              "identifier": {
+                  "type": "string"
+              },
+              "vendor": {
+                  "type": "string"
+              },
+              "license": {
+                  "type": "string"
+              },
+              "cdf": {
+                  "type": "string"
+              },
+              "name": {
+                  "type": "string"
+              },
+              "description": {
+                  "type": "string"
+              },
+              "support": {
+                  "$ref": "#/definitions/Support"
+              },
+              "tooling": {
+                  "$ref": "#/definitions/Tooling"
+              },
+              "constructs": {
+                  "$ref": "#/definitions/Constructs"
+              }
+          },
+          "required": [
+              "$schema",
+              "cdf",
+              "constructs",
+              "description",
+              "identifier",
+              "license",
+              "name",
+              "support",
+              "tooling",
+              "vendor"
+          ],
+          "title": "Welcome8"
+      },
+      "Constructs": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+              "schema": {
+                  "type": "string"
+              },
+              "network": {
+                  "$ref": "#/definitions/Network"
+              },
+              "components": {
+                  "$ref": "#/definitions/Components"
+              },
+              "services": {
+                  "$ref": "#/definitions/Services"
+              },
+              "relations": {
+                  "$ref": "#/definitions/Components"
+              },
+              "custom": {
+                  "$ref": "#/definitions/Custom"
+              }
+          },
+          "required": [
+              "components",
+              "custom",
+              "network",
+              "relations",
+              "schema",
+              "services"
+          ],
+          "title": "Constructs"
+      },
+      "Components": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+              "types": {
+                  "$ref": "#/definitions/ComponentsTypes"
+              }
+          },
+          "required": [
+              "types"
+          ],
+          "title": "Components"
+      },
+      "ComponentsTypes": {
+          "type": "object",
+          "additionalProperties": false,
+          "title": "ComponentsTypes"
+      },
+      "Custom": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+              "icon": {
+                  "type": "string"
+              },
+              "template": {
+                  "type": "string"
+              }
+          },
+          "required": [
+              "icon",
+              "template"
+          ],
+          "title": "Custom"
+      },
+      "Network": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+              "icon": {
+                  "type": "string"
+              }
+          },
+          "required": [
+              "icon"
+          ],
+          "title": "Network"
+      },
+      "Services": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+              "types": {
+                  "$ref": "#/definitions/ServicesTypes"
+              }
+          },
+          "required": [
+              "types"
+          ],
+          "title": "Services"
+      },
+      "ServicesTypes": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+              "APP_SERVICE": {
+                  "$ref": "#/definitions/AppService"
+              }
+          },
+          "required": [
+              "APP_SERVICE"
+          ],
+          "title": "ServicesTypes"
+      },
+      "AppService": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+              "type": {
+                  "type": "string"
+              },
+              "subtype": {
+                  "type": "string"
+              },
+              "deployment": {
+                  "type": "string"
+              },
+              "icon": {
+                  "type": "string"
+              },
+              "description": {
+                  "type": "string"
+              }
+          },
+          "required": [
+              "deployment",
+              "description",
+              "icon",
+              "subtype",
+              "type"
+          ],
+          "title": "AppService"
+      },
+      "Support": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+              "email": {
+                  "type": "string"
+              },
+              "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "qt-uri-protocols": [
+                      "https"
+                  ]
+              }
+          },
+          "required": [
+              "email",
+              "url"
+          ],
+          "title": "Support"
+      },
+      "Tooling": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+              "command": {
+                  "type": "string"
+              },
+              "runtime": {
+                  "type": "string"
+              },
+              "language": {
+                  "type": "string"
+              },
+              "vendors": {
+                  "type": "array",
+                  "items": {
+                      "type": "string"
+                  }
+              }
+          },
+          "required": [
+              "command",
+              "language",
+              "runtime",
+              "vendors"
+          ],
+          "title": "Tooling"
+      }
+  }
+}

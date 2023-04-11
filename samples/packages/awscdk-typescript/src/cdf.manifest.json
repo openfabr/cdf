@@ -1,9 +1,9 @@
 {
-  "$schema": "https://openfabr.github.io/cdf/references/typescript/1.3.0/manifest.schema.json",
+  "$schema": "https://openfabr.github.io/cdf/references/typescript/3.0.0/manifest.schema.json",
   "identifier": "awscdk-typescript",
   "vendor": "OpenFABR",
   "license": "AGPL-3.0-only",
-  "cdf": "^1.2.0",
+  "cdf": "^3.0.0",
   "name": "awscdk-typescript",
   "description": "A sample package using AWS CDK with TypeScript",
   "support": {
@@ -11,7 +11,10 @@
     "url": "https://open.fabrhq.com"
   },
   "tooling": {
-    "command": "cdk deploy",
+    "command": {
+      "provision": "cdk deploy",
+      "destroy": "cdk destroy"
+    },
     "runtime": "awscdk",
     "language": "typescript",
     "vendors": [
