@@ -1,9 +1,9 @@
 {
-  "$schema": "https://openfabr.github.io/cdf/references/typescript/2.0.0/manifest.schema.json",
+  "$schema": "https://openfabr.github.io/cdf/references/typescript/3.0.0/manifest.schema.json",
   "identifier": "cdktf-typescript",
   "vendor": "OpenFABR",
   "license": "AGPL-3.0-only",
-  "cdf": "^2.0.0",
+  "cdf": "^3.0.0",
   "name": "cdktf-typescript",
   "description": "A sample package using cdktf with TypeScript",
   "support": {
@@ -11,7 +11,10 @@
     "url": "https://open.fabrhq.com"
   },
   "tooling": {
-    "command": "cdktf deploy",
+    "command": {
+      "provision": "cdktf deploy",
+      "destroy": "cdktf destroy"
+    },
     "runtime": "cdktf",
     "language": "typescript",
     "vendors": [
