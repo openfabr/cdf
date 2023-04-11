@@ -76,6 +76,7 @@ export class Components extends Construct {
       }
       else if (PackageComponentStorageBucketConfig.has(t)) {
         t.details.map(c => c as PackageComponentStorageBucketConfig).forEach(c => {
+        
           const b = new Bucket(this, c.name,
             {
               ...{
@@ -83,20 +84,26 @@ export class Components extends Construct {
                 blockPublicAccess: PackageComponentStorageBucketConfig.awsBlockPublicAccess(c.blockPublicAccess),
                 encryption: BucketEncryption.S3_MANAGED,
                 enforceSSL: true,
-                removalPolicy: RemovalPolicy.RETAIN // don't delete files when the stack is destroyed
+                removalPolicy: RemovalPolicy.DESTROY // FIXME: WARNING: DESTROY is for sample convenience. Change to RETAIN don't delete files when the stack is destroyed
               }
             }
           )
+          new CfnOutput(b, 'Bucket:Name', { value: b.bucketName, description: 'Name of the bucket with static website content. This is the deploy target'});
+          new CfnOutput(b, 'Bucket:Arn', { value: b.bucketArn, description: 'ARN of the bucket with static website content. This is the deploy target'});
+
           this.buckets[c.name] = b;
         });
       }
       else if (PackageComponentStaticWebsiteHostingConfig.has(t)) {
+        //TODO: move this to services
         t.details.map(c => c as PackageComponentStaticWebsiteHostingConfig).forEach(c => {
           const b = new Bucket(this, `${c.name}_${c.hostName}${c.domain}`,
             {
               ...{
                 accessControl: BucketAccessControl.PRIVATE,
-                removalPolicy: RemovalPolicy.DESTROY
+                removalPolicy: RemovalPolicy.DESTROY,// FIXME: WARNING: DESTROY is for sample convenience. Change to RETAIN don't delete files when the stack is destroyed
+                autoDeleteObjects:true,
+                
               }
             }
           )
@@ -119,7 +126,10 @@ export class Components extends Construct {
             },
           })
 
-          new CfnOutput(d, 'distributionDomainName', { value: d.distributionDomainName, description: 'distrinutionDomainName' });
+          new CfnOutput(d, 'StaticWebsite:Url', { value: d.distributionDomainName, description: 'URL of the static website' });
+          new CfnOutput(d, 'StaticWebsite:CdnDistributionId', { value: d.distributionId, description: 'Id of the CloudFront distribution fronting the website'});
+          new CfnOutput(b, 'StaticWebsite:BucketName', { value: b.bucketName, description: 'Name of the bucket with static website content. This is the deploy target'});
+          new CfnOutput(b, 'StaticWebsite:BucketArn', { value: b.bucketArn, description: 'ARN of the bucket with static website content. This is the deploy target'});
 
           this.websites[c.name] = { bucket: b, distribution: d };
         });
