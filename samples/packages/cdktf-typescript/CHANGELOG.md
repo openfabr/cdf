@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/openfabr/cdf/compare/package-ri-cdktf-typescript-v3.0.0...package-ri-cdktf-typescript-v3.1.0) (2023-04-11)
+
+
+### Features
+
+* **cdf-ri-packages:** Bump RI packages ([a6bf097](https://github.com/openfabr/cdf/commit/a6bf097c30026f21615400f8179d4b55df72cbed))
+
 ## [3.0.0](https://github.com/openfabr/cdf/compare/package-ri-cdktf-typescript-v2.0.0...package-ri-cdktf-typescript-v3.0.0) (2022-11-28)
 
 
