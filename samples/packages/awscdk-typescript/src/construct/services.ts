@@ -14,6 +14,7 @@ import {
   ServiceApplicationType,
 } from "../package-config";
 import { ApplicationLoadBalancedFargateService } from "aws-cdk-lib/aws-ecs-patterns";
+import { CfnOutput } from "aws-cdk-lib";
 
 export interface ServicesProps {
   config: PackageInfraConfig;
@@ -98,6 +99,10 @@ export class Services extends Construct {
               }
             );
 
+            new CfnOutput(loadBalancedFargateService, 'Service:Arn', { value: loadBalancedFargateService.service.serviceArn, description: 'ARN of the loadbalanced service in ECS Fargate'});
+            new CfnOutput(loadBalancedFargateService, 'Service:LoadBalancerArn', { value: loadBalancedFargateService.loadBalancer.loadBalancerArn, description: 'ARN for this loadbalanced service in ECS Fargate'});
+            new CfnOutput(loadBalancedFargateService, 'Service:Url', { value: loadBalancedFargateService.loadBalancer.loadBalancerDnsName, description: 'Url for this loadbalanced service in ECS Fargate'});
+
           this.services[s.name] = loadBalancedFargateService.service;
           this.taskdefs[s.name] = loadBalancedFargateService.taskDefinition;
         } else if (
@@ -133,6 +138,10 @@ export class Services extends Construct {
             cluster: this.cluster,
             taskDefinition: taskdef,
           });
+
+
+          new CfnOutput(service, 'Service:Arn', { value: service.serviceArn, description: 'ARN of the service in ECS Fargate'});
+          
 
           this.taskdefs[s.name] = taskdef;
           this.services[s.name] = service;

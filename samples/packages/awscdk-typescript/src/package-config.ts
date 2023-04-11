@@ -52,7 +52,7 @@ export class NetworkSubnetDetail implements cdf.NameAware {
 export class PackageNetworkConfig implements cdf.NetworkConfig {
   constructor(
     public readonly name: string,
-    public readonly domain: string,
+    public readonly domain?: string,
     public readonly cidr?: string,
     public readonly zones?: number,
     public readonly subnets?: NetworkSubnetDetail[],
