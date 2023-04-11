@@ -28,7 +28,7 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@openfabr/cdf": "^1.0.0"
+    "@openfabr/cdf": "^2.0.0"
   },
   "peerDependencies": {
     "@cdktf/provider-digitalocean": "^4.0.0",

@@ -5,6 +5,8 @@ import { App as DoApp, } from '@cdktf/provider-digitalocean/lib/app';
 // import { Network } from "./construct/network";
 import { Services } from "./constructs/services";
 import { General } from './constructs/general';
+import { PackageManifest } from "@openfabr/cdf";
+import * as manifest from "./cdf.manifest.json";
 
 /**
  * The DO App Plaform is per region not datacentre hence just the geo prefix only
@@ -83,8 +85,13 @@ export interface PackageNetworkConfig extends cdf.NetworkConfig {
   // fields TBA
 }
 
-export class PackageServiceDoAppConfig implements PackageServiceConfig {
 
+export enum ServiceTyping {
+  APP_SERVICE = 'APP_SERVICE',
+}
+
+export class PackageServiceDoAppConfig implements PackageServiceConfig {
+  static TYPING = (manifest as PackageManifest).constructs.services.types[ServiceTyping.APP_SERVICE];
   constructor(
     public readonly name: string,
     public readonly dockerhubRegistryName: string,
@@ -97,7 +104,7 @@ export class PackageServiceDoAppConfig implements PackageServiceConfig {
   ) { }
 
   public static has(config: cdf.RuntimeConfig<PackageServiceConfig>): boolean {
-    return config.type == 'app' && config.subtype == 'service';
+    return config.type == this.TYPING.type && config.subtype == this.TYPING.subtype;
   }
 }
 
