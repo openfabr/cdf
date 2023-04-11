@@ -1,0 +1,44 @@
+{
+  "$schema": "https://openfabr.github.io/cdf/references/typescript/2.0.0/manifest.schema.json",
+  "identifier": "cdktf-typescript",
+  "vendor": "OpenFABR",
+  "license": "AGPL-3.0-only",
+  "cdf": "^2.0.0",
+  "name": "cdktf-typescript",
+  "description": "A sample package using cdktf with TypeScript",
+  "support": {
+    "email": "open@fabr.ltd",
+    "url": "https://open.fabrhq.com"
+  },
+  "tooling": {
+    "command": "cdktf deploy",
+    "runtime": "cdktf",
+    "language": "typescript",
+    "vendors": [
+      "DO"    
+    ]
+  },
+  "constructs": {
+    "schema": "schema.json",
+    "network": {
+      "icon": "fas:network-wired"
+    },
+    "components": {
+      "types": {
+      }
+    },
+    "services": {
+      "types": {
+        "APP_SERVICE": { "type": "app", "subtype": "service", "deployment": "Use a container registry per service to trigger deployment", "icon": "fas:cube", "description": "Container service deployment via DO App Service"}
+      }
+    },
+    "relations": {
+      "types": {
+      }
+    },
+    "custom": {
+      "icon": "fas:code",
+      "template": "template.ts"
+    }
+  }
+}
