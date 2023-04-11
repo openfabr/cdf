@@ -17,7 +17,8 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "ci-build": "npm ci && npm test && cdk synth"
+    "ci-build": "npm ci && npm test && cdk synth",
+    "update-local-cdfpackage": "rm -rf node_modules/@openfabr/package-ri-awscdk && npm i @openfabr/package-ri-awscdk ../../packages/awscdk-typescript -f"
   },
   "engines": {
     "node": ">=16"
@@ -33,7 +34,7 @@
     "typescript": "~3.9.7"
   },
   "dependencies": {
-    "@openfabr/package-ri-awscdk": "1.0.0",
+    "@openfabr/package-ri-awscdk": "file:../../packages/awscdk-typescript",
     "aws-cdk-lib": "2.49.0",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
