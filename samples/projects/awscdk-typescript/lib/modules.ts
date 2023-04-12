@@ -20,7 +20,7 @@ export class CustomModuleAnother implements PackageCustomModule {
   
   enhanceWith(config: PackageInfraConfig, result: InfraPlan<PackageInfraPlanConstructs>, scope: any): Result<InfraPlanOutputs, PlanError> {
     
-    return err({message: 'Not implemented yet'});
+    return ok(new Map<string, any>());
   }
 
 }
