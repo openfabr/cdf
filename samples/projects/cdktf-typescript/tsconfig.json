@@ -26,12 +26,17 @@
     "incremental": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "outDir": "dist"
   },
   "include": [
     "**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "cdktf.out"
+    "cdktf.out",
+    "dist"
   ]
 }

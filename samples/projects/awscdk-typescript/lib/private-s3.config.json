@@ -1,0 +1,25 @@
+{
+  "general": {
+    "name": "sample"
+  },
+  "network": {
+    "name": "nothing"
+  },
+  "components": [
+    {
+      "name": "s3-bucket-private",
+      "type": "store",
+      "subtype": "object",
+      "details": [
+        {
+          "name": "fabr-bucket-1",
+          "blockPublicAccess": "BlockPublicAccess.BLOCK_ALL"
+        }
+      ]
+    }
+  ],
+  "services": [
+  ],
+  "relations": [
+  ]
+}

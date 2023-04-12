@@ -23,8 +23,8 @@
   "components": [
     {
       "name": "s3bucket",
-      "type": "storage",
-      "subtype": "bucket",
+      "type": "store",
+      "subtype": "object",
       "details": [
         {
           "name": "fabr-bucket-1",
