@@ -5,7 +5,8 @@
   "bin": {
     "cdf-init-project": "init-project.js",
     "cdf-init-package": "init-package.js",
-    "cdf-schema-gen": "schema-gen.sh"
+    "cdf-schema-gen": "schema-gen.sh",
+    "cdf-cli": "cdf-cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
